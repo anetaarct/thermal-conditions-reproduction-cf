@@ -1,0 +1,4 @@
+analysis,years,window_open_weeks_before_refday,window_close_weeks_before_refday,boundary_difference_weeks,window_open_days_before_refday,window_close_days_before_refday,window_open_calendar,window_close_calendar,delta_AICc
+Main,1980-2025 (no 2020),6,0,6,42,0,26 Mar,07 May,-38.60159858397057
+First 23 seasons,1980-2002,9,0,9,63,0,05 Mar,07 May,-19.891477578539792
+Remaining 22 seasons,2003-2025 (no 2020),4,1,3,28,7,09 Apr,30 Apr,-8.47411798877225

@@ -1,0 +1,3 @@
+response,best_model,binary_delta_AIC,categorical_delta_AIC,quadratic_delta_AIC
+CS,categorical_capped,5.6229921367594216,0,25.451462940878628
+LD,categorical_capped,5.787565621016256,0,19.255298308948113

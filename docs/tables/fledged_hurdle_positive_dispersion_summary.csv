@@ -1,0 +1,2 @@
+observed_positive_broods,observed_Pearson_dispersion,simulated_median,simulation_CI_low,simulation_CI_high,proportion_simulated_at_least_observed,hurdle_poisson_AIC,hurdle_nbinom2_AIC,delta_AIC_nbinom2,hurdle_nbinom2_theta,poisson_convergence,poisson_pdHess,nbinom2_convergence,nbinom2_pdHess,nsim
+7405,0.5386321786291969,0.9996688452629169,0.9658115407094289,1.0372471940866943,1,39333.69033747199,NA,NA,27503726.770952668,0,TRUE,0,FALSE,1000

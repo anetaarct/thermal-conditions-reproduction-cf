@@ -1,0 +1,4 @@
+specification,beta_year_log_phi,SE,z,p,direction,AIC,n,pdHess,convergence_code
+temperature in location and phi (current main model),0.003385615680293338,0.0022648265076975344,1.4948675621671432,0.13494900945419314,higher phi: greater consistency,34089.70399686408,9716,TRUE,0
+temperature in location only,0.005788208042494326,0.002034468902973398,2.845070786795904,0.004440155451131484,higher phi: greater consistency,34093.59604685091,9716,TRUE,0
+temperature absent from location and phi,0.005828650843757805,0.0020348495385101926,2.8644136745487483,0.004177820120974466,higher phi: greater consistency,34103.69032732799,9716,TRUE,0

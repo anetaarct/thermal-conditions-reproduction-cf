@@ -1,0 +1,60 @@
+---
+title: "Overview"
+page-layout: full
+toc: false
+---
+
+<div class="overview-hero">
+  <video autoplay muted loop playsinline poster="images/cover-flycatcher.jpg" aria-label="Gotland field landscape">
+    <source src="media/gotland-background.mp4" type="video/mp4">
+  </video>
+  <div class="overview-hero-shade"></div>
+  <div class="overview-hero-copy">
+  <p class="overview-kicker">Arct et al. 2026</p>
+  <h1>Warmer springs and reproductive performance in the collared flycatcher</h1>
+  </div>
+</div>
+
+<section class="overview-intro">
+  <h2><span class="section-number">0.1</span> Study aims</h2>
+  <p>We asked how spring temperature was associated with reproductive performance in the collared flycatcher, and whether these responses were expressed through changes in average performance, reproductive consistency, or both.</p>
+  <p>Specifically, we tested whether:</p>
+  <ul>
+    <li>mean temperature during the pre-laying thermal window increased through time and whether its interannual variability changed;</li>
+    <li>clutch size and its consistency among females were associated with spring temperature, relative laying date, female age, and long-term time;</li>
+    <li>fledging success and its consistency among females were associated with spring temperature, relative laying date, female age, and long-term time.</li>
+  </ul>
+</section>
+
+<nav class="overview-tiles" aria-label="Project sections">
+  <a class="overview-tile" href="climate_window.html">
+    <span class="tile-title">Thermal window and temperature data</span>
+    <span class="tile-copy">How the pre-laying thermal window was selected and how mean temperature changed through time.</span>
+  </a>
+  <a class="overview-tile" href="data_preparation.html">
+    <span class="tile-title">Data and study population</span>
+    <span class="tile-copy">How temperature, clutch-size, and fledging-success datasets were assembled and validated.</span>
+  </a>
+  <a class="overview-tile" href="model_structure.html">
+    <span class="tile-title">Model structure</span>
+    <span class="tile-copy">Equations and interpretation for the temperature, clutch-size, and egg-to-fledging-success models.</span>
+  </a>
+  <a class="overview-tile" href="clutch_size.html">
+    <span class="tile-title">Clutch size</span>
+    <span class="tile-copy">Were reproductive investment and its residual dispersion associated with spring temperature and relative laying date?</span>
+  </a>
+  <a class="overview-tile" href="fledging_success.html">
+    <span class="tile-title">Fledging success</span>
+    <span class="tile-copy">How fledging success and its conditional consistency varied with temperature, relative timing, and female age.</span>
+  </a>
+  <a class="overview-tile" href="figure_code.html">
+    <span class="tile-title">Figure code</span>
+    <span class="tile-copy">Reproducible plotting code and downloadable data for all figures.</span>
+  </a>
+</nav>
+
+<section class="overview-bird-gallery" aria-label="Collared flycatcher photograph">
+  <figure class="bird-photo bird-photo-wide">
+    <img src="images/cover-flycatcher.jpg" alt="Collared flycatcher perched on a branch.">
+  </figure>
+</section>

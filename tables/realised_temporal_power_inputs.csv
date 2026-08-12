@@ -1,0 +1,7 @@
+"quantity","estimate","unit"
+"Temperature trend",0.0470300970247187,"degrees C/year"
+"Marginal temperature effect",-0.102090990037151,"log mean/degree C"
+"Expected temporal trend",-0.00480134916679682,"log mean/year"
+"Expected annual percent change",-0.478984111531078,"%/year"
+"Between-year SD",0.0744730092442149,"log scale"
+"Seasons for 80% analytical power",29,"seasons"

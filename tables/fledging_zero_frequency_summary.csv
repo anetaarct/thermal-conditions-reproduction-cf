@@ -1,0 +1,2 @@
+observed,simulated_mean,simulated_median,simulation_CI_low,simulation_CI_high,proportion_as_or_more_extreme,nsim
+0.23785508439687114,0.25666982297241664,0.25663853437628653,0.2496359098394401,0.26435904693289414,0,1000

@@ -1,0 +1,5 @@
+component,prediction,estimate,CI_low,CI_high,unit
+Mean clutch size,Conditional: mean temperature,0.25258486440000016,0.055558930459999385,0.4415095541999998,eggs
+Mean clutch size,Marginal: observed annual temperature,0.5636727825860466,0.38467191709255805,0.7407910101788364,eggs
+Residual scale,Conditional: mean temperature,9.57925294039984,-6.07794620183033,28.57978716958974,%
+Residual scale,Marginal: observed annual temperature,12.386187753908395,-2.738682844043683,29.71047951854858,%

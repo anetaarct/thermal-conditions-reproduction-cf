@@ -1,0 +1,2 @@
+parameter,estimate,CrI_2.5,CrI_97.5,posterior_probability_negative
+rel_LD x temp_mean_c,-0.008323672296756,-0.015077374174999998,-0.001654383777500001,0.994125

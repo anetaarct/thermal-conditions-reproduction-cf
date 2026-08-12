@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+  execute-dir: project
+  render:
+    - index.qmd
+    - climate_window.qmd
+    - data_preparation.qmd
+    - model_structure.qmd
+    - clutch_size.qmd
+    - fledging_success.qmd
+    - figure_code.qmd
+  resources:
+    - data_derived/smhi_hoburg_daily_temperature.csv
+    - tables/*.csv
+    - figures/*
+    - R/*.R
+
+website:
+  title: "Warmer springs and reproductive performance in the collared flycatcher"
+  navbar:
+    left:
+      - text: "Overview"
+        href: index.qmd
+      - text: "Thermal window and temperature data"
+        href: climate_window.qmd
+      - text: "Data and study population"
+        href: data_preparation.qmd
+      - text: "Model structure"
+        href: model_structure.qmd
+      - text: "Clutch size"
+        href: clutch_size.qmd
+      - text: "Fledging success"
+        href: fledging_success.qmd
+      - text: "Figure code"
+        href: figure_code.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    fig-responsive: true
+
+execute:
+  warning: false
+  message: false
+  freeze: auto
+
+editor: source

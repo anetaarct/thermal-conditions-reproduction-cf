@@ -1,0 +1,10 @@
+component,quantity,estimate,unit
+Location,Year random-intercept SD,0.145183841887375,clutch-size scale
+Location,Female random-intercept SD,0.39430520104625,clutch-size scale
+Location,Share of modelled random-intercept variance: year,11.938690587080787,%
+Location,Share of modelled random-intercept variance: female,88.06130941291921,%
+Location,Share of modelled seasonal variance attributable to temperature and year,53.65871824095076,%
+Location,Share of modelled seasonal variance attributable to temperature alone,33.27657809559368,%
+Scale,Year random-intercept SD,0.107225966176625,log-sigma scale
+Scale,Share of modelled seasonal variance attributable to temperature and year,8.445304862373503,%
+Scale,Share of modelled seasonal variance attributable to temperature alone,0.5654541906104235,%

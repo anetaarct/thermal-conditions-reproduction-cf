@@ -1,0 +1,2 @@
+run_mode,chains,iter,warmup,adapt_delta,max_treedepth,elapsed_minutes,divergences,treedepth_hits,max_rhat,min_bulk_ess
+full,4,4000,2000,0.99,15,34.93739550113678,0,0,1.0045487053657631,1036.5951612451672

@@ -1,0 +1,15 @@
+setting,value
+analysis level,year (season)
+analysis years,1980-2019 and 2021-2025 (45 seasons)
+response,annual raw median laying date from all valid broods
+age filtering or adjustment,none
+minimum window length in all window selections,boundary difference at least 2 weeks
+type,absolute
+reference laying date (database LD index; LD = 0 is 1 May),21
+reference calendar day,07 May
+range,17 to 0 weeks (119 to 0 days)
+stat,mean
+func,lin
+cinterval,week
+baseline,median_LD ~ 1
+randwin repeats,500

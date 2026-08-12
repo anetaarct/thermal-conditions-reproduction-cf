@@ -1,0 +1,3 @@
+model,n,AIC,pdHess,convergence_code
+main_no_temp_sd,9716,34088.364363687375,TRUE,0
+sensitivity_with_temp_sd,9716,34086.96069993012,TRUE,0

@@ -1,0 +1,3 @@
+sample,n,estimate,SE,z,p,phi_ratio_per_year,percent_phi_change_per_year,interpretation
+all broods (including zero fledglings),9716,0.0034048213358593166,0.0022645749682764266,1.5035145153312077,0.132706416708584,1.003410624324201,0.3410624324200917,phi increases: consistency increases (overdispersion decreases)
+fledged > 0,7405,-0.01714013488583009,0.003977912596430813,-4.308826418461054,1.641231127885757e-5,0.9830059215598406,-1.6994078440159432,phi decreases: consistency decreases (overdispersion increases)

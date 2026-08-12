@@ -1,0 +1,2 @@
+observed_auxiliary_beta,simulated_median,simulation_CI_low,simulation_CI_high,proportion_at_least_observed,successful_interior_fits,boundary_fits,simulations
+0.0522124185088102,0.0014557890003101983,-0.04666716499967624,0.04829770331444553,0.01,200,0,200

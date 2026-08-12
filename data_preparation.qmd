@@ -1,0 +1,94 @@
+---
+title: "Data and study population"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show code"
+---
+
+```{r}
+#| include: false
+invisible(Sys.setlocale("LC_TIME", "C"))
+library(readr)
+library(dplyr)
+library(knitr)
+
+model_audit <- read_csv("tables/reproductive_model_data_audit.csv", show_col_types = FALSE)
+centering <- read_csv("tables/reproductive_model_centering_checks.csv", show_col_types = FALSE)
+```
+
+The analyses combine long-term breeding records from the Gotland population of collared flycatchers with daily temperature observations from Hoburg. The validated ranges used by each component are:
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| filename: "Reproduction workflow — run in this order"
+source("R/01_prepare_bird_data.R")
+source("R/02_prepare_temperature_data.R")
+source("R/08_annual_main_window_temperature.R")
+source("R/09_prepare_reproductive_model_data.R")
+```
+
+| Data | Years | Notes |
+|---|---:|---|
+| Daily temperature | 1980–2025 | 1980-01-01 to 2025-12-31; 16,802 days |
+| Clutch size | 1982–2025 | Validated reproductive seasons |
+| Fledging success | 1982–2019 | Later records exist but have not passed validation |
+
+The 1980 season was a pilot season and is excluded from reproductive analyses. No nest monitoring was conducted in 2020.
+
+## Female age class
+
+Female age class comes exclusively from `FAGE_CAT`. Its two categories are `YOUNG` and `OLD`; no other age field is used in the analyses.
+
+## Relative laying date
+
+Relative laying date is centred within breeding season using the annual median in the validated reproductive dataset:
+
+$$
+\mathrm{rel\_LD}_{iy}=\mathrm{LD}_{iy}-\mathrm{median}(\mathrm{LD}_{y}).
+$$
+
+After outcome-, age-, and complete-case restrictions define a model-specific analytical sample, `rel_LD` is recalculated in that final sample by subtracting its annual median. The annual median is therefore exactly zero in every included season. Model-specific checks of the annual mean, annual median, and association with window temperature are reported in the corresponding analysis chapters.
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| filename: "tables/reproductive_model_centering_checks.csv"
+kable(
+  centering,
+  digits = 8,
+  col.names = c("Check", "Value"),
+  caption = "Checks of within-year median centring"
+)
+```
+
+## Inclusion criteria and sample reconciliation
+
+Records are eligible when clutch size is 2–9 eggs. Fledging records additionally require fledgling number to be between zero and clutch size. Broods with zero fledglings are retained. Missing fledgling counts do not exclude a record from the clutch-size analysis.
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| filename: "tables/reproductive_model_data_audit.csv"
+kable(
+  model_audit,
+  col.names = c("Sample step", "Records"),
+  caption = "Reconciliation from validated records to the analytical samples"
+)
+```
+
+## Files required for reproduction
+
+- [`data_raw/birds/CF_adult_birds_1980-2019.csv`](data_raw/birds/CF_adult_birds_1980-2019.csv) — source breeding records.
+- [`data_raw/smhi/hoburg_68550_daily_mean_temperature.csv`](data_raw/smhi/hoburg_68550_daily_mean_temperature.csv) — historical Hoburg daily temperature observations.
+- [`data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv`](data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv) — continuing Hoburg A daily temperature observations.
+- [`data_derived/smhi_hoburg_daily_temperature.csv`](data_derived/smhi_hoburg_daily_temperature.csv) — combined daily temperature series.
+- [`data_derived/reproductive_model_data.csv`](data_derived/reproductive_model_data.csv) — validated reproductive records joined to annual window temperature.
+- [`data_derived/clutch_size_model_data.csv`](data_derived/clutch_size_model_data.csv) — analytical clutch-size sample.
+- [`data_derived/fledging_model_data.csv`](data_derived/fledging_model_data.csv) — analytical fledging-success sample.
+- [`R/01_prepare_bird_data.R`](R/01_prepare_bird_data.R) — cleans and audits breeding records.
+- [`R/02_prepare_temperature_data.R`](R/02_prepare_temperature_data.R) — combines and audits the two station series.
+- [`R/08_annual_main_window_temperature.R`](R/08_annual_main_window_temperature.R) — calculates the annual fixed-window summaries.
+- [`R/09_prepare_reproductive_model_data.R`](R/09_prepare_reproductive_model_data.R) — creates the two model datasets and centring checks.
+- [`R/45_recentre_final_fledging_relLD.R`](R/45_recentre_final_fledging_relLD.R) — recalculates median-centred relative laying date after the final fledging-sample restrictions and writes its audit checks.

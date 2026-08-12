@@ -1,0 +1,5 @@
+component,term,beta,SE,z,p,interpretation
+location,(Intercept),4.962858507350414,0.1287847518614112,38.536072288209105,0,intercept
+location,year_c,0.04390335145778601,0.009765203198096633,4.495897378391814,6.927714481214147e-6,mean spring temperature increases through time
+scale_log_variance,(Intercept),-0.15818427817776387,0.10425717037146914,-1.517250829023577,0.1292033675663995,baseline log variance
+scale_log_variance,year_c,-0.011093524690764887,0.00845549415718348,-1.311990107797571,0.18952347227922853,residual variance decreases: temperature becomes more predictable

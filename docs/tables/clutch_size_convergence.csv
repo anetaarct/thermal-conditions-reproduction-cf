@@ -1,0 +1,6 @@
+model,optimizer_code,positive_definite_hessian,optimizer_message
+constant_scale,0,TRUE,relative convergence (4)
+location_scale,0,TRUE,relative convergence (4)
+constant_scale_no_two,0,TRUE,relative convergence (4)
+location_scale_no_two,0,TRUE,relative convergence (4)
+location_scale_sample_size,0,TRUE,relative convergence (4)

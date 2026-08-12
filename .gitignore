@@ -1,0 +1,61 @@
+/.quarto/
+/_book/
+/.Rproj.user/
+.Rhistory
+.RData
+
+
+**/*.quarto_ipynb
+
+# Local model objects and computational environment are not published.
+*.rds
+models/
+.Rlib/
+
+# Local backups, logs, and transient output.
+.archive_*/
+*.log
+Rplots.pdf
+index.tex
+
+# Raw field data remain private; only explicitly derived public CSV files are published.
+data_raw/
+
+# Quarto must never copy private/local model objects into the public site.
+docs/models/
+docs/.archive_*/
+
+# Render caches are local and can contain copied package files.
+_freeze/
+
+# Individual-level analytical datasets and audit exports remain private.
+data_derived/breeding_reproduction_*.csv
+data_derived/*model_data.csv
+data_derived/reproductive_model_data.csv
+data_derived/laying_date_model_data.csv
+docs/data_derived/breeding_reproduction_*.csv
+docs/data_derived/*model_data.csv
+docs/data_derived/reproductive_model_data.csv
+docs/data_derived/laying_date_model_data.csv
+
+# Tables containing record identifiers or female-specific posterior effects.
+tables/bird_data_quality_flags.csv
+tables/reproductive_model_exclusions.csv
+tables/brms_cs_*all_draw_summary.csv
+tables/brms_cs_*posterior_95.csv
+docs/tables/bird_data_quality_flags.csv
+docs/tables/reproductive_model_exclusions.csv
+docs/tables/brms_cs_*all_draw_summary.csv
+docs/tables/brms_cs_*posterior_95.csv
+
+# Superseded prediction exports retain a reference female identifier.
+tables/fig3_*_predictions.csv
+tables/fig4a_interaction_predictions.csv
+tables/fig4_cs_*_timing_predictions.csv
+tables/fig4_fs_*_timing_predictions.csv
+tables/fig5a_interaction_predictions.csv
+docs/tables/fig3_*_predictions.csv
+docs/tables/fig4a_interaction_predictions.csv
+docs/tables/fig4_cs_*_timing_predictions.csv
+docs/tables/fig4_fs_*_timing_predictions.csv
+docs/tables/fig5a_interaction_predictions.csv

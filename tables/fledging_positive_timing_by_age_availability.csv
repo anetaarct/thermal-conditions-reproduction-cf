@@ -1,0 +1,3 @@
+age_status,records,mean_rel_LD,median_rel_LD,p05_rel_LD,p95_rel_LD
+Age available,7475,-0.013110367892976586,0,-6,8
+Age missing,861,0.5737514518002322,0,-6,10

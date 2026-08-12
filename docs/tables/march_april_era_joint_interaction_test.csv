@@ -1,0 +1,2 @@
+comparison,numerator_df,denominator_df,F,p,R_squared_full,adjusted_R_squared_full
+both temperature-by-era interactions,2,39,2.2366697361213292,0.12034035510158475,0.5519845443660143,0.4945466654385803

@@ -1,0 +1,295 @@
+---
+title: "Figure code"
+---
+
+```{r}
+#| include: false
+Sys.setlocale("LC_TIME", "C")
+library(readr)
+library(ggplot2)
+library(patchwork)
+
+blue <- "#0072B2"
+orange <- "#D55E00"
+theme_pub <- theme_classic(base_size = 11)
+```
+
+This page contains plotting code only. Every block is disabled during rendering and reads the archived plotting data.
+
+## Thermal-window figures
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "Temperature in the selected window"
+d <- read_csv("data_derived/annual_main_window_temperature.csv", show_col_types = FALSE)
+
+p_mean <- ggplot(d, aes(year, temp_mean)) +
+  geom_point(size = 2.2, colour = "#205493") +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE,
+              colour = "#8b1e3f", fill = "#d9a6b5", alpha = 0.28) +
+  labs(x = "Year", y = "Mean temperature (°C)") +
+  theme_classic(base_size = 12)
+ggsave("figures/Fig1_temperature_mean_time.png", p_mean,
+       width = 6.4, height = 4.8, dpi = 400)
+
+p_sd <- ggplot(d, aes(year, temp_sd)) +
+  geom_point(size = 2.2, colour = "#28666e") +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE,
+              colour = "#8b1e3f", fill = "#d9a6b5", alpha = 0.28) +
+  labs(x = "Year", y = "Temperature SD (°C)") +
+  theme_classic(base_size = 12)
+ggsave("figures/Fig1_temperature_sd_time.png", p_sd,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download thermal-window figure data](data_derived/annual_main_window_temperature.csv){download="annual_main_window_temperature.csv"}
+
+## Clutch-size figures
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/31_clutch_chapter_outputs.R — Figure 4.1"
+d <- read_csv("tables/fig4_1_clutch_temperature.csv", show_col_types = FALSE)
+p <- ggplot(d, aes(temp_mean, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = blue, alpha = 0.2) +
+  geom_line(colour = blue, linewidth = 1) +
+  labs(x = "Mean spring temperature (°C)", y = "Predicted clutch size") +
+  theme_pub
+ggsave("figures/Fig4_1_clutch_temperature.png", p,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download Figure 4.1 data](tables/fig4_1_clutch_temperature.csv){download="fig4_1_clutch_temperature.csv"}
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/31_clutch_chapter_outputs.R — Figure 4.2"
+d <- read_csv("tables/fig4_2b_sigma_rellD.csv", show_col_types = FALSE)
+p <- ggplot(d, aes(rel_LD, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = orange, alpha = 0.2) +
+  geom_line(colour = orange, linewidth = 1) +
+  labs(x = "Laying date relative to annual median (days)",
+       y = "Inconsistency (σ)") +
+  theme_pub
+ggsave("figures/Fig4_2_clutch_rellD.png", p,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download Figure 4.2 scale data](tables/fig4_2b_sigma_rellD.csv){download="fig4_2b_sigma_rellD.csv"}
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/31_clutch_chapter_outputs.R — Figure 4.4"
+a <- read_csv("tables/fig4_4a_annual_clutch.csv", show_col_types = FALSE)
+b <- read_csv("tables/fig4_4b_annual_sigma.csv", show_col_types = FALSE)
+p1 <- ggplot(a, aes(year, estimate)) +
+  geom_point(aes(y = mean_clutch), colour = "grey45", alpha = 0.65) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = blue, alpha = 0.2) +
+  geom_line(colour = blue) +
+  labs(x = "Year", y = "Mean clutch size") +
+  theme_pub + theme(legend.position = "none")
+p2 <- ggplot(b, aes(year, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = blue, alpha = 0.2) +
+  geom_line(colour = blue) +
+  labs(x = "Year", y = expression("Conditional residual SD (" * sigma * ")")) +
+  theme_pub + theme(legend.position = "none")
+ggsave("figures/Fig4_4_annual_clutch_mean_sd.png", p1 + p2,
+       width = 10, height = 4.6, dpi = 400)
+```
+
+[Download Figure 4.4 mean data](tables/fig4_4a_annual_clutch.csv){download="fig4_4a_annual_clutch.csv"} and [scale data](tables/fig4_4b_annual_sigma.csv){download="fig4_4b_annual_sigma.csv"}.
+
+### Female age and clutch size
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/31c_refresh_significant_clutch_figures.R"
+d <- read_csv("tables/fig4_3a_clutch_age.csv", show_col_types = FALSE)
+s <- read_csv("tables/fig4_3b_sigma_age.csv", show_col_types = FALSE)
+p1 <- ggplot(d, aes(age_class, estimate, colour = age_class)) +
+  geom_errorbar(aes(ymin = CI_low, ymax = CI_high), width = 0.10) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(YOUNG = blue, OLD = orange), guide = "none") +
+  labs(x = "Female age class", y = "Predicted clutch size") +
+  theme_pub
+p2 <- ggplot(s, aes(age_class, estimate, colour = age_class)) +
+  geom_errorbar(aes(ymin = CI_low, ymax = CI_high), width = 0.10) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(YOUNG = blue, OLD = orange), guide = "none") +
+  labs(x = "Female age class", y = expression("Inconsistency (" * sigma * ")")) +
+  theme_pub
+ggsave("figures/Fig4_3_clutch_age.png", p1 + p2,
+       width = 10, height = 4.6, dpi = 400)
+```
+
+[Download Figure 4.3 mean data](tables/fig4_3a_clutch_age.csv){download="fig4_3a_clutch_age.csv"} and [scale data](tables/fig4_3b_sigma_age.csv){download="fig4_3b_sigma_age.csv"}.
+
+## Fledging-success figures
+
+### Mean and consistency against temperature
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/30c_refresh_phi_figures.R"
+a <- read_csv("tables/fig5_1_success_temperature.csv", show_col_types = FALSE)
+b <- read_csv("tables/fig5_1b_phi_temperature.csv", show_col_types = FALSE)
+p1 <- ggplot(a, aes(temp_mean, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = blue, alpha = 0.2) +
+  geom_line(colour = blue) +
+  labs(x = "Mean spring temperature (deg C)", y = "Predicted fledging success") +
+  theme_pub
+p2 <- ggplot(b, aes(temp_mean, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = orange, alpha = 0.2) +
+  geom_line(colour = orange) +
+  labs(x = "Mean spring temperature (deg C)", y = expression("Consistency (" * phi * ")")) +
+  theme_pub
+ggsave("figures/Fig5_1_success_phi_temperature.png", p1 + p2,
+       width = 10, height = 4.6, dpi = 400)
+```
+
+[Download mean data](tables/fig5_1_success_temperature.csv){download="fig5_1_success_temperature.csv"} and [consistency data](tables/fig5_1b_phi_temperature.csv){download="fig5_1b_phi_temperature.csv"}.
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/30_fledging_chapter_models_figures.R — Figure 5.1"
+d <- read_csv("tables/fig5_1_success_temperature.csv", show_col_types = FALSE)
+p <- ggplot(d, aes(temp_mean, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = blue, alpha = 0.2) +
+  geom_line(colour = blue, linewidth = 1) +
+  labs(x = "Mean spring temperature (°C)", y = "Predicted fledging success") +
+  theme_pub
+ggsave("figures/Fig5_1_success_temperature.png", p,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download Figure 5.1 data](tables/fig5_1_success_temperature.csv){download="fig5_1_success_temperature.csv"}
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/30_fledging_chapter_models_figures.R — Figure 5.2"
+d <- read_csv("tables/fig5_2_success_rellD_age.csv", show_col_types = FALSE)
+p <- ggplot(d, aes(rel_LD, estimate, colour = age_class, fill = age_class)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), alpha = 0.16, colour = NA) +
+  geom_line(linewidth = 1) +
+  labs(x = "Laying date relative to annual median (days)",
+       y = "Predicted fledging success") +
+  theme_pub
+ggsave("figures/Fig5_2_success_rellD_age.png", p,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download Figure 5.2 data](tables/fig5_2_success_rellD_age.csv){download="fig5_2_success_rellD_age.csv"}
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/30_fledging_chapter_models_figures.R — Figure 5.3"
+d <- read_csv("tables/fig5_3_phi_rellD.csv", show_col_types = FALSE)
+p <- ggplot(d, aes(rel_LD, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = orange, alpha = 0.2) +
+  geom_line(colour = orange, linewidth = 1) +
+  labs(x = "Laying date relative to annual median (days)",
+       y = "Beta-binomial precision (phi)") +
+  theme_pub
+ggsave("figures/Fig5_3_phi_rellD.png", p,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download Figure 5.3 data](tables/fig5_3_phi_rellD.csv){download="fig5_3_phi_rellD.csv"}
+
+### Mean and consistency by female age
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/30c_refresh_phi_figures.R"
+a <- read_csv("tables/fig5_3a_success_age.csv", show_col_types = FALSE)
+b <- read_csv("tables/fig5_3b_phi_age.csv", show_col_types = FALSE)
+age_cols <- c(YOUNG = blue, OLD = orange)
+p1 <- ggplot(a, aes(age_class, estimate, colour = age_class)) +
+  geom_errorbar(aes(ymin = CI_low, ymax = CI_high), width = 0.12) +
+  geom_point(size = 3) + scale_colour_manual(values = age_cols, guide = "none") +
+  labs(x = "Female age class", y = "Predicted fledging success") + theme_pub
+p2 <- ggplot(b, aes(age_class, estimate, colour = age_class)) +
+  geom_errorbar(aes(ymin = CI_low, ymax = CI_high), width = 0.12) +
+  geom_point(size = 3) + scale_colour_manual(values = age_cols, guide = "none") +
+  labs(x = "Female age class", y = expression("Consistency (" * phi * ")")) + theme_pub
+ggsave("figures/Fig5_3b_phi_age.png", p1 + p2,
+       width = 10, height = 4.6, dpi = 400)
+```
+
+[Download mean data](tables/fig5_3a_success_age.csv){download="fig5_3a_success_age.csv"} and [consistency data](tables/fig5_3b_phi_age.csv){download="fig5_3b_phi_age.csv"}.
+
+### Conditional temporal trajectories
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/30c_refresh_phi_figures.R"
+a <- read_csv("tables/fig5_4a_success_year.csv", show_col_types = FALSE)
+b <- read_csv("tables/fig5_4b_phi_year.csv", show_col_types = FALSE)
+p1 <- ggplot(a, aes(year, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high),
+              fill = blue, alpha = 0.16) +
+  geom_line(colour = blue, linewidth = 1) +
+  labs(x = "Year", y = "Predicted fledging success") +
+  theme_pub + theme(legend.position = "none")
+p2 <- ggplot(b, aes(year, estimate)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high),
+              fill = blue, alpha = 0.16) +
+  geom_line(colour = blue, linewidth = 1) +
+  labs(x = "Year", y = expression("Consistency (" * phi * ")")) +
+  theme_pub + theme(legend.position = "none")
+ggsave("figures/Fig5_4_time_location_scale.png", p1 + p2,
+       width = 10, height = 4.6, dpi = 400, bg = "white")
+```
+
+[Download mean-success data](tables/fig5_4a_success_year.csv){download="fig5_4a_success_year.csv"} and [consistency data](tables/fig5_4b_phi_year.csv){download="fig5_4b_phi_year.csv"}.
+
+### Constant-phi simulation diagnostic
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/49_refresh_phi_constant_simulation.R"
+d <- read_csv("tables/figA_phi_constant_simulation.csv", show_col_types = FALSE)
+s <- read_csv(
+  "tables/fledging_phi_temperature_constant_simulation_summary.csv",
+  show_col_types = FALSE
+)
+p <- ggplot(d, aes(temp_mean_c)) +
+  geom_histogram(bins = 30, fill = blue, alpha = 0.7, colour = "white") +
+  geom_vline(xintercept = s$observed_auxiliary_beta,
+             colour = orange, linewidth = 1.1) +
+  labs(x = "Temperature coefficient in log-phi under constant phi",
+       y = "Simulated datasets") + theme_pub
+ggsave("figures/FigA_phi_constant_simulation.png", p,
+       width = 6.4, height = 4.8, dpi = 400, bg = "white")
+```
+
+[Download simulation data](tables/figA_phi_constant_simulation.csv){download="figA_phi_constant_simulation.csv"}.
+
+```{r}
+#| eval: false
+#| code-fold: show
+#| filename: "R/52_plot_fledging_conditional_zero_diagnostic.R"
+d <- read_csv("tables/fledging_zero_frequency_conditional_simulations.csv", show_col_types = FALSE)
+s <- read_csv("tables/fledging_zero_frequency_conditional_summary.csv", show_col_types = FALSE)
+p <- ggplot(d, aes(zero_proportion)) +
+  geom_histogram(bins = 35, fill = blue, alpha = 0.7, colour = "white") +
+  geom_vline(xintercept = s$observed, colour = orange, linewidth = 1.1) +
+  labs(x = "Simulated proportion of broods with zero fledglings",
+       y = "Simulated datasets") + theme_pub
+ggsave("figures/Fig5_4_zero_frequency_diagnostic.png", p,
+       width = 6.4, height = 4.8, dpi = 400)
+```
+
+[Download conditional zero-frequency data](tables/fledging_zero_frequency_conditional_simulations.csv){download="fledging_zero_frequency_conditional_simulations.csv"}

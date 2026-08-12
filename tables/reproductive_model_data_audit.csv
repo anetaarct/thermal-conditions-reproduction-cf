@@ -1,0 +1,10 @@
+quantity,value
+Source records in 44 non-test seasons,15869
+Analysis-ready clutch records,14929
+Excluded: clutch outside 2-9 or missing,940
+Excluded: fledged below 0 or above clutch,0
+Records with fledged observed,11004
+Records with zero fledged retained,2594
+Records with female age class,13425
+Records without female age class,1504
+Unique females among records with a ring,10488

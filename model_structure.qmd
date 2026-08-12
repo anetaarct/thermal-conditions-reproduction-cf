@@ -1,0 +1,84 @@
+---
+title: "Model structure"
+---
+
+This chapter defines the three models used in the main analysis.
+
+## Temperature in the thermal window
+
+For year $t$,
+
+$$
+T_t \sim \mathcal{N}(\mu_t,\sigma_t^2),
+$$
+
+$$
+\mu_t=\beta_0^{(\mu)}+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_t,
+$$
+
+$$
+\log(\sigma_t^2)=\beta_0^{(\sigma)}+
+\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_t.
+$$
+
+The location component tests directional warming; the scale component tests whether interannual variability changed, that is, whether spring became less predictable. There is one observation per year and no random effect.
+
+## Clutch size
+
+For brood $r$,
+
+$$
+C_r \sim \mathcal{N}(\mu_r,\sigma_r^2),
+$$
+
+$$
+\begin{aligned}
+\mu_r={}&\beta_0^{(\mu)}+\beta_{\mathrm{LD}}^{(\mu)}\mathrm{relLD}_r+
+\beta_T^{(\mu)}\bar T_r+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r\\
+&+\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+u_{y[r]}+v_{f[r]},
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\log(\sigma_r^2)={}&\beta_0^{(\sigma)}+
+\beta_{\mathrm{LD}}^{(\sigma)}\mathrm{relLD}_r+
+\beta_T^{(\sigma)}\bar T_r+\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_r\\
+&+\beta_{\mathrm{age}}^{(\sigma)}\mathrm{Age}_r+w_{y[r]}.
+\end{aligned}
+$$
+
+Higher $\sigma$ indicates greater residual dispersion among females within a season and therefore lower consistency.
+
+## Fledging success
+
+Here, fledging success is egg-to-fledging success: the number of fledglings relative to the number of eggs laid.
+
+$$
+K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
+$$
+
+$$
+\begin{aligned}
+\operatorname{logit}(\mu_r)={}&\beta_0^{(\mu)}+
+\beta_{\mathrm{LD}}^{(\mu)}\mathrm{relLD}_r+
+\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+
+\beta_{\mathrm{LD}\times\mathrm{age}}^{(\mu)}\mathrm{relLD}_r\mathrm{Age}_r\\
+&+\beta_T^{(\mu)}\bar T_r+
+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r+u_{y[r]}+v_{f[r]},
+\end{aligned}
+$$
+
+$$
+\log(\phi_r)=\beta_0^{(\phi)}+
+\beta_{\mathrm{LD}}^{(\phi)}\mathrm{relLD}_r+
+\beta_T^{(\phi)}\bar T_r+
+\beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+
+\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r.
+$$
+
+Higher $\phi$ means lower conditional extra-binomial overdispersion. This is residual heterogeneity conditional on the fitted predictors and random effects, not general phenotypic variance.
+
+## Notation
+
+In the brood-level models, $u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)$ and $v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)$; $w_y$ is the year-level scale effect in the clutch-size model. The predictor $\bar T$ is mean temperature during 26 March–7 May, `relLD` is laying date centred within season, and `Age` is the binary class `YOUNG`/`OLD`.

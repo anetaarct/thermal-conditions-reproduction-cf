@@ -1,0 +1,8 @@
+quantity,value
+Broods with fledged observed,11004
+Broods with fledged = 0,2594
+Overall proportion fledged = 0,0.2357324609233006
+Positive fledging records,8410
+Mean fledged | fledged > 0,4.753745541022592
+Variance fledged | fledged > 0,2.6463321459695313
+Variance/mean | fledged > 0,0.5566835925761964

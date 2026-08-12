@@ -1,0 +1,4 @@
+model,pdHess,convergence_code,optimizer_message
+full_sample_base,TRUE,0,relative convergence (4)
+full_sample_temperature_interaction,TRUE,0,relative convergence (4)
+fledged_positive_base,TRUE,0,relative convergence (4)

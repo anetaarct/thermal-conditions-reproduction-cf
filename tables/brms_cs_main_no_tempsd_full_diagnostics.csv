@@ -1,0 +1,2 @@
+run_mode,elapsed_minutes,divergences,treedepth_hits,max_rhat,min_bulk_ess
+full,34.13181980450948,0,0,1.005679095738382,995.4434305042431

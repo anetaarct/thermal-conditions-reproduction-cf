@@ -1,0 +1,6 @@
+model,pdHess,convergence_code
+beta_binomial_constant,TRUE,0
+beta_binomial_scale,TRUE,0
+fledged_poisson,TRUE,0
+fledged_nbinom2,TRUE,0
+fledged_hurdle_poisson,TRUE,0

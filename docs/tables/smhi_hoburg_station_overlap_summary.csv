@@ -1,0 +1,2 @@
+overlap_days,first_overlap,last_overlap,mean_difference_old_minus_new,sd_difference,rmse,correlation
+1186,2009-06-02,2012-08-30,0.04165261382799328,0.1659707688077855,0.1710497299560682,0.99976288877586
