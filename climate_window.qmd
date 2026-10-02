@@ -4,7 +4,7 @@ title: "Thermal window and temperature data"
 
 ```{r}
 #| echo: false
-Sys.setlocale("LC_TIME", "C")
+invisible(Sys.setlocale("LC_TIME", "C"))
 library(readr)
 library(dplyr)
 library(knitr)
