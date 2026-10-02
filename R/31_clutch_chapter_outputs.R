@@ -100,27 +100,45 @@ ggsave("figures/Fig4_1_clutch_temperature.png", p1, width = 6.4, height = 4.8, d
 
 # Figure 4.2: location and scale responses to relative laying date.
 rq <- quantile(dat$rel_LD, c(.05, .95))
-nd2 <- reference_grid(160) |>
-  mutate(rel_LD = seq(rq[[1]], rq[[2]], length.out = n()))
+nd2 <- tidyr::crossing(
+  rel_LD = seq(rq[[1]], rq[[2]], length.out = 160),
+  age_class = factor(c("YOUNG", "OLD"), levels = levels(dat$age_class))
+) |>
+  mutate(
+    temp_mean_c = 0,
+    year_c = 0,
+    female_id = factor(levels(dat$female_id)[1], levels = levels(dat$female_id)),
+    year_f = factor(levels(dat$year_f)[1], levels = levels(dat$year_f))
+  )
 d2_mean <- bind_cols(nd2, summarise_draws_matrix(
   posterior_epred(m, newdata = nd2, re_formula = NA)
-)) |> select(rel_LD, estimate, CI_low, CI_high)
+)) |> select(rel_LD, age_class, estimate, CI_low, CI_high)
 write_csv(d2_mean, "tables/fig4_2a_clutch_rellD.csv")
 d2 <- bind_cols(nd2, summarise_draws_matrix(
   posterior_linpred(m, newdata = nd2, dpar = "sigma", transform = TRUE,
                     re_formula = NA)
-)) |> select(rel_LD, estimate, CI_low, CI_high)
+)) |> select(rel_LD, age_class, estimate, CI_low, CI_high)
 write_csv(d2, "tables/fig4_2b_sigma_rellD.csv")
-p2_mean <- ggplot(d2_mean, aes(rel_LD, estimate)) +
-  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = scales::alpha(blue, .2)) +
-  geom_line(colour = blue, linewidth = 1) +
+p2_mean <- ggplot(d2_mean, aes(rel_LD, estimate, colour = age_class,
+                               fill = age_class)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), alpha = .16,
+              colour = NA) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual(values = c(YOUNG = blue, OLD = orange), name = NULL) +
+  scale_fill_manual(values = c(YOUNG = blue, OLD = orange), name = NULL) +
   labs(x = "Laying date relative to annual median (days)",
-       y = "Predicted clutch size") + theme_pub
-p2 <- ggplot(d2, aes(rel_LD, estimate)) +
-  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = scales::alpha(orange, .2)) +
-  geom_line(colour = orange, linewidth = 1) +
+       y = "Predicted clutch size") +
+  theme_pub + theme(legend.position = "top")
+p2 <- ggplot(d2, aes(rel_LD, estimate, colour = age_class,
+                     fill = age_class)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), alpha = .16,
+              colour = NA) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual(values = c(YOUNG = blue, OLD = orange), name = NULL) +
+  scale_fill_manual(values = c(YOUNG = blue, OLD = orange), name = NULL) +
   labs(x = "Laying date relative to annual median (days)",
-       y = "Inconsistency (σ)") + theme_pub
+       y = "Inconsistency (σ)") +
+  theme_pub + theme(legend.position = "top")
 png("figures/Fig4_2_clutch_rellD.png", width = 10, height = 4.6,
     units = "in", res = 400)
 grid::grid.newpage(); layout <- grid::grid.layout(1, 2)

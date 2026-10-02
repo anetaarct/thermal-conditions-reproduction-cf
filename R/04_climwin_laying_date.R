@@ -161,8 +161,8 @@ window_row <- function(label, best, years) {
     boundary_difference_weeks = best$WindowOpen - best$WindowClose,
     window_open_days_before_refday = best$WindowOpen * 7,
     window_close_days_before_refday = best$WindowClose * 7,
-    window_open_calendar = calendar_label(best$WindowOpen * 7),
-    window_close_calendar = calendar_label(best$WindowClose * 7),
+    nominal_daily_open_calendar = calendar_label(best$WindowOpen * 7),
+    nominal_daily_close_calendar = calendar_label(best$WindowClose * 7),
     delta_AICc = best$deltaAICc
   )
 }
@@ -173,25 +173,30 @@ windows <- bind_rows(
   window_row("Remaining 22 seasons", second_best, "2003-2025 (no 2020)")
 )
 
-# Out-of-sample evaluation: singlewin applies exactly the same weekly
-# aggregation as the training slidingwin, without a new window search.
+# Out-of-sample evaluation: explicitly reproduce basewin's weekly aggregation.
+# singlewin's absolute/week branch uses month + 53*year instead of week +
+# 52*year and therefore extracts the wrong dates. Do not use that branch.
+source('R/climate_window_weekly.R')
+
+weekly_dates <- list(
+  weekly_window_data(annual, temperature, main_best$WindowOpen, main_best$WindowClose),
+  weekly_window_data(filter(annual, season_index <= n_first), temperature,
+                     first_best$WindowOpen, first_best$WindowClose),
+  weekly_window_data(filter(annual, season_index > n_first), temperature,
+                     second_best$WindowOpen, second_best$WindowClose)
+)
+windows$actual_weekly_open <- vapply(weekly_dates, function(d)
+  paste(unique(format(d$actual_start, '%m-%d')), collapse = ' / '), character(1))
+windows$actual_weekly_close <- vapply(weekly_dates, function(d)
+  paste(unique(format(d$actual_end, '%m-%d')), collapse = ' / '), character(1))
 test_data <- annual |>
   filter(season_index > n_first)
 
-oos_win <- singlewin(
-  xvar = list(temperature = temperature$temperature),
-  cdate = temperature$date,
-  bdate = test_data$bdate,
-  baseline = lm(median_LD ~ 1, data = test_data),
-  type = "absolute",
-  refday = refday,
-  range = c(first_best$WindowOpen, first_best$WindowClose),
-  stat = "mean",
-  func = "lin",
-  cinterval = "week"
-  )
-
-oos_model <- oos_win$BestModel
+oos_data <- weekly_window_data(test_data, temperature,
+                              first_best$WindowOpen, first_best$WindowClose)
+oos_model <- lm(median_LD ~ climate, data = oos_data)
+oos_win <- list(BestModel = oos_model, BestModelData = oos_data,
+                note = 'Corrected explicit weekly extraction')
 oos_summary <- summary(oos_model)
 oos_coef <- coef(oos_summary)["climate", ]
 oos <- tibble(
@@ -201,11 +206,25 @@ oos <- tibble(
   selected_close_days_before_refday = first_best$WindowClose * 7,
   temperature_beta = unname(oos_coef["Estimate"]),
   temperature_SE = unname(oos_coef["Std. Error"]),
-  temperature_CI_low = temperature_beta - 1.96 * temperature_SE,
-  temperature_CI_high = temperature_beta + 1.96 * temperature_SE,
+  temperature_CI_low = unname(confint(oos_model)['climate', 1]),
+  temperature_CI_high = unname(confint(oos_model)['climate', 2]),
   test_R_squared = oos_summary$r.squared,
-  test_p = coef(oos_summary)["climate", "Pr(>|t|)"]
+  test_p = coef(oos_summary)["climate", "Pr(>|t|)"],
+  aggregation = "Same calendar-week bins as training slidingwin",
+  CI_method = "Student t, 20 df"
 )
+
+# Predictions must retain the training coefficients, not refit on held-out data.
+training_model <- lm(median_LD ~ climate, data = weekly_dates[[2]])
+oos_data$training_model_prediction <- predict(training_model, newdata = oos_data)
+prediction_error <- oos_data$training_model_prediction - oos_data$median_LD
+prediction_performance <- tibble(
+  n_test = nrow(oos_data), RMSE = sqrt(mean(prediction_error^2)),
+  baseline_RMSE = sqrt(mean((oos_data$median_LD - mean(weekly_dates[[2]]$median_LD))^2)),
+  bias = mean(prediction_error), MAE = mean(abs(prediction_error))
+)
+write_csv(prediction_performance, "tables/climwin_heldout_prediction_performance.csv")
+write_csv(oos_data, "tables/climwin_corrected_test_predictions.csv")
 
 # medwin returns the median opening and closing boundaries of the 95% model set.
 med_values <- as.numeric(unlist(main_med)) * 7
@@ -225,12 +244,13 @@ false_positive <- tibble(
 
 effect_row_from_model <- function(analysis, model) {
   cf <- coef(summary(model))["climate", ]
+  ci <- confint(model)['climate', ]
   tibble(
     analysis = analysis,
     temperature_beta = unname(cf["Estimate"]),
     temperature_SE = unname(cf["Std. Error"]),
-    temperature_CI_low = temperature_beta - 1.96 * temperature_SE,
-    temperature_CI_high = temperature_beta + 1.96 * temperature_SE,
+    temperature_CI_low = unname(ci[1]),
+    temperature_CI_high = unname(ci[2]),
     p = unname(cf["Pr(>|t|)"])
   )
 }
@@ -269,7 +289,7 @@ overlap_check <- annual |>
 settings <- tibble(
   setting = c("analysis level", "analysis years", "response", "age filtering or adjustment",
               "minimum window length in all window selections",
-              "type", "reference laying date (database LD index; LD = 0 is 1 May)",
+              "type", "descriptive population median LD (LD = 0 is 1 May; not the reference date)",
               "reference calendar day", "range",
               "stat", "func", "cinterval", "baseline", "randwin repeats"),
   value = c("year (season)", "1980-2019 and 2021-2025 (45 seasons)",

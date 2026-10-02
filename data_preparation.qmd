@@ -32,8 +32,8 @@ source("R/09_prepare_reproductive_model_data.R")
 | Data | Years | Notes |
 |---|---:|---|
 | Daily temperature | 1980–2025 | 1980-01-01 to 2025-12-31; 16,802 days |
-| Clutch size | 1982–2025 | Validated reproductive seasons |
-| Fledging success | 1982–2019 | Later records exist but have not passed validation |
+| Clutch size | 1981–2025 | Validated reproductive seasons |
+| Fledging success | 1981–2019 | Later records exist but have not passed validation |
 
 The 1980 season was a pilot season and is excluded from reproductive analyses. No nest monitoring was conducted in 2020.
 

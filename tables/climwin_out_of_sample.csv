@@ -1,2 +1,2 @@
-training_years,test_years,selected_open_days_before_refday,selected_close_days_before_refday,temperature_beta,temperature_SE,temperature_CI_low,temperature_CI_high,test_R_squared,test_p
-1980-2002 (23 seasons),2003-2025 (22 seasons; no 2020),63,0,0.37032869816536756,0.16215030790806723,0.05251409466555579,0.6881433016651793,0.20685339587176002,0.033446315346580546
+"training_years","test_years","selected_open_days_before_refday","selected_close_days_before_refday","temperature_beta","temperature_SE","temperature_CI_low","temperature_CI_high","test_R_squared","test_p","aggregation","CI_method"
+"1980-2002 (23 seasons)","2003-2025 (22 seasons; no 2020)",63,0,-1.56552747500825,0.560157946607576,-2.73399647632716,-0.397058473689346,0.280857183318442,0.0111850060402831,"Same calendar-week bins as training slidingwin","Student t, 20 df"

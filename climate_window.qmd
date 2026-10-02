@@ -132,7 +132,7 @@ kable(windows, digits = 3,
       caption = "Selected windows and their AICc improvement")
 ```
 
-The main window was 6–0 weeks before 7 May, approximately 26 March–7 May. Window stability and the AICc improvement are retained in the table above.
+The weekly search selected offsets 6–0 relative to the week containing 7 May. Because `climwin` uses complete seven-day calendar bins, its actual temperature dates were 26 March–13 May in non-leap years and 25 March–12 May in leap years. The reproductive models operationalised these offsets as a fixed daily interval, 26 March–7 May (43 days). These are distinct aggregations; the fixed daily interval is retained as the primary reproductive predictor and compared with three prespecified alternative calendar windows below.
 
 ```{r}
 #| echo: false
@@ -160,7 +160,9 @@ kable(oos, digits = 6,
       caption = "Out-of-sample evaluation in the remaining 22 seasons")
 ```
 
-The held-out association does not confirm the direction selected in the training period: its temperature coefficient has the opposite sign. It is therefore not directional validation of the selected effect.
+An audit identified an indexing error in `singlewin`'s absolute weekly branch: the reference index used the month number plus 53 times the year offset, whereas climate records used the week number plus 52 times the year offset. Reproducing that error recovered the former positive coefficient exactly. Explicit extraction using the same weekly bins as the training `slidingwin` gives a negative held-out association (beta = -1.566 days per degree C; 95% t interval -2.734 to -0.397; p = 0.011; R-squared = 0.281). Thus the previously reported reversal was computational, not evidence of a biological reversal.
+
+This coefficient is estimated in the test subset with the window held fixed; it is not itself a prediction score. Applying the training intercept and slope unchanged to the 22 test seasons gives RMSE 3.187 days, compared with 5.226 days for the training-mean baseline, and mean prediction bias +1.521 days. The association remains negative but is weaker than in training, so the result does not establish identical effect magnitude across periods.
 
 ## Temperature in the selected window
 
@@ -219,6 +221,29 @@ knitr::include_graphics("figures/Fig1_temperature_sd_time.png")
 
 [Show the plotting code in Figure code](figure_code.html#thermal-window-figures).
 
+## Sensitivity of reproductive associations to the calendar interval
+
+The primary daily interval (26 March–7 May; 43 days) was retained. Before inspecting the sensitivity results, three alternatives were fixed: all of April (30 days), 9 April–7 May (29 days), and 5 March–7 May (64 days). For each interval, annual mean daily temperature replaced the primary temperature predictor in both location and scale submodels. Within each response, observations, other covariates, random-effect structures and priors were unchanged. All intervals were retained in the comparison; none was chosen on the basis of its effect estimate or significance.
+
+```{r}
+#| echo: false
+sensitivity <- read_csv("tables/window_sensitivity_comparison.csv", show_col_types = FALSE)
+kable(sensitivity |> select(window, component, estimate, lower95, upper95, interval_type),
+      digits = 3, caption = "Temperature coefficients per 1 degree C across predefined calendar intervals")
+```
+
+```{r}
+#| echo: false
+#| fig-cap: "Calendar-window sensitivity. Points and intervals show temperature coefficients per 1 degree C and 95% intervals. Clutch models use posterior credible intervals; fledging models use Wald confidence intervals. The primary interval is highlighted."
+knitr::include_graphics("figures/window_sensitivity_comparison.png")
+```
+
+The mean fledging-success association was negative for all four intervals. Precision coefficients were positive throughout, but their intervals included zero for April and the shorter interval. This warrants more caution about the robustness of the precision association; crossing zero in some intervals does not itself demonstrate a difference between coefficients. The overlapping windows are correlated summaries of the same seasons, not independent replications. Positive precision coefficients refer to reduced extra-binomial heterogeneity at a given mean and clutch size, not necessarily reduced raw variance.
+
+We therefore retain 26 March–7 May as the primary reproductive window; the alternatives are sensitivity checks, not candidates for post hoc selection.
+
+The Bayesian clutch fits retain the original Gaussian model, including year-level random intercepts in both location and log residual SD. Female Gaussian random intercepts are integrated analytically with the exact marginal likelihood. The primary-window posterior is checked against the original `brms` output. Full convergence checks, computational-equivalence checks and coefficients scaled by the between-year temperature SD are retained in the sensitivity tables and local audit report.
+
 ## Appendix
 
 ::: {.callout-note collapse="true"}
@@ -246,7 +271,7 @@ kable(read_csv("tables/main_window_time_conditional_slopes.csv", show_col_types 
       digits = 4, caption = "Conditional selected-window temperature slopes")
 ```
 
-### Annual non-overlap check
+### Annual fifth-percentile check for the fixed daily reproductive predictor
 
 ```{r}
 #| echo: false
@@ -254,14 +279,14 @@ overlap <- read_csv("tables/climwin_window_lay_overlap_by_year.csv",
                     show_col_types = FALSE) |>
   select(year, n_broods, p05_lay_calendar,
          window_close_calendar, window_reaches_p05_lay)
-kable(overlap, caption = "Annual check that the selected window ends before laying")
+kable(overlap, caption = "Closing date of the fixed daily interval versus the annual fifth percentile")
 ```
 
-The selected window closed before the annual fifth percentile of laying dates in all 45 seasons.
+The fixed daily reproductive interval closed before the annual fifth percentile of laying dates in all 45 seasons. This does not establish non-overlap with every brood: two of 14,297 breeding attempts began before 7 May (6 May 2006 and 28 April 2022). This check concerns the fixed daily interval, not the full weekly bins used by the phenology search.
 
 ### Cached model objects
 
 Cached model objects are retained locally and are not distributed with the public website.
 :::
 
-The thermal window was selected using the annual median laying date; its ability to explain between-year variation in reproductive traits is therefore an independent test and is reported in the three model-specific chapters.
+The thermal window search used annual median laying date rather than either reproductive response. This reduces direct selection on the reproductive outcomes, but the subsequent analyses use the same population and overlapping seasons and should not be described as independent validation.

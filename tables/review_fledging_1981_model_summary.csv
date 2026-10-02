@@ -1,0 +1,2 @@
+sample,broods,females,seasons,zero_broods,AIC_constant_precision,AIC_predictor_dependent_precision,BIC_constant_precision,BIC_predictor_dependent_precision,LRT_chisq,LRT_df,LRT_p,main_pdHess,main_convergence
+1981-2019,9790,7132,39,2315,34354.198021797,34308.790997530414,34418.90007241672,34402.24951509223,53.4070242665839,4,7.00401171203156e-11,TRUE,0

@@ -1,0 +1,7 @@
+"metric","value"
+"annual Pearson r: temperature vs year",0.54190974424732
+"annual R2: temperature predicted by year",0.293666170910196
+"VIF: rel_LD",1.04256734308107
+"VIF: temp_mean_c",1.2135678021325
+"VIF: year_c",1.21890981438436
+"VIF: age_classOLD",1.05185998397771

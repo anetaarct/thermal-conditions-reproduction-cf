@@ -24,9 +24,9 @@ dat <- read_csv("data_derived/fledging_model_data.csv", show_col_types = FALSE) 
     success = fledged / clutch, zero = as.integer(fledged == 0)
   )
 stopifnot(
-  nrow(dat) == 9716L, nlevels(dat$year_f) == 38L,
-  min(dat$year) == 1982L, max(dat$year) == 2019L,
-  sum(dat$zero) == 2311L
+  nrow(dat) == 9790L, nlevels(dat$year_f) == 39L,
+  min(dat$year) == 1981L, max(dat$year) == 2019L,
+  sum(dat$zero) == 2315L
 )
 
 ctrl <- glmmTMBControl(
@@ -339,6 +339,12 @@ temp_center <- read_csv(
 )$temp_mean[1]
 tq <- quantile(dat$temp_mean_c, c(.05, .95))
 rq <- quantile(dat$rel_LD, c(.05, .95))
+
+# Save a pair of ggplots without relying on an interactive graphics device.
+save_two <- function(filename, left, right, width, height, dpi = 400) {
+  combined <- gridExtra::arrangeGrob(left, right, ncol = 2)
+  ggsave(filename, plot = combined, width = width, height = height, dpi = dpi)
+}
 
 # Main beta-binomial figures.
 nd1 <- ref_grid(160) |>

@@ -1,2 +1,2 @@
 simulation_type,observed,simulated_mean,simulated_median,simulation_CI_low,simulation_CI_high,nsim
-Conditional on fitted year and female random effects,0.23785508439687114,0.20322941539728284,0.20317002881844382,0.19555115273775217,0.21140386990531082,1000
+Conditional on fitted year and female random effects,0.23646578140960164,0.20198692543411645,0.20194075587334015,0.19448161389172627,0.20899131767109294,1000

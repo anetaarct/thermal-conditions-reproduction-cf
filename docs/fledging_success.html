@@ -242,10 +242,10 @@ window.Quarto = {
 <section id="data" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="data"><span class="header-section-number">1</span> Data</h2>
 <p>The main response is <strong>egg-to-fledging success, defined as the number of fledglings relative to the number of eggs laid</strong>. Hereafter, <em>fledging success</em> is used as shorthand for this egg-to-fledging measure; the denominator is not the number of hatched nestlings.</p>
-<p>The model-ready data span 1982-2019 (38 seasons) and contain 9,716 broods from 7,086 females. Complete brood failure occurred in 2,311 broods (23.8%). All zero-fledgling broods are retained. Records after 2019 are excluded because they have not yet been validated.</p>
+<p>The model-ready data span 1981-2019 (39 seasons) and contain 9,790 broods from 7,132 females. Complete brood failure occurred in 2,315 broods (23.6%). All zero-fledgling broods are retained. Records after 2019 are excluded because they have not yet been validated.</p>
 <p><code>rel_LD</code> is laying date minus the annual median laying date, recalculated after all restrictions defining the final fledging-model sample. It describes a female’s timing relative to other females breeding in the same season; it is not a measure of phenological mismatch. <code>temp_mean_c</code> and <code>year_c</code> retain the existing centring definitions.</p>
-<p>The predictors operate at different hierarchical levels. Relative laying date is centred within season and is therefore identified primarily by comparisons among broods breeding in the same year; the model contains 9,716 brood records, with repeated observations of females accounted for by the female random intercept. Spring temperature and year vary only among seasons, so inference for these predictors is based on variation across 38 breeding seasons. Consequently, annual predictors are estimated from substantially fewer independent temporal units than within-season predictors.</p>
-<p>Within-season centring separates variation in reproductive timing among females within a season from differences among seasons. In the final analytical sample, <code>rel_LD</code> was recalculated as laying date minus the annual median laying date after all analytical filters; the maximum absolute annual median was 0e+00 days (floating-point zero). The observed correlation with spring temperature was <span class="math inline">\(r\)</span> = 0.0489.</p>
+<p>The predictors operate at different hierarchical levels. Relative laying date is centred within season and is therefore identified primarily by comparisons among broods breeding in the same year; the model contains 9,790 brood records, with repeated observations of females accounted for by the female random intercept. Spring temperature and year vary only among seasons, so inference for these predictors is based on variation across 39 breeding seasons. Consequently, annual predictors are estimated from substantially fewer independent temporal units than within-season predictors.</p>
+<p>Within-season centring separates variation in reproductive timing among females within a season from differences among seasons. In the final analytical sample, <code>rel_LD</code> was recalculated as laying date minus the annual median laying date after all analytical filters; the maximum absolute annual median was 0e+00 days (floating-point zero). The observed correlation with spring temperature was <span class="math inline">\(r\)</span> = 0.0468.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 13%">
@@ -267,12 +267,12 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>1982-2019</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: right;">9,716</td>
-<td style="text-align: right;">7,086</td>
-<td style="text-align: right;">2,311</td>
-<td style="text-align: right;">23.8</td>
+<td>1981-2019</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">9,790</td>
+<td style="text-align: right;">7,132</td>
+<td style="text-align: right;">2,315</td>
+<td style="text-align: right;">23.6</td>
 </tr>
 </tbody>
 </table>
@@ -294,19 +294,19 @@ window.Quarto = {
 <td style="text-align: right;">2594</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">After restricting to 1982-2019</td>
-<td style="text-align: right;">10787</td>
-<td style="text-align: right;">2574</td>
+<td style="text-align: left;">After restricting to 1981-2019</td>
+<td style="text-align: right;">11004</td>
+<td style="text-align: right;">2594</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">After requiring the binary age class</td>
-<td style="text-align: right;">9821</td>
-<td style="text-align: right;">2351</td>
+<td style="text-align: right;">9895</td>
+<td style="text-align: right;">2355</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">After requiring laying date for rel_LD</td>
-<td style="text-align: right;">9716</td>
-<td style="text-align: right;">2311</td>
+<td style="text-align: right;">9790</td>
+<td style="text-align: right;">2315</td>
 </tr>
 </tbody>
 </table>
@@ -352,7 +352,7 @@ window.Quarto = {
 <col style="width: 2%">
 <col style="width: 8%">
 <col style="width: 8%">
-<col style="width: 9%">
+<col style="width: 8%">
 <col style="width: 13%">
 <col style="width: 8%">
 <col style="width: 2%">
@@ -377,22 +377,22 @@ window.Quarto = {
 <tr class="odd">
 <td style="text-align: left;">Constant precision</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">34136.75</td>
-<td style="text-align: right;">34201.39</td>
-<td style="text-align: right;">-17059.38</td>
+<td style="text-align: right;">34354.20</td>
+<td style="text-align: right;">34418.90</td>
+<td style="text-align: right;">-17168.1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">48.387</td>
-<td style="text-align: right;">19.661</td>
+<td style="text-align: right;">45.407</td>
+<td style="text-align: right;">16.651</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Predictor-dependent precision</td>
 <td style="text-align: right;">13</td>
-<td style="text-align: right;">34088.36</td>
-<td style="text-align: right;">34181.72</td>
-<td style="text-align: right;">-17031.18</td>
-<td style="text-align: right;">56.387</td>
+<td style="text-align: right;">34308.79</td>
+<td style="text-align: right;">34402.25</td>
+<td style="text-align: right;">-17141.4</td>
+<td style="text-align: right;">53.407</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0.000</td>
@@ -402,7 +402,7 @@ window.Quarto = {
 </table>
 </div>
 </div>
-<p>The predictor-dependent precision model was clearly supported over the constant-precision model (likelihood-ratio <span class="math inline">\(\chi^2_{4}\)</span> = 56.39, <span class="math inline">\(p\)</span> &lt; 0.001; <span class="math inline">\(\Delta\)</span>AIC = 48.4, <span class="math inline">\(\Delta\)</span>BIC = 19.7). It is therefore retained as the main model. This support comes from the beta-binomial response itself, not from a Gaussian model of positive fledgling counts.</p>
+<p>The predictor-dependent precision model was clearly supported over the constant-precision model (likelihood-ratio <span class="math inline">\(\chi^2_{4}\)</span> = 53.41, <span class="math inline">\(p\)</span> &lt; 0.001; <span class="math inline">\(\Delta\)</span>AIC = 45.4, <span class="math inline">\(\Delta\)</span>BIC = 16.7). It is therefore retained as the main model. This support comes from the beta-binomial response itself, not from a Gaussian model of positive fledgling counts.</p>
 </section>
 </section>
 <section id="main-beta-binomial-location-scale-model" class="level2" data-number="3">
@@ -463,122 +463,122 @@ Show complete coefficient table
 <tr class="odd">
 <td style="text-align: left;">location</td>
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">0.2496</td>
-<td style="text-align: right;">0.0693</td>
-<td style="text-align: right;">0.1138</td>
-<td style="text-align: right;">0.3854</td>
-<td style="text-align: right;">3.6029</td>
-<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.2589</td>
+<td style="text-align: right;">0.0691</td>
+<td style="text-align: right;">0.1234</td>
+<td style="text-align: right;">0.3944</td>
+<td style="text-align: right;">3.7454</td>
+<td style="text-align: right;">0.0002</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">location</td>
 <td style="text-align: left;">rel_LD</td>
-<td style="text-align: right;">-0.0531</td>
+<td style="text-align: right;">-0.0535</td>
 <td style="text-align: right;">0.0060</td>
-<td style="text-align: right;">-0.0649</td>
-<td style="text-align: right;">-0.0414</td>
-<td style="text-align: right;">-8.8764</td>
+<td style="text-align: right;">-0.0652</td>
+<td style="text-align: right;">-0.0418</td>
+<td style="text-align: right;">-8.9794</td>
 <td style="text-align: right;">0.0000</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">location</td>
 <td style="text-align: left;">age_classOLD</td>
-<td style="text-align: right;">0.1059</td>
-<td style="text-align: right;">0.0385</td>
-<td style="text-align: right;">0.0305</td>
-<td style="text-align: right;">0.1813</td>
-<td style="text-align: right;">2.7523</td>
-<td style="text-align: right;">0.0059</td>
+<td style="text-align: right;">0.1045</td>
+<td style="text-align: right;">0.0384</td>
+<td style="text-align: right;">0.0293</td>
+<td style="text-align: right;">0.1797</td>
+<td style="text-align: right;">2.7248</td>
+<td style="text-align: right;">0.0064</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">location</td>
 <td style="text-align: left;">temp_mean_c</td>
-<td style="text-align: right;">-0.2416</td>
-<td style="text-align: right;">0.0655</td>
-<td style="text-align: right;">-0.3699</td>
-<td style="text-align: right;">-0.1132</td>
-<td style="text-align: right;">-3.6893</td>
-<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">-0.2502</td>
+<td style="text-align: right;">0.0654</td>
+<td style="text-align: right;">-0.3785</td>
+<td style="text-align: right;">-0.1220</td>
+<td style="text-align: right;">-3.8250</td>
+<td style="text-align: right;">0.0001</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">location</td>
 <td style="text-align: left;">year_c</td>
-<td style="text-align: right;">0.0014</td>
+<td style="text-align: right;">0.0000</td>
 <td style="text-align: right;">0.0063</td>
-<td style="text-align: right;">-0.0110</td>
-<td style="text-align: right;">0.0138</td>
-<td style="text-align: right;">0.2160</td>
-<td style="text-align: right;">0.8290</td>
+<td style="text-align: right;">-0.0123</td>
+<td style="text-align: right;">0.0122</td>
+<td style="text-align: right;">-0.0059</td>
+<td style="text-align: right;">0.9953</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">location</td>
 <td style="text-align: left;">rel_LD:age_classOLD</td>
-<td style="text-align: right;">-0.0187</td>
+<td style="text-align: right;">-0.0186</td>
 <td style="text-align: right;">0.0075</td>
-<td style="text-align: right;">-0.0334</td>
+<td style="text-align: right;">-0.0332</td>
 <td style="text-align: right;">-0.0040</td>
-<td style="text-align: right;">-2.4998</td>
-<td style="text-align: right;">0.0124</td>
+<td style="text-align: right;">-2.4906</td>
+<td style="text-align: right;">0.0128</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">precision_log_phi</td>
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">-0.1246</td>
-<td style="text-align: right;">0.0415</td>
-<td style="text-align: right;">-0.2059</td>
-<td style="text-align: right;">-0.0433</td>
-<td style="text-align: right;">-3.0039</td>
-<td style="text-align: right;">0.0027</td>
+<td style="text-align: right;">-0.1293</td>
+<td style="text-align: right;">0.0413</td>
+<td style="text-align: right;">-0.2103</td>
+<td style="text-align: right;">-0.0483</td>
+<td style="text-align: right;">-3.1301</td>
+<td style="text-align: right;">0.0017</td>
 <td style="text-align: left;">lower phi: higher conditional heterogeneity</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">precision_log_phi</td>
 <td style="text-align: left;">rel_LD</td>
-<td style="text-align: right;">-0.0236</td>
+<td style="text-align: right;">-0.0229</td>
 <td style="text-align: right;">0.0043</td>
-<td style="text-align: right;">-0.0320</td>
-<td style="text-align: right;">-0.0151</td>
-<td style="text-align: right;">-5.4754</td>
+<td style="text-align: right;">-0.0313</td>
+<td style="text-align: right;">-0.0145</td>
+<td style="text-align: right;">-5.3259</td>
 <td style="text-align: right;">0.0000</td>
 <td style="text-align: left;">lower phi: higher conditional heterogeneity</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">precision_log_phi</td>
 <td style="text-align: left;">temp_mean_c</td>
-<td style="text-align: right;">0.0545</td>
-<td style="text-align: right;">0.0221</td>
-<td style="text-align: right;">0.0112</td>
-<td style="text-align: right;">0.0978</td>
-<td style="text-align: right;">2.4666</td>
-<td style="text-align: right;">0.0136</td>
+<td style="text-align: right;">0.0509</td>
+<td style="text-align: right;">0.0220</td>
+<td style="text-align: right;">0.0077</td>
+<td style="text-align: right;">0.0941</td>
+<td style="text-align: right;">2.3079</td>
+<td style="text-align: right;">0.0210</td>
 <td style="text-align: left;">higher phi: lower conditional heterogeneity</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">precision_log_phi</td>
 <td style="text-align: left;">year_c</td>
-<td style="text-align: right;">0.0033</td>
-<td style="text-align: right;">0.0023</td>
-<td style="text-align: right;">-0.0011</td>
-<td style="text-align: right;">0.0077</td>
-<td style="text-align: right;">1.4582</td>
-<td style="text-align: right;">0.1448</td>
+<td style="text-align: right;">0.0026</td>
+<td style="text-align: right;">0.0022</td>
+<td style="text-align: right;">-0.0018</td>
+<td style="text-align: right;">0.0070</td>
+<td style="text-align: right;">1.1380</td>
+<td style="text-align: right;">0.2551</td>
 <td style="text-align: left;">higher phi: lower conditional heterogeneity</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">precision_log_phi</td>
 <td style="text-align: left;">age_classOLD</td>
-<td style="text-align: right;">0.0977</td>
-<td style="text-align: right;">0.0462</td>
-<td style="text-align: right;">0.0070</td>
-<td style="text-align: right;">0.1883</td>
-<td style="text-align: right;">2.1120</td>
-<td style="text-align: right;">0.0347</td>
+<td style="text-align: right;">0.1079</td>
+<td style="text-align: right;">0.0461</td>
+<td style="text-align: right;">0.0175</td>
+<td style="text-align: right;">0.1982</td>
+<td style="text-align: right;">2.3406</td>
+<td style="text-align: right;">0.0193</td>
 <td style="text-align: left;">higher phi: lower conditional heterogeneity</td>
 </tr>
 </tbody>
@@ -623,32 +623,32 @@ Show complete coefficient table
 <tr class="odd">
 <td style="text-align: left;">Location</td>
 <td style="text-align: left;">Year random-intercept SD</td>
-<td style="text-align: right;">0.351</td>
+<td style="text-align: right;">0.353</td>
 <td style="text-align: left;">logit scale</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Location</td>
 <td style="text-align: left;">Female random-intercept SD</td>
-<td style="text-align: right;">0.243</td>
+<td style="text-align: right;">0.241</td>
 <td style="text-align: left;">logit scale</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Location</td>
 <td style="text-align: left;">Reduction in year random-intercept variance: temperature and year</td>
-<td style="text-align: right;">33.101</td>
+<td style="text-align: right;">36.239</td>
 <td style="text-align: left;">%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Location</td>
 <td style="text-align: left;">Reduction in year random-intercept variance: temperature alone</td>
-<td style="text-align: right;">32.999</td>
+<td style="text-align: right;">36.240</td>
 <td style="text-align: left;">%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>The year random-intercept SD was 0.351 and the female random-intercept SD was 0.243, both on the logit scale. The two reduction estimates compare the year random-intercept variance with nested models that omit both seasonal predictors or retain temperature alone; they replace the previous, non-additive variance-of-the-linear-predictor shares. These quantities are not a decomposition of total phenotypic variance and are not directly comparable with <span class="math inline">\(R^2\)</span>. The precision equation contains no random year or female effects, so no analogous random-effect SD is defined for <span class="math inline">\(\phi\)</span>.</p>
+<p>The year random-intercept SD was 0.353 and the female random-intercept SD was 0.241, both on the logit scale. The two reduction estimates compare the year random-intercept variance with nested models that omit both seasonal predictors or retain temperature alone; they replace the previous, non-additive variance-of-the-linear-predictor shares. These quantities are not a decomposition of total phenotypic variance and are not directly comparable with <span class="math inline">\(R^2\)</span>. The precision equation contains no random year or female effects, so no analogous random-effect SD is defined for <span class="math inline">\(\phi\)</span>.</p>
 <section id="fledging-success-and-spring-temperature" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="fledging-success-and-spring-temperature"><span class="header-section-number">4.1</span> Fledging success and spring temperature</h3>
 <div class="cell">
@@ -662,7 +662,7 @@ Show complete coefficient table
 </div>
 </div>
 <p><a href="figure_code.html#mean-and-consistency-against-temperature">Show the plotting code in Figure code</a>.</p>
-<p>Warmer springs were associated with lower mean fledging success (<span class="math inline">\(\beta\)</span> = -0.242, 95% CI -0.370 to -0.113, <span class="math inline">\(p\)</span> &lt; 0.001) and higher precision (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.054, <span class="math inline">\(p\)</span> = 0.014). Thus, both the location and scale effects of temperature were supported: fledging success was lower but conditionally more consistent in warmer springs.</p>
+<p>Warmer springs were associated with lower mean fledging success (<span class="math inline">\(\beta\)</span> = -0.250, 95% CI -0.378 to -0.122, <span class="math inline">\(p\)</span> &lt; 0.001) and higher precision (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.051, <span class="math inline">\(p\)</span> = 0.021). Thus, both the location and scale effects of temperature were supported: fledging success was lower but conditionally more consistent in warmer springs.</p>
 </section>
 <section id="fledging-success-and-relative-laying-date" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="fledging-success-and-relative-laying-date"><span class="header-section-number">4.2</span> Fledging success and relative laying date</h3>
@@ -677,7 +677,7 @@ Show complete coefficient table
 </div>
 </div>
 <p><a href="figure_code.html#fledging-success-figures">Show the plotting code in Figure code</a>.</p>
-<p>Relatively later females had lower fledging success. The relative-laying-date slope differed between age classes (<span class="math inline">\(\beta_{\mathrm{LD\times OLD}}\)</span> = -0.019, 95% CI -0.033 to -0.004, <span class="math inline">\(p\)</span> = 0.012). The <code>rel_LD</code> main coefficient is conditional on the reference class, <code>age_class = YOUNG</code>.</p>
+<p>Relatively later females had lower fledging success. The relative-laying-date slope differed between age classes (<span class="math inline">\(\beta_{\mathrm{LD\times OLD}}\)</span> = -0.019, 95% CI -0.033 to -0.004, <span class="math inline">\(p\)</span> = 0.013). The <code>rel_LD</code> main coefficient is conditional on the reference class, <code>age_class = YOUNG</code>.</p>
 <p>Conditional slopes were calculated with <code>emmeans::emtrends()</code> using the full variance-covariance matrix.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -696,35 +696,35 @@ Show complete coefficient table
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">YOUNG</td>
-<td style="text-align: right;">-0.0531</td>
+<td style="text-align: right;">-0.0535</td>
 <td style="text-align: right;">0.0060</td>
 <td style="text-align: right;">Inf</td>
-<td style="text-align: right;">-0.0649</td>
-<td style="text-align: right;">-0.0414</td>
+<td style="text-align: right;">-0.0652</td>
+<td style="text-align: right;">-0.0418</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">OLD</td>
-<td style="text-align: right;">-0.0719</td>
+<td style="text-align: right;">-0.0721</td>
 <td style="text-align: right;">0.0046</td>
 <td style="text-align: right;">Inf</td>
-<td style="text-align: right;">-0.0809</td>
-<td style="text-align: right;">-0.0629</td>
+<td style="text-align: right;">-0.0810</td>
+<td style="text-align: right;">-0.0631</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Log-<span class="math inline">\(\phi\)</span> decreased with relative laying date (<span class="math inline">\(\beta\)</span> = -0.024, 95% CI -0.032 to -0.015, <span class="math inline">\(p\)</span> &lt; 0.001). Thus, each one-day delay multiplied <span class="math inline">\(\phi\)</span> by 0.977 (-2.3%), indicating greater conditional extra-binomial heterogeneity at later relative laying dates.</p>
+<p>Log-<span class="math inline">\(\phi\)</span> decreased with relative laying date (<span class="math inline">\(\beta\)</span> = -0.023, 95% CI -0.031 to -0.014, <span class="math inline">\(p\)</span> &lt; 0.001). Thus, each one-day delay multiplied <span class="math inline">\(\phi\)</span> by 0.977 (-2.3%), indicating greater conditional extra-binomial heterogeneity at later relative laying dates.</p>
 <details>
 <summary>
 <strong>Check of the <code>rel_LD × age_class</code> interaction in precision</strong>
 </summary>
-<p>Adding a <code>rel_LD × age_class</code> interaction to the precision equation provided no clear evidence of age-specific slopes (likelihood-ratio <span class="math inline">\(\chi^2_1\)</span> = 2.46, <span class="math inline">\(p\)</span> = 0.117); the models were essentially indistinguishable by AIC (<span class="math inline">\(\Delta\)</span>AIC = 0.46). The interaction coefficient was <span class="math inline">\(\beta_{\log\phi}\)</span> = -0.0139 (95% CI -0.0312 to 0.0035, <span class="math inline">\(p\)</span> = 0.117). We therefore retained the simpler additive precision model, in which the age-specific curves share a relative-laying-date slope on the log-<span class="math inline">\(\phi\)</span> scale.</p>
+<p>Adding a <code>rel_LD × age_class</code> interaction to the precision equation provided no clear evidence of age-specific slopes (likelihood-ratio <span class="math inline">\(\chi^2_1\)</span> = 2.42, <span class="math inline">\(p\)</span> = 0.120); the models were essentially indistinguishable by AIC (<span class="math inline">\(\Delta\)</span>AIC = 0.42). The interaction coefficient was <span class="math inline">\(\beta_{\log\phi}\)</span> = -0.0137 (95% CI -0.0310 to 0.0036, <span class="math inline">\(p\)</span> = 0.120). We therefore retained the simpler additive precision model, in which the age-specific curves share a relative-laying-date slope on the log-<span class="math inline">\(\phi\)</span> scale.</p>
 </details>
 </section>
 <section id="fledging-success-and-female-age" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="fledging-success-and-female-age"><span class="header-section-number">4.3</span> Fledging success and female age</h3>
-<p>Older females had higher mean fledging success at the reference relative laying date (<span class="math inline">\(\beta\)</span> = 0.106, <span class="math inline">\(p\)</span> = 0.006) and higher precision (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.098, <span class="math inline">\(p\)</span> = 0.035). Thus, both the location and scale age effects were supported; the location coefficient is conditional on <code>rel_LD = 0</code> because the location equation contains <code>rel_LD × age_class</code>.</p>
+<p>Older females had higher mean fledging success at the reference relative laying date (<span class="math inline">\(\beta\)</span> = 0.105, <span class="math inline">\(p\)</span> = 0.006) and higher precision (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.108, <span class="math inline">\(p\)</span> = 0.019). Thus, both the location and scale age effects were supported; the location coefficient is conditional on <code>rel_LD = 0</code> because the location equation contains <code>rel_LD × age_class</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -750,13 +750,13 @@ Show complete coefficient table
 </div>
 </div>
 <p><a href="figure_code.html#conditional-temporal-trajectories">Show the plotting code in Figure code</a>.</p>
-<p>After accounting for spring temperature, there was no clear evidence of temporal change in mean egg-to-fledging success (<span class="math inline">\(\beta\)</span> = 0.0014, 95% CI -0.0110 to 0.0138, <span class="math inline">\(p\)</span> = 0.829). Reproductive consistency likewise showed no clear temporal trend (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.0033, 95% CI -0.0011 to 0.0077, <span class="math inline">\(p\)</span> = 0.145).</p>
+<p>After accounting for spring temperature, there was no clear evidence of temporal change in mean egg-to-fledging success (<span class="math inline">\(\beta\)</span> = -0.0000, 95% CI -0.0123 to 0.0122, <span class="math inline">\(p\)</span> = 0.995). Reproductive consistency likewise showed no clear temporal trend (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.0026, 95% CI -0.0018 to 0.0070, <span class="math inline">\(p\)</span> = 0.255).</p>
 <details>
 <summary>
 <strong>Appendix: checks of the temperature effect on precision</strong>
 </summary>
-<p>The temperature effect on <span class="math inline">\(\phi\)</span> was not explained by the changing mean or the response ceiling (constant-<span class="math inline">\(\phi\)</span> simulation: exceeded in 1.0% of replicates), and it remained positive after conditioning on broods with at least one fledgling in a zero-truncated beta-binomial model (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.093, 95% CI 0.016 to 0.170, <span class="math inline">\(p\)</span> = 0.018).</p>
-<p>To assess whether the temperature effect on <span class="math inline">\(\phi\)</span> could arise mechanically because mean success moved away from the upper boundary, 200 datasets were simulated with the fitted conditional means held fixed but with constant <span class="math inline">\(\phi\)</span>. The median simulated temperature coefficient in an auxiliary precision model was 0.0015 (95% simulation interval -0.0467 to 0.0483). The corresponding observed auxiliary coefficient was 0.0522; only 1.0% of simulations were at least this large. All 200 optimisations converged without reaching parameter boundaries. This targeted check does not distinguish biological from other unmodelled sources of conditional heterogeneity.</p>
+<p>The temperature effect on <span class="math inline">\(\phi\)</span> was not explained by the changing mean or the response ceiling (constant-<span class="math inline">\(\phi\)</span> simulation: exceeded in 1.5% of replicates), and it remained positive after conditioning on broods with at least one fledgling in a zero-truncated beta-binomial model (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.096, 95% CI 0.019 to 0.173, <span class="math inline">\(p\)</span> = 0.014).</p>
+<p>To assess whether the temperature effect on <span class="math inline">\(\phi\)</span> could arise mechanically because mean success moved away from the upper boundary, 200 datasets were simulated with the fitted conditional means held fixed but with constant <span class="math inline">\(\phi\)</span>. The median simulated temperature coefficient in an auxiliary precision model was 0.0002 (95% simulation interval -0.0367 to 0.0372). The corresponding observed auxiliary coefficient was 0.0488; only 1.5% of simulations were at least this large. All 200 optimisations converged without reaching parameter boundaries. This targeted check does not distinguish biological from other unmodelled sources of conditional heterogeneity.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -768,7 +768,7 @@ Show complete coefficient table
 </div>
 </div>
 <p><a href="figure_code.html#constant-phi-simulation-diagnostic">Show the plotting code in Figure code</a>.</p>
-<p>To determine whether higher <span class="math inline">\(\phi\)</span> in warmer springs was instead produced by the increased probability of complete brood failure, a correctly zero-truncated beta-binomial likelihood was fitted to the 7405 broods with at least one fledgling. The location and precision equations were jointly re-estimated, while the fitted year and female contributions were retained as offsets. The temperature coefficient in precision remained positive (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.0926, 95% CI 0.0156 to 0.1696, <span class="math inline">\(p\)</span> = 0.018). The optimisation converged without a boundary estimate. Thus, the association is not attributable solely to warmer springs producing more complete failures and leaving a more homogeneous surviving subset. It may be discussed as higher conditional residual consistency among non-failed broods, but not as evidence of a causal temperature effect or a change in total phenotypic variance.</p>
+<p>To determine whether higher <span class="math inline">\(\phi\)</span> in warmer springs was instead produced by the increased probability of complete brood failure, a correctly zero-truncated beta-binomial likelihood was fitted to the 7475 broods with at least one fledgling. The location and precision equations were jointly re-estimated, while the fitted year and female contributions were retained as offsets. The temperature coefficient in precision remained positive (<span class="math inline">\(\beta_{\log\phi}\)</span> = 0.0962, 95% CI 0.0193 to 0.1731, <span class="math inline">\(p\)</span> = 0.014). The optimisation converged without a boundary estimate. Thus, the association is not attributable solely to warmer springs producing more complete failures and leaving a more homogeneous surviving subset. It may be discussed as higher conditional residual consistency among non-failed broods, but not as evidence of a causal temperature effect or a change in total phenotypic variance.</p>
 </details>
 <details>
 <summary>
@@ -788,7 +788,7 @@ Show complete coefficient table
 </div>
 </div>
 <p><a href="figure_code.html#fledging-success-figures">Show the plotting code in Figure code</a>.</p>
-<p>The observed frequency was 23.8%. Conditional simulations had a median of 20.3% (95% simulation interval 19.6–21.1%), whereas unconditional <code>simulate.glmmTMB()</code> simulations had a median of 25.7% (95% simulation interval 25.0–26.4%). Thus, the conditional check underpredicted zeros while the unconditional check overpredicted them. The fitted model does not reproduce the observed zero frequency exactly, but the direction of the discrepancy depends on whether inference is conditional on the observed groups or averaged over new random-effect realisations. This is a model-adequacy diagnostic, not a separate biological hypothesis test, and does not by itself justify an additional zero-inflation component.</p>
+<p>The observed frequency was 23.6%. Conditional simulations had a median of 20.2% (95% simulation interval 19.4–20.9%), whereas unconditional <code>simulate.glmmTMB()</code> simulations had a median of 25.7% (95% simulation interval 25.0–26.5%). Thus, the conditional check underpredicted zeros while the unconditional check overpredicted them. The fitted model does not reproduce the observed zero frequency exactly, but the direction of the discrepancy depends on whether inference is conditional on the observed groups or averaged over new random-effect realisations. This is a model-adequacy diagnostic, not a separate biological hypothesis test, and does not by itself justify an additional zero-inflation component.</p>
 </section></details>
 <!-- The realised fledgling production analysis is now maintained in
 realised_fledgling_production.qmd. The archived source below is excluded
@@ -816,7 +816,7 @@ m_count_hurdle <- glmmTMB(
 :::
 
 
-The ordinary NB2 model is retained only as a sensitivity check because it reproduced 9.5% zero broods versus 23.8% observed; the hurdle-Poisson is the final model of realised fledgling production.
+The ordinary NB2 model is retained only as a sensitivity check because it reproduced 9.3% zero broods versus 23.6% observed; the hurdle-Poisson is the final model of realised fledgling production.
 
 ::: {.callout-note collapse="true"}
 ### Model diagnostics
@@ -832,8 +832,8 @@ Table: Comparison of the two fitted hurdle count distributions.
 
 |Model          | Convergence|pdHess |      AIC|      BIC|    logLik|
 |:--------------|-----------:|:------|--------:|--------:|---------:|
-|Hurdle NB2     |           0|FALSE  |       NA|       NA|        NA|
-|Hurdle Poisson |           0|TRUE   | 39333.69| 39419.87| -19654.85|
+|Hurdle NB2     |           0|TRUE   | 39645.72| 39739.18| -19809.86|
+|Hurdle Poisson |           0|TRUE   | 39643.72| 39729.99| -19809.86|
 
 
 :::
@@ -862,9 +862,9 @@ Table: Numerical convergence checks for the fitted models.
 :::
 
 
-The hurdle-Poisson reproduced the observed zero frequency: observed 23.79%, simulated median 23.75%, and 95% simulation interval 22.91-24.61%. This resolves the major zero-frequency failure of the ordinary NB2 model.
+The hurdle-Poisson reproduced the observed zero frequency: observed 23.65%, simulated median 23.65%, and 95% simulation interval 22.83-24.45%. This resolves the major zero-frequency failure of the ordinary NB2 model.
 
-The positive-count component was not overdispersed. Its conditional Pearson dispersion was 0.539, compared with a median of 1.000 and a 95% simulation interval of 0.966-1.037 under the fitted zero-truncated Poisson. The observed value indicates underdispersion rather than overdispersion. Consistently, the alternative hurdle-NB2 estimated $\theta$ = 2.75e+07, effectively collapsing to the Poisson limit, and had an AIC higher by  NA. Therefore, `truncated_nbinom2()` offers no improvement, and hurdle-Poisson remains the main realised-output model. The underdispersion means that its Poisson standard errors are conservative.
+The positive-count component was not overdispersed. Its conditional Pearson dispersion was 0.538, compared with a median of 0.999 and a 95% simulation interval of 0.968-1.034 under the fitted zero-truncated Poisson. The observed value indicates underdispersion rather than overdispersion. Consistently, the alternative hurdle-NB2 estimated $\theta$ = 4.76e+06, effectively collapsing to the Poisson limit, and had an AIC higher by 2.00. Therefore, `truncated_nbinom2()` offers no improvement, and hurdle-Poisson remains the main realised-output model. The underdispersion means that its Poisson standard errors are conservative.
 
 <details class="model-summary">
 <summary>Show absolute-fledged coefficient table</summary>
@@ -878,17 +878,17 @@ Table: Coefficients from the positive-count and complete-failure components of t
 
 |component        |term                |    beta|     SE|  CI_low| CI_high|        z|      p|
 |:----------------|:-------------------|-------:|------:|-------:|-------:|--------:|------:|
-|positive_count   |(Intercept)         |  1.5039| 0.0168|  1.4709|  1.5369|  89.4254| 0.0000|
-|positive_count   |rel_LD              | -0.0190| 0.0022| -0.0233| -0.0147|  -8.5977| 0.0000|
-|positive_count   |age_classOLD        |  0.0317| 0.0126|  0.0071|  0.0563|   2.5230| 0.0116|
-|positive_count   |temp_mean_c         | -0.0312| 0.0148| -0.0603| -0.0021|  -2.1045| 0.0353|
-|positive_count   |year_c              | -0.0005| 0.0014| -0.0033|  0.0023|  -0.3179| 0.7506|
-|positive_count   |rel_LD:age_classOLD |  0.0021| 0.0027| -0.0032|  0.0075|   0.7803| 0.4352|
-|zero_probability |(Intercept)         | -1.1782| 0.0446| -1.2656| -1.0908| -26.4300| 0.0000|
-|zero_probability |rel_LD              |  0.0765| 0.0048|  0.0670|  0.0860|  15.8473| 0.0000|
-|zero_probability |temp_mean_c         |  0.3074| 0.0264|  0.2556|  0.3591|  11.6355| 0.0000|
-|zero_probability |year_c              | -0.0047| 0.0026| -0.0098|  0.0005|  -1.7659| 0.0774|
-|zero_probability |age_classOLD        | -0.0666| 0.0538| -0.1720|  0.0388|  -1.2385| 0.2155|
+|positive_count   |(Intercept)         |  1.5195| 0.0167|  1.4867|  1.5522|  90.8460| 0.0000|
+|positive_count   |rel_LD              | -0.0193| 0.0022| -0.0236| -0.0150|  -8.7667| 0.0000|
+|positive_count   |age_classOLD        |  0.0289| 0.0126|  0.0043|  0.0536|   2.2985| 0.0215|
+|positive_count   |temp_mean_c         | -0.0301| 0.0146| -0.0587| -0.0016|  -2.0692| 0.0385|
+|positive_count   |year_c              | -0.0004| 0.0014| -0.0031|  0.0023|  -0.3042| 0.7610|
+|positive_count   |rel_LD:age_classOLD |  0.0022| 0.0027| -0.0031|  0.0075|   0.8045| 0.4211|
+|zero_probability |(Intercept)         | -1.2421| 0.0455| -1.3313| -1.1529| -27.2939| 0.0000|
+|zero_probability |rel_LD              |  0.0767| 0.0048|  0.0673|  0.0862|  15.9116| 0.0000|
+|zero_probability |temp_mean_c         |  0.3096| 0.0264|  0.2578|  0.3614|  11.7194| 0.0000|
+|zero_probability |year_c              | -0.0035| 0.0026| -0.0086|  0.0017|  -1.3200| 0.1869|
+|zero_probability |age_classOLD        | -0.0711| 0.0537| -0.1763|  0.0341|  -1.3240| 0.1855|
 
 
 :::
@@ -909,7 +909,7 @@ Table: Coefficients from the positive-count and complete-failure components of t
 :::
 
 
-Temperature increased the odds of complete brood failure ($\beta_{zero}$ = 0.307, 95% CI 0.256 to 0.359, $p$ < 0.001) and reduced the expected number fledged among positive broods ($\beta_{positive}$ = -0.031, 95% CI -0.060 to -0.002, $p$ = 0.035). The integrated population-level prediction declined by approximately 9.7% across a 1 &deg;C contrast centred on the mean temperature. Clutch size increased with temperature ($\beta$ = 0.096 eggs per 1 &deg;C), but this increase was insufficient to compensate for lower fledging success and increased complete-failure risk.
+Temperature increased the odds of complete brood failure ($\beta_{zero}$ = 0.310, 95% CI 0.258 to 0.361, $p$ < 0.001) and reduced the expected number fledged among positive broods ($\beta_{positive}$ = -0.030, 95% CI -0.059 to -0.002, $p$ = 0.039). The integrated population-level prediction declined by approximately 9.4% across a 1 &deg;C contrast centred on the mean temperature. Clutch size increased with temperature ($\beta$ = 0.096 eggs per 1 &deg;C), but this increase was insufficient to compensate for lower fledging success and increased complete-failure risk.
 
 ### Relative laying date and age effects
 
@@ -921,7 +921,7 @@ Temperature increased the odds of complete brood failure ($\beta_{zero}$ = 0.307
 :::
 
 
-Later relative laying date increased complete-failure risk ($\beta_{zero}$ = 0.0765, $p$ < 0.001) and reduced fledgling number among positive broods ($\beta_{positive}$ = -0.0190, $p$ < 0.001). Older females produced more fledglings in the positive-count component at the reference relative laying date ($\beta$ = 0.032, $p$ = 0.012). The `rel_LD` by age interaction was not supported in the positive-count component ($\beta$ = 0.002, $p$ = 0.435), and there was no supported long-term trend there ($\beta_{year}$ = -0.0005, $p$ = 0.751).
+Later relative laying date increased complete-failure risk ($\beta_{zero}$ = 0.0767, $p$ < 0.001) and reduced fledgling number among positive broods ($\beta_{positive}$ = -0.0193, $p$ < 0.001). Older females produced more fledglings in the positive-count component at the reference relative laying date ($\beta$ = 0.029, $p$ = 0.022). The `rel_LD` by age interaction was not supported in the positive-count component ($\beta$ = 0.002, $p$ = 0.421), and there was no supported long-term trend there ($\beta_{year}$ = -0.0004, $p$ = 0.761).
 
 -->
 </section>
@@ -1493,18 +1493,18 @@ Later relative laying date increased complete-failure risk ($\beta_{zero}$ = 0.0
 <span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(<span class="fu">abs</span>(temp_mean <span class="sc">-</span> (temp_center <span class="sc">+</span> <span class="fl">0.5</span>)), <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>marginal_temp_percent <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> (pred_high<span class="sc">$</span>estimate <span class="sc">/</span> pred_low<span class="sc">$</span>estimate <span class="sc">-</span> <span class="dv">1</span>)</span>
 <span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>source_1982_2019 <span class="ot">&lt;-</span> source_fs <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">between</span>(year, <span class="dv">1982</span>, <span class="dv">2019</span>))</span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>source_known_age <span class="ot">&lt;-</span> source_1982_2019 <span class="sc">|&gt;</span> <span class="fu">filter</span>(age_class <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>))</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>source_1981_2019 <span class="ot">&lt;-</span> source_fs <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">between</span>(year, <span class="dv">1981</span>, <span class="dv">2019</span>))</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>source_known_age <span class="ot">&lt;-</span> source_1981_2019 <span class="sc">|&gt;</span> <span class="fu">filter</span>(age_class <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>))</span>
 <span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>sample_reconciliation <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">stage =</span> <span class="fu">c</span>(</span>
 <span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Validated fledging records, 1981-2019"</span>,</span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>    <span class="st">"After restricting to 1982-2019"</span>,</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>    <span class="st">"After restricting to 1981-2019"</span>,</span>
 <span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    <span class="st">"After requiring the binary age class"</span>,</span>
 <span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>    <span class="st">"After requiring laying date for rel_LD"</span></span>
 <span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">broods =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(source_fs), <span class="fu">nrow</span>(source_1982_2019), <span class="fu">nrow</span>(source_known_age), <span class="fu">nrow</span>(dat)),</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">broods =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(source_fs), <span class="fu">nrow</span>(source_1981_2019), <span class="fu">nrow</span>(source_known_age), <span class="fu">nrow</span>(dat)),</span>
 <span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>  <span class="at">zero_broods =</span> <span class="fu">c</span>(</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(source_fs<span class="sc">$</span>fledged <span class="sc">==</span> <span class="dv">0</span>), <span class="fu">sum</span>(source_1982_2019<span class="sc">$</span>fledged <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(source_fs<span class="sc">$</span>fledged <span class="sc">==</span> <span class="dv">0</span>), <span class="fu">sum</span>(source_1981_2019<span class="sc">$</span>fledged <span class="sc">==</span> <span class="dv">0</span>),</span>
 <span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(source_known_age<span class="sc">$</span>fledged <span class="sc">==</span> <span class="dv">0</span>), <span class="fu">sum</span>(dat<span class="sc">$</span>fledged <span class="sc">==</span> <span class="dv">0</span>)</span>
 <span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>)</span>

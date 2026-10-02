@@ -15,7 +15,7 @@ dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 dir.create("figures", showWarnings = FALSE, recursive = TRUE)
 
 raw <- read_csv("data_derived/reproductive_model_data.csv", show_col_types = FALSE) |>
-  filter(between(year, 1982, 2025), year != 2020,
+  filter(between(year, 1981, 2025), year != 2020,
          age_class %in% c("YOUNG", "OLD")) |>
   transmute(
     lay_date = as.numeric(laying_date),
@@ -42,8 +42,8 @@ dat <- raw |>
 
 observed_years <- sort(unique(as.integer(as.character(dat$year_f))))
 stopifnot(
-  length(observed_years) == 43L,
-  identical(setdiff(1982:2025, observed_years), 2020L),
+  length(observed_years) == 44L,
+  identical(setdiff(1981:2025, observed_years), 2020L),
   abs(mean(dat$temp_mean_c)) < 1e-10,
   abs(mean(dat$year_c)) < 1e-10
 )
@@ -205,7 +205,7 @@ ggsave("figures/laying_date_C_scale_by_age.pdf", p_c, width = 4.5, height = 4.8,
 
 write_csv(tibble(
   n = nrow(dat), seasons = nlevels(dat$year_f), first_year = min(observed_years),
-  last_year = max(observed_years), missing_years = paste(setdiff(1982:2025, observed_years), collapse = ","),
+  last_year = max(observed_years), missing_years = paste(setdiff(1981:2025, observed_years), collapse = ","),
   pdHess = model$sdr$pdHess, convergence_code = model$fit$convergence
 ), "tables/laying_date_age_temperature_diagnostics.csv")
 

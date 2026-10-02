@@ -1,8 +1,5 @@
 component,quantity,estimate,unit
-Positive count,Year random-intercept SD,0.07447328695627968,log scale
-Positive count,Female random-intercept SD,1.7005486824246758e-5,log scale
-Positive count,Share of modelled random-intercept variance: year,99.99999478592744,%
-Positive count,Share of modelled random-intercept variance: female,5.214072566631574e-6,%
-Positive count,Share of modelled seasonal variance attributable to temperature and year,19.105507920325092,%
-Positive count,Share of modelled seasonal variance attributable to temperature alone,16.752957290725785,%
+Positive count,Year random-intercept SD,0.07319038039663762,log scale
+Positive count,Reduction in year random-intercept variance: temperature and year,19.171631717234817,%
+Positive count,Reduction in year random-intercept variance: temperature alone,19.08703084639366,%
 Complete failure,Random effects,NA,none specified

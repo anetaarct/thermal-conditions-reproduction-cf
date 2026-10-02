@@ -1,0 +1,3 @@
+"model","AIC","BIC","pdHess"
+"fixed annual window",27179.2061018917,27268.5292137809,TRUE
+"individual window",27161.9812866368,27251.3043985261,TRUE

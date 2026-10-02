@@ -81,18 +81,18 @@ pred_high <- count_temp_predictions |>
   slice_min(abs(temp_mean - (temp_center + 0.5)), n = 1, with_ties = FALSE)
 marginal_temp_percent <- 100 * (pred_high$estimate / pred_low$estimate - 1)
 
-source_1982_2019 <- source_fs |> filter(between(year, 1982, 2019))
-source_known_age <- source_1982_2019 |> filter(age_class %in% c("YOUNG", "OLD"))
+source_1981_2019 <- source_fs |> filter(between(year, 1981, 2019))
+source_known_age <- source_1981_2019 |> filter(age_class %in% c("YOUNG", "OLD"))
 sample_reconciliation <- tibble(
   stage = c(
     "Validated fledging records, 1981-2019",
-    "After restricting to 1982-2019",
+    "After restricting to 1981-2019",
     "After requiring the binary age class",
     "After requiring laying date for rel_LD"
   ),
-  broods = c(nrow(source_fs), nrow(source_1982_2019), nrow(source_known_age), nrow(dat)),
+  broods = c(nrow(source_fs), nrow(source_1981_2019), nrow(source_known_age), nrow(dat)),
   zero_broods = c(
-    sum(source_fs$fledged == 0), sum(source_1982_2019$fledged == 0),
+    sum(source_fs$fledged == 0), sum(source_1981_2019$fledged == 0),
     sum(source_known_age$fledged == 0), sum(dat$fledged == 0)
   )
 )

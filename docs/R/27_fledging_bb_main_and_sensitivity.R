@@ -8,7 +8,7 @@ dir.create("tables", recursive = TRUE, showWarnings = FALSE)
 dat <- read_csv("data_derived/fledging_model_data.csv", show_col_types = FALSE) |>
   mutate(age_class = factor(age_class, levels = c("YOUNG", "OLD")),
          female_id = factor(female_id), year_f = factor(year_f))
-stopifnot(nrow(dat) == 9716L, nlevels(dat$year_f) == 38L)
+stopifnot(nrow(dat) == 9790L, nlevels(dat$year_f) == 39L)
 
 ctrl <- glmmTMBControl(optCtrl = list(iter.max = 20000, eval.max = 20000), parallel = 4)
 loc_main <- cbind(fledged, failed) ~ rel_LD * age_class + temp_mean_c + year_c +

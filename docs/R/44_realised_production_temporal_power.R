@@ -35,7 +35,7 @@ power_for_n <- function(n) {
   z <- abs(beta_expected) / se
   data.frame(se = se, z_score = z, power = pnorm(z - qnorm(0.975)))
 }
-n_values <- c(38L, 50L, 60L, 80L, 100L, 120L)
+n_values <- c(39L, 50L, 60L, 80L, 100L, 120L)
 analytic <- cbind(data.frame(seasons = n_values),
                   do.call(rbind, lapply(n_values, power_for_n)))
 n_80 <- (2:1000)[which(vapply(2:1000, function(n) power_for_n(n)$power >= 0.80,

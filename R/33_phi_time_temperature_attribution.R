@@ -18,7 +18,7 @@ dat <- read_csv("data_derived/fledging_model_data.csv", show_col_types = FALSE) 
     female_id = factor(female_id),
     year_f = factor(year_f)
   )
-stopifnot(nrow(dat) == 9716L, nlevels(dat$year_f) == 38L)
+stopifnot(nrow(dat) == 9790L, nlevels(dat$year_f) == 39L)
 
 ctrl <- glmmTMBControl(
   optCtrl = list(iter.max = 30000, eval.max = 30000), parallel = 1

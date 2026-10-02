@@ -7,7 +7,7 @@ dir.create("models/glmmTMB", recursive = TRUE, showWarnings = FALSE)
 dir.create("tables", recursive = TRUE, showWarnings = FALSE)
 
 raw <- read_csv("data_derived/reproductive_model_data.csv", show_col_types = FALSE) |>
-  filter(between(year, 1982, 2025), year != 2020,
+  filter(between(year, 1981, 2025), year != 2020,
          age_class %in% c("YOUNG", "OLD")) |>
   transmute(
     lay_date = as.numeric(laying_date), temp_mean = as.numeric(temp_mean),
