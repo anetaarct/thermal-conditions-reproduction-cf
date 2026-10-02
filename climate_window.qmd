@@ -173,7 +173,7 @@ For every year, `temp_mean` is the arithmetic mean and `temp_sd` is the sample s
 temp_trends <- read_csv("tables/main_window_temperature_trends.csv",
                         show_col_types = FALSE)
 kable(temp_trends, digits = 4,
-      caption = "Trends in mean temperature and day-to-day thermal variability within the selected window")
+      caption = "Trends in mean temperature and day-to-day thermal variability within the pre-laying window")
 ```
 
 <details class="model-summary">
@@ -190,7 +190,7 @@ summary(temperature_models$sd_trend)
 
 </details>
 
-Mean temperature increased by `r formatC(temp_trends$beta_per_year[temp_trends$response == "temp_mean"], digits = 4, format = "f")`°C per year. We found no evidence of a temporal trend in day-to-day thermal variability within the window, measured as the annual standard deviation of daily mean temperatures (`temp_sd`). This single measure does not establish whether broader climate predictability changed.
+Mean temperature increased by `r formatC(temp_trends$beta_per_year[temp_trends$response == "temp_mean"], digits = 4, format = "f")`°C per year. We found no evidence of a temporal trend in day-to-day thermal variability within the pre-laying window, measured as the annual standard deviation of daily mean temperatures (`temp_sd`). This single measure does not establish whether broader climate predictability changed.
 
 ```{r}
 #| echo: false
@@ -215,7 +215,7 @@ knitr::include_graphics("figures/Fig1_temperature_mean_time.png")
 
 ```{r}
 #| echo: false
-#| fig-cap: "Annual within-window temperature SD in the 26 March–7 May window."
+#| fig-cap: "Annual standard deviation of daily mean temperatures, measuring day-to-day thermal variability within the 26 March–7 May pre-laying window."
 knitr::include_graphics("figures/Fig1_temperature_sd_time.png")
 ```
 
