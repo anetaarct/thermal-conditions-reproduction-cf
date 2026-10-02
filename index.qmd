@@ -18,9 +18,9 @@ toc: false
 <section class="overview-intro">
   <h2><span class="section-number">0.1</span> Study aims</h2>
   <p>We asked how spring temperature was associated with reproductive performance in the collared flycatcher, and whether these responses were expressed through changes in average performance, reproductive consistency, or both.</p>
-  <p>Specifically, we tested whether:</p>
+  <p>Specifically, we examined:</p>
   <ul>
-    <li>mean temperature during the pre-laying thermal window increased through time and whether its interannual variability changed;</li>
+    <li>whether mean temperature increased through time and whether day-to-day thermal variability within the pre-laying window changed;</li>
     <li>clutch size and its consistency among females were associated with spring temperature, relative laying date, female age, and long-term time;</li>
     <li>fledging success and its consistency among females were associated with spring temperature, relative laying date, female age, and long-term time.</li>
   </ul>

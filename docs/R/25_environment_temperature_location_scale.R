@@ -51,8 +51,8 @@ coefficients <- bind_rows(
     as_tibble() |>
     transmute(component = "scale_log_variance", term, beta = Estimate, SE = `Std. Error`,
               z = `z value`, p = `Pr(>|z|)`, interpretation = case_when(
-                term == "year_c" & beta > 0 ~ "residual variance increases: temperature becomes less predictable",
-                term == "year_c" & beta < 0 ~ "residual variance decreases: temperature becomes more predictable",
+                term == "year_c" & beta > 0 ~ "day-to-day thermal variability within the window increases",
+                term == "year_c" & beta < 0 ~ "day-to-day thermal variability within the window decreases",
                 TRUE ~ "baseline log variance"
               ))
 )

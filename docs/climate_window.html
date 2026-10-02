@@ -608,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Trends in selected-window temperature mean and variability</caption>
+<caption>Trends in mean temperature and day-to-day thermal variability within the selected window</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">response</th>
@@ -658,7 +658,7 @@ Show complete temporal-model summaries
 </div>
 </div>
 </details>
-<p>Mean temperature increased by 0.0470°C per year. The temporal trend in <code>temp_sd</code> was not supported.</p>
+<p>Mean temperature increased by 0.0470°C per year. We found no evidence of a temporal trend in day-to-day thermal variability within the window, measured as the annual standard deviation of daily mean temperatures (<code>temp_sd</code>). This single measure does not establish whether broader climate predictability changed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -2341,7 +2341,7 @@ Show complete temporal-model summaries
 <span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>temp_trends <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/main_window_temperature_trends.csv"</span>,</span>
 <span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(temp_trends, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Trends in selected-window temperature mean and variability"</span>)</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Trends in mean temperature and day-to-day thermal variability within the selected window"</span>)</span>
 <span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"model-summary"</span><span class="dt">&gt;</span></span>
@@ -2358,7 +2358,7 @@ Show complete temporal-model summaries
 <span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>Mean temperature increased by <span class="in">`r formatC(temp_trends$beta_per_year[temp_trends$response == "temp_mean"], digits = 4, format = "f")`</span>°C per year. The temporal trend in <span class="in">`temp_sd`</span> was not supported.</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>Mean temperature increased by <span class="in">`r formatC(temp_trends$beta_per_year[temp_trends$response == "temp_mean"], digits = 4, format = "f")`</span>°C per year. We found no evidence of a temporal trend in day-to-day thermal variability within the window, measured as the annual standard deviation of daily mean temperatures (<span class="in">`temp_sd`</span>). This single measure does not establish whether broader climate predictability changed.</span>
 <span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>

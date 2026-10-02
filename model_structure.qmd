@@ -21,7 +21,7 @@ $$
 \beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_t.
 $$
 
-The location component tests directional warming; the scale component tests whether interannual variability changed, that is, whether spring became less predictable. There is one observation per year and no random effect.
+The location component estimates the temporal trend in mean temperature. The scale component estimates whether day-to-day thermal variability within the pre-laying window changed over time, using the annual standard deviation of daily mean temperatures. This measure does not assess year-to-year variation or overall climate predictability. There is one annual estimate and no random effect.
 
 ## Clutch size
 
