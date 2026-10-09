@@ -1,0 +1,32 @@
+Sys.setlocale('LC_CTYPE','English_United States.utf8')
+.libPaths(c('.Rlib',.libPaths()))
+suppressPackageStartupMessages(library(glmmTMB))
+out<-'manuscript_audit_2026-10-08/zero_frequency_audit'
+m<-readRDS(file.path(out,'year_precision_zero_inflated_intercept.rds'))
+print(VarCorr(m));print(summary(m)$coefficients)
+d<-m$frame;d$fledged<-d[[1]][,1];d$failed<-d[[1]][,2]
+pp<-m$fit$parfull;keys<-c('beta','betadisp','betazi','theta','thetadisp','b','bdisp')
+start<-lapply(keys,function(k)unname(pp[names(pp)==k]));names(start)<-keys;start<-start[lengths(start)>0]
+path<-file.path(out,'zero_inflated_warm_BFGS.rds')
+if(file.exists(path))alt<-readRDS(path)else{
+ alt<-glmmTMB(cbind(fledged,failed)~rel_LD*age_class+temp_mean_c+year_c+(1|year_f)+(1|female_id),dispformula=~rel_LD+temp_mean_c+year_c+age_class+(1|year_f),ziformula=~1,family=betabinomial(),data=d,start=start,
+ control=glmmTMBControl(optimizer=optim,optArgs=list(method='BFGS'),optCtrl=list(maxit=20000,reltol=1e-12),parallel=4))
+ saveRDS(alt,path)
+}
+diag<-data.frame(convergence=alt$fit$convergence,pdHess=alt$sdr$pdHess,gradient=max(abs(alt$sdr$gradient.fixed)),AIC=AIC(alt),logLik=as.numeric(logLik(alt)),logLik_difference=as.numeric(logLik(alt)-logLik(m)))
+print(diag);write.csv(diag,file.path(out,'zero_inflated_warm_BFGS_diagnostics.csv'),row.names=FALSE)
+co<-do.call(rbind,lapply(c('cond','disp','zi'),function(k){a<-summary(m)$coefficients[[k]];data.frame(component=k,term=rownames(a),beta=a[,1],SE=a[,2],low=a[,1]-1.96*a[,2],high=a[,1]+1.96*a[,2],p=a[,4])}))
+write.csv(co,file.path(out,'zero_inflated_all_coefficients.csv'),row.names=FALSE)
+stopifnot(m$fit$convergence==0,m$sdr$pdHess,alt$fit$convergence==0,alt$sdr$pdHess,abs(diag$logLik_difference)<1e-4)
+n<-rowSums(d[[1]]);obs<-mean(d$fledged==0);pi0<-plogis(fixef(m)$zi[1])
+mu<-predict(m,type='conditional');phi<-predict(m,type='disp')
+p0<-pi0+(1-pi0)*exp(lbeta(mu*phi,(1-mu)*phi+n)-lbeta(mu*phi,(1-mu)*phi))
+set.seed(20261012)
+z<-replicate(1000,{p<-rbeta(length(n),mu*phi,(1-mu)*phi);y<-rbinom(length(n),n,p);y[rbinom(length(n),1,pi0)==1]<-0;mean(y==0)})
+summary<-data.frame(model='zero_augmented_year_precision',kind='conditional_fitted_modes',observed=obs,expected=mean(p0),median=median(z),lower=quantile(z,.025),upper=quantile(z,.975),n_ge=sum(z>=obs),nsim=1000)
+X<-model.matrix(~rel_LD*age_class+temp_mean_c+year_c,d);b<-fixef(m)$cond;eta<-drop(X[,names(b),drop=FALSE]%*%b)
+Z<-model.matrix(~rel_LD+temp_mean_c+year_c+age_class,d);g<-fixef(m)$disp;ep<-drop(Z[,names(g),drop=FALSE]%*%g)
+v<-VarCorr(m);sy<-attr(v$cond$year_f,'stddev')[[1]];sf<-attr(v$cond$female_id,'stddev')[[1]];sp<-attr(v$disp$year_f,'stddev')[[1]];iy<-as.integer(d$year_f);iff<-as.integer(d$female_id)
+set.seed(20261013)
+zu<-replicate(1000,{u<-rnorm(nlevels(d$year_f),0,sy);f<-rnorm(nlevels(d$female_id),0,sf);a<-rnorm(nlevels(d$year_f),0,sp);mu1<-plogis(eta+u[iy]+f[iff]);p1<-exp(ep+a[iy]);p<-rbeta(length(n),mu1*p1,(1-mu1)*p1);y<-rbinom(length(n),n,p);y[rbinom(length(n),1,pi0)==1]<-0;mean(y==0)})
+summary<-rbind(summary,data.frame(model='zero_augmented_year_precision',kind='new_group_random_effects',observed=obs,expected=NA,median=median(zu),lower=quantile(zu,.025),upper=quantile(zu,.975),n_ge=sum(zu>=obs),nsim=1000));print(summary);write.csv(summary,file.path(out,'zero_augmented_simulation_summary.csv'),row.names=FALSE)

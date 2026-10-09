@@ -126,7 +126,17 @@ write_csv(summary_table, "tables/fledging_chapter_sample_summary.csv")
 
 # Simulation-based adequacy check for complete brood failures.
 bb_sim <- simulate(m_bb_scale, nsim = 1000, seed = 20260810)
-sim_zero <- vapply(bb_sim, function(x) mean(as.numeric(x) == 0), numeric(1))
+sim_zero <- vapply(bb_sim, function(x) {
+  # simulate() returns cbind(fledged, failed); count zeros only in fledged.
+  if (is.matrix(x)) {
+    stopifnot(ncol(x) == 2L, nrow(x) == nrow(dat),
+              all(rowSums(x) == dat$clutch))
+    mean(x[, 1L] == 0)
+  } else {
+    stopifnot(length(x) == nrow(dat))
+    mean(as.numeric(x) == 0)
+  }
+}, numeric(1))
 observed_zero <- mean(dat$fledged == 0)
 zero_summary <- tibble(
   observed = observed_zero,

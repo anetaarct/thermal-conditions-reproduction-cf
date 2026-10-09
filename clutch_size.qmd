@@ -11,6 +11,8 @@ execute:
 ```{r}
 #| label: setup
 #| include: false
+invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))
+.libPaths(c(".Rlib", .libPaths()))
 Sys.setlocale("LC_TIME", "C")
 library(dplyr)
 library(knitr)
@@ -209,9 +211,9 @@ knitr::include_graphics("figures/Fig4_1_clutch_temperature.png")
 
 [Show the plotting code in Figure code](figure_code.html#clutch-size-figures).
 
-Mean clutch size changed by $\beta$ = `r fmt(loc$median[loc$term == "temp_mean_c"], 3)` per °C (95% CrI `r fmt(loc$CI_low[loc$term == "temp_mean_c"], 3)` to `r fmt(loc$CI_high[loc$term == "temp_mean_c"], 3)`).
+Mean clutch size changed by $\beta_{\mathrm{temp}}^{(\mu)}$ = `r fmt(loc$median[loc$term == "temp_mean_c"], 3)` per °C (95% CrI `r fmt(loc$CI_low[loc$term == "temp_mean_c"], 3)` to `r fmt(loc$CI_high[loc$term == "temp_mean_c"], 3)`).
 
-The temperature effect on residual scale was not supported ($\beta_{\log\sigma}$ = `r fmt(sca$median[sca$term == "temp_mean_c"], 3)`, 95% CrI `r fmt(sca$CI_low[sca$term == "temp_mean_c"], 3)` to `r fmt(sca$CI_high[sca$term == "temp_mean_c"], 3)`).
+There was no clear evidence of a temperature association with clutch-size inconsistency ($\beta_{\mathrm{temp}}^{(\sigma)}$ = `r fmt(sca$median[sca$term == "temp_mean_c"], 3)`, 95% CrI `r fmt(sca$CI_low[sca$term == "temp_mean_c"], 3)` to `r fmt(sca$CI_high[sca$term == "temp_mean_c"], 3)`).
 
 ### Clutch size and inconsistency across relative laying date
 
@@ -223,19 +225,19 @@ knitr::include_graphics("figures/Fig4_2_clutch_rellD.png")
 
 [Show the plotting code in Figure code](figure_code.html#clutch-size-figures).
 
-Mean clutch size declined with relative laying date ($\beta$ = `r fmt(loc$median[loc$term == "rel_LD"], 4)`, 95% CrI `r fmt(loc$CI_low[loc$term == "rel_LD"], 4)` to `r fmt(loc$CI_high[loc$term == "rel_LD"], 4)`). Residual SD changed by `r fmt(100 * (exp(sca$median[sca$term == "rel_LD"]) - 1), 1)`% per day of relative laying-date delay ($\beta$ = `r fmt(sca$median[sca$term == "rel_LD"], 4)`, 95% CrI `r fmt(sca$CI_low[sca$term == "rel_LD"], 4)` to `r fmt(sca$CI_high[sca$term == "rel_LD"], 4)`); higher values indicate lower consistency.
+Mean clutch size declined with relative laying date ($\beta_{\mathrm{date}}^{(\mu)}$ = `r fmt(loc$median[loc$term == "rel_LD"], 4)`, 95% CrI `r fmt(loc$CI_low[loc$term == "rel_LD"], 4)` to `r fmt(loc$CI_high[loc$term == "rel_LD"], 4)`). Residual SD changed by `r fmt(100 * (exp(sca$median[sca$term == "rel_LD"]) - 1), 1)`% per day of relative laying-date delay ($\beta_{\mathrm{date}}^{(\sigma)}$ = `r fmt(sca$median[sca$term == "rel_LD"], 4)`, 95% CrI `r fmt(sca$CI_low[sca$term == "rel_LD"], 4)` to `r fmt(sca$CI_high[sca$term == "rel_LD"], 4)`); higher values indicate lower consistency.
 
 ### Clutch size and female age
 
 ```{r}
 #| echo: false
-#| fig-cap: "Model-estimated mean clutch size (left) and residual inconsistency, expressed as sigma (right), for young and old females at the reference relative laying date, mean spring temperature, and mean study year. Points are predictions and error bars are 95% uncertainty intervals; random effects are excluded."
+#| fig-cap: "Model-estimated mean clutch size (left) and residual inconsistency, expressed as sigma (right), for young and old females at the reference relative laying date, mean spring temperature, and mean study year. Points are predictions and error bars are 95% credible intervals; random effects are excluded."
 knitr::include_graphics("figures/Fig4_3_clutch_age.png")
 ```
 
 [Show the plotting code in Figure code](figure_code.html#female-age-and-clutch-size).
 
-Clutch size was higher among older than young females at the reference values of the continuous predictors. Broods produced by older females contained on average `r fmt(loc$median[loc$term == "age_classOLD"], 3)` more eggs (95% CrI `r fmt(loc$CI_low[loc$term == "age_classOLD"], 3)` to `r fmt(loc$CI_high[loc$term == "age_classOLD"], 3)`). This is a contrast between age classes and does not estimate how an individual female's clutch size changes as she ages. The age-class difference in residual scale was not supported ($\beta_{\log\sigma}$ = `r fmt(sca$median[sca$term == "age_classOLD"], 3)`, 95% CrI `r fmt(sca$CI_low[sca$term == "age_classOLD"], 3)` to `r fmt(sca$CI_high[sca$term == "age_classOLD"], 3)`).
+Clutch size was higher among older than young females at the reference values of the continuous predictors. Broods produced by older females contained on average `r fmt(loc$median[loc$term == "age_classOLD"], 3)` more eggs (95% CrI `r fmt(loc$CI_low[loc$term == "age_classOLD"], 3)` to `r fmt(loc$CI_high[loc$term == "age_classOLD"], 3)`). This is a contrast between age classes and does not estimate how an individual female's clutch size changes as she ages. There was no clear evidence of an age-class association with inconsistency ($\beta_{\mathrm{age}}^{(\sigma)}$ = `r fmt(sca$median[sca$term == "age_classOLD"], 3)`, 95% CrI `r fmt(sca$CI_low[sca$term == "age_classOLD"], 3)` to `r fmt(sca$CI_high[sca$term == "age_classOLD"], 3)`).
 
 ### Long-term temporal trends
 
@@ -249,9 +251,9 @@ knitr::include_graphics("figures/Fig4_4_annual_clutch_mean_sd.png")
 
 [Show the plotting code in Figure code](figure_code.html#clutch-size-figures).
 
-After accounting for spring temperature, mean clutch size showed a small positive temporal trend ($\beta_{\mathrm{year}}$ = `r fmt(loc$median[loc$term == "year_c"], 4)`, 95% CrI `r fmt(loc$CI_low[loc$term == "year_c"], 4)` to `r fmt(loc$CI_high[loc$term == "year_c"], 4)`). The conditional predicted change from 1981 to 2025 was `r fmt(temporal_change$estimate[temporal_change$component == "Mean clutch size" & grepl("Conditional", temporal_change$prediction)], 3)` eggs (95% CrI `r fmt(temporal_change$CI_low[temporal_change$component == "Mean clutch size" & grepl("Conditional", temporal_change$prediction)], 3)` to `r fmt(temporal_change$CI_high[temporal_change$component == "Mean clutch size" & grepl("Conditional", temporal_change$prediction)], 3)`).
+After accounting for spring temperature, mean clutch size showed a small positive temporal trend ($\beta_{\mathrm{time}}^{(\mu)}$ = `r fmt(loc$median[loc$term == "year_c"], 4)`, 95% CrI `r fmt(loc$CI_low[loc$term == "year_c"], 4)` to `r fmt(loc$CI_high[loc$term == "year_c"], 4)`). The conditional predicted change from 1981 to 2025 was `r fmt(temporal_change$estimate[temporal_change$component == "Mean clutch size" & grepl("Conditional", temporal_change$prediction)], 3)` eggs (95% CrI `r fmt(temporal_change$CI_low[temporal_change$component == "Mean clutch size" & grepl("Conditional", temporal_change$prediction)], 3)` to `r fmt(temporal_change$CI_high[temporal_change$component == "Mean clutch size" & grepl("Conditional", temporal_change$prediction)], 3)`).
 
-The temporal effect on residual scale was not clearly supported ($\beta_{\mathrm{year}(\log\sigma)}$ = `r fmt(sca$median[sca$term == "year_c"], 4)`, 95% CrI `r fmt(sca$CI_low[sca$term == "year_c"], 4)` to `r fmt(sca$CI_high[sca$term == "year_c"], 4)`). Across the study period, the conditional predicted change in $\sigma$ was `r fmt(temporal_change$estimate[temporal_change$component == "Residual scale" & grepl("Conditional", temporal_change$prediction)], 1)`% (95% CrI `r fmt(temporal_change$CI_low[temporal_change$component == "Residual scale" & grepl("Conditional", temporal_change$prediction)], 1)` to `r fmt(temporal_change$CI_high[temporal_change$component == "Residual scale" & grepl("Conditional", temporal_change$prediction)], 1)`%). This interval included zero; higher $\sigma$ indicates lower reproductive consistency.
+The temporal effect on residual scale was not clearly supported ($\beta_{\mathrm{time}}^{(\sigma)}$ = `r fmt(sca$median[sca$term == "year_c"], 4)`, 95% CrI `r fmt(sca$CI_low[sca$term == "year_c"], 4)` to `r fmt(sca$CI_high[sca$term == "year_c"], 4)`). Across the study period, the conditional predicted change in $\sigma$ was `r fmt(temporal_change$estimate[temporal_change$component == "Residual scale" & grepl("Conditional", temporal_change$prediction)], 1)`% (95% CrI `r fmt(temporal_change$CI_low[temporal_change$component == "Residual scale" & grepl("Conditional", temporal_change$prediction)], 1)` to `r fmt(temporal_change$CI_high[temporal_change$component == "Residual scale" & grepl("Conditional", temporal_change$prediction)], 1)`%). This interval included zero; higher $\sigma$ indicates lower reproductive consistency.
 
 ## Figure data and reproducibility
 
@@ -266,3 +268,7 @@ Each figure is accompanied by its plotting data:
 - [Figure 4.4 mean data](tables/fig4_4a_annual_clutch.csv){download="fig4_4a_annual_clutch.csv"}
 - [Figure 4.4 scale data](tables/fig4_4b_annual_sigma.csv){download="fig4_4b_annual_sigma.csv"}
 - [Figure 4.4 temporal-change summary](tables/clutch_temporal_change_summary.csv){download="clutch_temporal_change_summary.csv"}
+
+## Robustness and inference limits
+
+Alternative prior sets and the admissible log-Gaussian sensitivity fit retained the positive temperature association with mean clutch size and no clear temperature association with residual inconsistency. The age association with scale was distribution-dependent. The COM-Poisson fit yielded a non-positive-definite Hessian and unavailable likelihood-based fit statistics and was therefore excluded from inference. Individual-exposure extensions also failed admissibility checks. Scale effects describe variation among breeding attempts, not within-female repeatability.

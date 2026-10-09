@@ -8,6 +8,8 @@ format:
 
 ```{r}
 #| include: false
+invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))
+.libPaths(c(".Rlib", .libPaths()))
 invisible(Sys.setlocale("LC_TIME", "C"))
 library(readr)
 library(dplyr)
@@ -35,7 +37,7 @@ source("R/09_prepare_reproductive_model_data.R")
 | Clutch size | 1981–2025 | Validated reproductive seasons |
 | Fledging success | 1981–2019 | Later records exist but have not passed validation |
 
-The 1980 season was a pilot season and is excluded from reproductive analyses. No nest monitoring was conducted in 2020.
+The 1980 season is excluded from reproductive analyses because female-age data were unavailable. No nest monitoring was conducted in 2020.
 
 ## Female age class
 
@@ -49,7 +51,7 @@ $$
 \mathrm{rel\_LD}_{iy}=\mathrm{LD}_{iy}-\mathrm{median}(\mathrm{LD}_{y}).
 $$
 
-After outcome-, age-, and complete-case restrictions define a model-specific analytical sample, `rel_LD` is recalculated in that final sample by subtracting its annual median. The annual median is therefore exactly zero in every included season. Model-specific checks of the annual mean, annual median, and association with window temperature are reported in the corresponding analysis chapters.
+For clutch size, relative date is inherited from the validated reproductive dataset before the final clutch-model restrictions. For fledging success only, it is re-centred after final sample restrictions, so its annual median is exactly zero. These are different centring stages and must not be described as identical. Model-specific checks of the annual mean, annual median, and association with window temperature are reported in the corresponding analysis chapters.
 
 ```{r}
 #| echo: true
@@ -80,15 +82,21 @@ kable(
 
 ## Files required for reproduction
 
-- [`data_raw/birds/CF_adult_birds_1980-2019.csv`](data_raw/birds/CF_adult_birds_1980-2019.csv) — source breeding records.
-- [`data_raw/smhi/hoburg_68550_daily_mean_temperature.csv`](data_raw/smhi/hoburg_68550_daily_mean_temperature.csv) — historical Hoburg daily temperature observations.
-- [`data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv`](data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv) — continuing Hoburg A daily temperature observations.
+Individual field records and cached fit objects are author-held inputs, excluded from the public repository. The public site provides code, aggregate results and plotting data; file paths for private inputs below describe the local workflow rather than public download links.
+
+- `data_raw/birds/CF_adult_birds_1980-2019.csv` — source breeding records.
+- `data_raw/smhi/hoburg_68550_daily_mean_temperature.csv` — historical Hoburg daily temperature observations.
+- `data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv` — continuing Hoburg A daily temperature observations.
 - [`data_derived/smhi_hoburg_daily_temperature.csv`](data_derived/smhi_hoburg_daily_temperature.csv) — combined daily temperature series.
-- [`data_derived/reproductive_model_data.csv`](data_derived/reproductive_model_data.csv) — validated reproductive records joined to annual window temperature.
-- [`data_derived/clutch_size_model_data.csv`](data_derived/clutch_size_model_data.csv) — analytical clutch-size sample.
-- [`data_derived/fledging_model_data.csv`](data_derived/fledging_model_data.csv) — analytical fledging-success sample.
+- `data_derived/reproductive_model_data.csv` — validated reproductive records joined to annual window temperature.
+- `data_derived/clutch_size_model_data.csv` — analytical clutch-size sample.
+- `data_derived/fledging_model_data.csv` — analytical fledging-success sample.
 - [`R/01_prepare_bird_data.R`](R/01_prepare_bird_data.R) — cleans and audits breeding records.
 - [`R/02_prepare_temperature_data.R`](R/02_prepare_temperature_data.R) — combines and audits the two station series.
 - [`R/08_annual_main_window_temperature.R`](R/08_annual_main_window_temperature.R) — calculates the annual fixed-window summaries.
 - [`R/09_prepare_reproductive_model_data.R`](R/09_prepare_reproductive_model_data.R) — creates the two model datasets and centring checks.
 - [`R/45_recentre_final_fledging_relLD.R`](R/45_recentre_final_fledging_relLD.R) — recalculates median-centred relative laying date after the final fledging-sample restrictions and writes its audit checks.
+
+## Ethics statement
+
+This study uses data previously collected during a long-term study of a wild population of collared flycatchers. The data were collected in accordance with Swedish guidelines for work on natural populations and under licences and permits issued by the Swedish Ringing Centre (licence no. M716 to SMD) and the Swedish National Board for Laboratory Animals, Stockholm (permit IDs 9164-2021, 872-2017 and 37-15-2015).

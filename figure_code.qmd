@@ -4,6 +4,8 @@ title: "Figure code"
 
 ```{r}
 #| include: false
+invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))
+.libPaths(c(".Rlib", .libPaths()))
 Sys.setlocale("LC_TIME", "C")
 library(readr)
 library(ggplot2)
@@ -14,36 +16,13 @@ orange <- "#D55E00"
 theme_pub <- theme_classic(base_size = 11)
 ```
 
-This page contains plotting code only. Every block is disabled during rendering and reads the archived plotting data.
+Fledging curves on this page are from the reference model; their precision-temperature pattern is not robust to the sensitivity specifications reported in the fledging chapter. This page contains plotting code only. Every block is disabled during rendering and reads the archived plotting data.
 
 ## Thermal-window figures
 
-```{r}
-#| eval: false
-#| code-fold: show
-#| filename: "Temperature in the selected window"
-d <- read_csv("data_derived/annual_main_window_temperature.csv", show_col_types = FALSE)
+The manuscript's three-panel environmental figure uses the Gaussian location–scale fit to annual mean temperature; its third panel shows the separate within-window daily-SD OLS fit. Run [R/25_environment_temperature_location_scale.R](R/25_environment_temperature_location_scale.R) with glmmTMB 1.1.14. Gaussian dispersion is log SD, not log variance. The earlier two OLS plots are archived alternatives rather than the main environmental analysis.
 
-p_mean <- ggplot(d, aes(year, temp_mean)) +
-  geom_point(size = 2.2, colour = "#205493") +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE,
-              colour = "#8b1e3f", fill = "#d9a6b5", alpha = 0.28) +
-  labs(x = "Year", y = "Mean temperature (°C)") +
-  theme_classic(base_size = 12)
-ggsave("figures/Fig1_temperature_mean_time.png", p_mean,
-       width = 6.4, height = 4.8, dpi = 400)
-
-p_sd <- ggplot(d, aes(year, temp_sd)) +
-  geom_point(size = 2.2, colour = "#28666e") +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE,
-              colour = "#8b1e3f", fill = "#d9a6b5", alpha = 0.28) +
-  labs(x = "Year", y = "Temperature SD (°C)") +
-  theme_classic(base_size = 12)
-ggsave("figures/Fig1_temperature_sd_time.png", p_sd,
-       width = 6.4, height = 4.8, dpi = 400)
-```
-
-[Download thermal-window figure data](data_derived/annual_main_window_temperature.csv){download="annual_main_window_temperature.csv"}
+[Mean predictions](tables/environment_temperature_time_predictions.csv) · [Interannual scale predictions](tables/environment_temperature_scale_predictions.csv) · [Daily-SD trend](tables/environment_daily_SD_trend.csv)
 
 ## Clutch-size figures
 
@@ -95,7 +74,7 @@ p1 <- ggplot(a, aes(year, estimate)) +
 p2 <- ggplot(b, aes(year, estimate)) +
   geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = blue, alpha = 0.2) +
   geom_line(colour = blue) +
-  labs(x = "Year", y = expression("Conditional residual SD (" * sigma * ")")) +
+  labs(x = "Year", y = expression("Inconsistency (" * sigma * ")")) +
   theme_pub + theme(legend.position = "none")
 ggsave("figures/Fig4_4_annual_clutch_mean_sd.png", p1 + p2,
        width = 10, height = 4.6, dpi = 400)
@@ -197,7 +176,7 @@ p <- ggplot(d, aes(rel_LD, estimate)) +
   geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = orange, alpha = 0.2) +
   geom_line(colour = orange, linewidth = 1) +
   labs(x = "Laying date relative to annual median (days)",
-       y = "Beta-binomial precision (phi)") +
+       y = "Consistency (φ)") +
   theme_pub
 ggsave("figures/Fig5_3_phi_rellD.png", p,
        width = 6.4, height = 4.8, dpi = 400)

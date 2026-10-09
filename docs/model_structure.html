@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -202,8 +205,10 @@ window.Quarto = {
   <ul>
   <li><a href="#temperature-in-the-thermal-window" id="toc-temperature-in-the-thermal-window" class="nav-link active" data-scroll-target="#temperature-in-the-thermal-window"><span class="header-section-number">1</span> Temperature in the thermal window</a></li>
   <li><a href="#clutch-size" id="toc-clutch-size" class="nav-link" data-scroll-target="#clutch-size"><span class="header-section-number">2</span> Clutch size</a></li>
-  <li><a href="#fledging-success" id="toc-fledging-success" class="nav-link" data-scroll-target="#fledging-success"><span class="header-section-number">3</span> Fledging success</a></li>
+  <li><a href="#fledging-success-reference-specification" id="toc-fledging-success-reference-specification" class="nav-link" data-scroll-target="#fledging-success-reference-specification"><span class="header-section-number">3</span> Fledging success: reference specification</a></li>
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="header-section-number">4</span> Notation</a></li>
+  <li><a href="#precision-and-zero-outcome-sensitivity" id="toc-precision-and-zero-outcome-sensitivity" class="nav-link" data-scroll-target="#precision-and-zero-outcome-sensitivity"><span class="header-section-number">5</span> Precision and zero-outcome sensitivity</a></li>
+  <li><a href="#reporting-convention" id="toc-reporting-convention" class="nav-link" data-scroll-target="#reporting-convention"><span class="header-section-number">6</span> Reporting convention</a></li>
   </ul>
 </nav>
     </div>
@@ -240,10 +245,9 @@ T_t \sim \mathcal{N}(\mu_t,\sigma_t^2),
 \mu_t=\beta_0^{(\mu)}+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_t,
 \]</span></p>
 <p><span class="math display">\[
-\log(\sigma_t^2)=\beta_0^{(\sigma)}+
-\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_t.
+\log(\sigma_t)=\gamma_0+\gamma_{\mathrm{time}}\mathrm{Time}_t.
 \]</span></p>
-<p>The location component estimates the temporal trend in mean temperature. The scale component estimates whether day-to-day thermal variability within the pre-laying window changed over time, using the annual standard deviation of daily mean temperatures. This measure does not assess year-to-year variation or overall climate predictability. There is one annual estimate and no random effect.</p>
+<p>The Gaussian location–scale model uses 46 annual mean temperatures (1980–2025, including weather observations for 2020). Its location component estimates directional warming; its scale component estimates residual interannual SD around that trend. Higher environmental σ indicates lower interannual predictability in this operational sense. This is distinct from within-window daily temperature SD, whose time trend is assessed separately by OLS. Time is centred on 2002.5. glmmTMB 1.1.14 uses log SD directly for Gaussian dispersion.</p>
 </section>
 <section id="clutch-size" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="clutch-size"><span class="header-section-number">2</span> Clutch size</h2>
@@ -260,16 +264,16 @@ C_r \sim \mathcal{N}(\mu_r,\sigma_r^2),
 \]</span></p>
 <p><span class="math display">\[
 \begin{aligned}
-\log(\sigma_r^2)={}&amp;\beta_0^{(\sigma)}+
+\log(\sigma_r)={}&amp;\beta_0^{(\sigma)}+
 \beta_{\mathrm{LD}}^{(\sigma)}\mathrm{relLD}_r+
 \beta_T^{(\sigma)}\bar T_r+\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_r\\
 &amp;+\beta_{\mathrm{age}}^{(\sigma)}\mathrm{Age}_r+w_{y[r]}.
 \end{aligned}
 \]</span></p>
-<p>Higher <span class="math inline">\(\sigma\)</span> indicates greater residual dispersion among females within a season and therefore lower consistency.</p>
+<p>Higher <span class="math inline">\(\sigma\)</span> indicates greater conditional residual dispersion among breeding attempts and therefore lower consistency.</p>
 </section>
-<section id="fledging-success" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="fledging-success"><span class="header-section-number">3</span> Fledging success</h2>
+<section id="fledging-success-reference-specification" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="fledging-success-reference-specification"><span class="header-section-number">3</span> Fledging success: reference specification</h2>
 <p>Here, fledging success is egg-to-fledging success: the number of fledglings relative to the number of eggs laid.</p>
 <p><span class="math display">\[
 K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
@@ -296,6 +300,14 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
 <section id="notation" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="notation"><span class="header-section-number">4</span> Notation</h2>
 <p>In the brood-level models, <span class="math inline">\(u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)\)</span> and <span class="math inline">\(v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)\)</span>; <span class="math inline">\(w_y\)</span> is the year-level scale effect in the clutch-size model. The predictor <span class="math inline">\(\bar T\)</span> is mean temperature during 26 March–7 May, <code>relLD</code> is laying date centred within season, and <code>Age</code> is the binary class <code>YOUNG</code>/<code>OLD</code>.</p>
+</section>
+<section id="precision-and-zero-outcome-sensitivity" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="precision-and-zero-outcome-sensitivity"><span class="header-section-number">5</span> Precision and zero-outcome sensitivity</h2>
+<p>The equations above describe the reference beta-binomial model. A sensitivity fit adds an independent year random intercept to <span class="math inline">\(\log\phi_r\)</span>. A second fit retains that year effect and adds a constant extra-zero probability <span class="math inline">\(\pi\)</span>, so <span class="math inline">\(P(K_r=0)=\pi+(1-\pi)P_{BB}(K_r=0)\)</span> and <span class="math inline">\(E(K_r/n_r)=(1-\pi)\mu_r\)</span>. Its <span class="math inline">\(\phi\)</span> describes the beta-binomial component, not consistency of the entire mixture. Neither alternative is automatically selected as the final model.</p>
+</section>
+<section id="reporting-convention" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="reporting-convention"><span class="header-section-number">6</span> Reporting convention</h2>
+<p>Higher reproductive <span class="math inline">\(\sigma\)</span> means greater inconsistency; higher <span class="math inline">\(\phi\)</span> means greater consistency at a given mean success probability and clutch size. These are effects among breeding attempts, not repeatability of the same female. Coefficients are labelled <span class="math inline">\(\beta_j^{(\mu)}\)</span>, <span class="math inline">\(\beta_j^{(\sigma)}\)</span> and <span class="math inline">\(\beta_j^{(\phi)}\)</span>. Clutch location is in eggs, fledging location on the logit scale, and scale effects on <span class="math inline">\(\log\sigma\)</span> or <span class="math inline">\(\log\phi\)</span>. Temperature slopes are per °C, relative-date slopes per day and time slopes per year. Bayesian clutch estimates use 95% CrIs; frequentist temperature and fledging fits use 95% CIs. Simulation envelopes are neither CIs nor CrIs.</p>
 
 
 <!-- -->
@@ -395,16 +407,16 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -773,71 +785,79 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>\log(\sigma_t^2)=\beta_0^{(\sigma)}+</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_t.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>The location component estimates the temporal trend in mean temperature. The scale component estimates whether day-to-day thermal variability within the pre-laying window changed over time, using the annual standard deviation of daily mean temperatures. This measure does not assess year-to-year variation or overall climate predictability. There is one annual estimate and no random effect.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clutch size</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>For brood $r$,</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>C_r \sim \mathcal{N}(\mu_r,\sigma_r^2),</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>\mu_r={}&amp;\beta_0^{(\mu)}+\beta_{\mathrm{LD}}^{(\mu)}\mathrm{relLD}_r+</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\mu)}\bar T_r+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r<span class="sc">\\</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+u_{y[r]}+v_{f<span class="co">[</span><span class="ot">r</span><span class="co">]</span>},</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>\log(\sigma_r^2)={}&amp;\beta_0^{(\sigma)}+</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\sigma)}\mathrm{relLD}_r+</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\sigma)}\bar T_r+\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_r<span class="sc">\\</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_{\mathrm{age}}^{(\sigma)}\mathrm{Age}_r+w_{y<span class="co">[</span><span class="ot">r</span><span class="co">]</span>}.</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>Higher $\sigma$ indicates greater residual dispersion among females within a season and therefore lower consistency.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fledging success</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Here, fledging success is egg-to-fledging success: the number of fledglings relative to the number of eggs laid.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>\operatorname{logit}(\mu_r)={}&amp;\beta_0^{(\mu)}+</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\mu)}\mathrm{relLD}_r+</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}\times\mathrm{age}}^{(\mu)}\mathrm{relLD}_r\mathrm{Age}_r<span class="sc">\\</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_T^{(\mu)}\bar T_r+</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r+u_{y[r]}+v_{f<span class="co">[</span><span class="ot">r</span><span class="co">]</span>},</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>\log(\phi_r)=\beta_0^{(\phi)}+</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\phi)}\mathrm{relLD}_r+</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\phi)}\bar T_r+</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r.</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>Higher $\phi$ means lower conditional extra-binomial overdispersion. This is residual heterogeneity conditional on the fitted predictors and random effects, not general phenotypic variance.</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notation</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>In the brood-level models, $u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)$ and $v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)$; $w_y$ is the year-level scale effect in the clutch-size model. The predictor $\bar T$ is mean temperature during 26 March–7 May, <span class="in">`relLD`</span> is laying date centred within season, and <span class="in">`Age`</span> is the binary class <span class="in">`YOUNG`</span>/<span class="in">`OLD`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>\log(\sigma_t)=\gamma_0+\gamma_{\mathrm{time}}\mathrm{Time}_t.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>The Gaussian location–scale model uses 46 annual mean temperatures (1980–2025, including weather observations for 2020). Its location component estimates directional warming; its scale component estimates residual interannual SD around that trend. Higher environmental σ indicates lower interannual predictability in this operational sense. This is distinct from within-window daily temperature SD, whose time trend is assessed separately by OLS. Time is centred on 2002.5. glmmTMB 1.1.14 uses log SD directly for Gaussian dispersion.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clutch size</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>For brood $r$,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>C_r \sim \mathcal{N}(\mu_r,\sigma_r^2),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>\mu_r={}&amp;\beta_0^{(\mu)}+\beta_{\mathrm{LD}}^{(\mu)}\mathrm{relLD}_r+</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\mu)}\bar T_r+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r<span class="sc">\\</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+u_{y[r]}+v_{f<span class="co">[</span><span class="ot">r</span><span class="co">]</span>},</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>\log(\sigma_r)={}&amp;\beta_0^{(\sigma)}+</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\sigma)}\mathrm{relLD}_r+</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\sigma)}\bar T_r+\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_r<span class="sc">\\</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_{\mathrm{age}}^{(\sigma)}\mathrm{Age}_r+w_{y<span class="co">[</span><span class="ot">r</span><span class="co">]</span>}.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>Higher $\sigma$ indicates greater conditional residual dispersion among breeding attempts and therefore lower consistency.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fledging success: reference specification</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Here, fledging success is egg-to-fledging success: the number of fledglings relative to the number of eggs laid.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>\operatorname{logit}(\mu_r)={}&amp;\beta_0^{(\mu)}+</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\mu)}\mathrm{relLD}_r+</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}\times\mathrm{age}}^{(\mu)}\mathrm{relLD}_r\mathrm{Age}_r<span class="sc">\\</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_T^{(\mu)}\bar T_r+</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r+u_{y[r]}+v_{f<span class="co">[</span><span class="ot">r</span><span class="co">]</span>},</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>\log(\phi_r)=\beta_0^{(\phi)}+</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\phi)}\mathrm{relLD}_r+</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\phi)}\bar T_r+</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r.</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>Higher $\phi$ means lower conditional extra-binomial overdispersion. This is residual heterogeneity conditional on the fitted predictors and random effects, not general phenotypic variance.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notation</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>In the brood-level models, $u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)$ and $v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)$; $w_y$ is the year-level scale effect in the clutch-size model. The predictor $\bar T$ is mean temperature during 26 March–7 May, <span class="in">`relLD`</span> is laying date centred within season, and <span class="in">`Age`</span> is the binary class <span class="in">`YOUNG`</span>/<span class="in">`OLD`</span>.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Precision and zero-outcome sensitivity</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>The equations above describe the reference beta-binomial model. A sensitivity fit adds an independent year random intercept to $\log\phi_r$. A second fit retains that year effect and adds a constant extra-zero probability $\pi$, so $P(K_r=0)=\pi+(1-\pi)P_{BB}(K_r=0)$ and $E(K_r/n_r)=(1-\pi)\mu_r$. Its $\phi$ describes the beta-binomial component, not consistency of the entire mixture. Neither alternative is automatically selected as the final model.</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reporting convention</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>Higher reproductive $\sigma$ means greater inconsistency; higher $\phi$ means greater consistency at a given mean success probability and clutch size. These are effects among breeding attempts, not repeatability of the same female. Coefficients are labelled $\beta_j^{(\mu)}$, $\beta_j^{(\sigma)}$ and $\beta_j^{(\phi)}$. Clutch location is in eggs, fledging location on the logit scale, and scale effects on $\log\sigma$ or $\log\phi$. Temperature slopes are per °C, relative-date slopes per day and time slopes per year. Bayesian clutch estimates use 95% CrIs; frequentist temperature and fledging fits use 95% CIs. Simulation envelopes are neither CIs nor CrIs.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -12,6 +12,7 @@ project:
     - figure_code.qmd
   resources:
     - data_derived/smhi_hoburg_daily_temperature.csv
+    - data_derived/annual_main_window_temperature.csv
     - tables/*.csv
     - figures/*
     - R/*.R

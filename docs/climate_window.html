@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,6 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -184,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Thermal window and temperature data</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Thermal window and temperature data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -525,27 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>False-positive assessment from 500 randwin repetitions</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">randwin repeats</th>
-<th style="text-align: left;">P(Delta AICc)</th>
-<th style="text-align: right;">Pc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">500</td>
-<td style="text-align: left;">&lt;0.001</td>
-<td style="text-align: right;">1.3e-05</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p>None of 500 full randomised searches attained an AICc improvement as large as the observed 38.6016 units (0/500; plus-one empirical tail probability 1/501 = 0.001996). The minimum randomised ΔAICc was −16.9196. The separately calibrated C-metric diagnostic, Pc = 1.27 × 10⁻⁵, is model-based and is not an empirical exceedance fraction. The package’s fixed output “&lt;0.001” when the empirical count is zero must not be interpreted as a frequency below one in a thousand.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -604,139 +616,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="temperature-in-the-selected-window" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="temperature-in-the-selected-window"><span class="header-section-number">3</span> Temperature in the selected window</h2>
-<p>For every year, <code>temp_mean</code> is the arithmetic mean and <code>temp_sd</code> is the sample standard deviation of the 43 daily means from 26 March through 7 May, including both endpoints.</p>
+<p>Each year’s <code>temp_mean</code> is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. <code>temp_sd</code> is their sample SD. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.</p>
+<p>Mean spring temperature increased through time (<span class="math inline">\(\beta_{\mathrm{time}}=0.0439\)</span> °C/year, 95% CI [0.0248, 0.0630], p &lt; 0.001), approximately 0.44°C per decade. Residual interannual variability showed no clear temporal trend (<span class="math inline">\(\gamma_{\mathrm{time}}=-0.0111\)</span> on the <span class="math inline">\(\log\sigma_t\)</span> scale per year, 95% CI [−0.0277, 0.0055], p = 0.190). Thus there was no clear evidence of change in environmental predictability; the interval does not establish constancy.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Trends in mean temperature and day-to-day thermal variability within the pre-laying window</caption>
+<caption>Environmental Gaussian location–scale coefficients; Wald 95% CIs</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">response</th>
-<th style="text-align: right;">beta_per_year</th>
-<th style="text-align: right;">SE</th>
+<th style="text-align: left;">component</th>
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">beta</th>
 <th style="text-align: right;">CI_low</th>
 <th style="text-align: right;">CI_high</th>
 <th style="text-align: right;">p</th>
-<th style="text-align: right;">R_squared</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">temp_mean</td>
-<td style="text-align: right;">0.0470</td>
-<td style="text-align: right;">0.0099</td>
-<td style="text-align: right;">0.0277</td>
-<td style="text-align: right;">0.0664</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">0.3402</td>
+<td style="text-align: left;">location</td>
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">4.96286</td>
+<td style="text-align: right;">4.71044</td>
+<td style="text-align: right;">5.21528</td>
+<td style="text-align: right;">0.00000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">temp_sd</td>
-<td style="text-align: right;">0.0013</td>
-<td style="text-align: right;">0.0070</td>
-<td style="text-align: right;">-0.0124</td>
-<td style="text-align: right;">0.0150</td>
-<td style="text-align: right;">0.8524</td>
-<td style="text-align: right;">0.0008</td>
+<td style="text-align: left;">location</td>
+<td style="text-align: left;">year_c</td>
+<td style="text-align: right;">0.04390</td>
+<td style="text-align: right;">0.02476</td>
+<td style="text-align: right;">0.06304</td>
+<td style="text-align: right;">0.00001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">scale_log_sigma</td>
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-0.15818</td>
+<td style="text-align: right;">-0.36253</td>
+<td style="text-align: right;">0.04616</td>
+<td style="text-align: right;">0.12920</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">scale_log_sigma</td>
+<td style="text-align: left;">year_c</td>
+<td style="text-align: right;">-0.01109</td>
+<td style="text-align: right;">-0.02767</td>
+<td style="text-align: right;">0.00548</td>
+<td style="text-align: right;">0.18952</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<details class="model-summary">
-<summary>
-Show complete temporal-model summaries
-</summary>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>models/climwin/main_window_temperature_trends.rds</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>temperature_models <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/climwin/main_window_temperature_trends.rds"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temperature_models<span class="sc">$</span>mean_trend)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temperature_models<span class="sc">$</span>sd_trend)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</details>
-<p>Mean temperature increased by 0.0470°C per year. We found no evidence of a temporal trend in day-to-day thermal variability within the pre-laying window, measured as the annual standard deviation of daily mean temperatures (<code>temp_sd</code>). This single measure does not establish whether broader climate predictability changed.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Correlations among year, temp_mean, and temp_sd</caption>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 10%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 10%">
-<col style="width: 23%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">variable_x</th>
-<th style="text-align: left;">variable_y</th>
-<th style="text-align: right;">r</th>
-<th style="text-align: right;">CI_low</th>
-<th style="text-align: right;">CI_high</th>
-<th style="text-align: right;">p</th>
-<th style="text-align: left;">abs_r_above_0_6</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">temp_mean</td>
-<td style="text-align: left;">year</td>
-<td style="text-align: right;">0.5833</td>
-<td style="text-align: right;">0.3527</td>
-<td style="text-align: right;">0.7471</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: left;">FALSE</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">temp_sd</td>
-<td style="text-align: left;">year</td>
-<td style="text-align: right;">0.0282</td>
-<td style="text-align: right;">-0.2643</td>
-<td style="text-align: right;">0.3159</td>
-<td style="text-align: right;">0.8524</td>
-<td style="text-align: left;">FALSE</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">temp_mean</td>
-<td style="text-align: left;">temp_sd</td>
-<td style="text-align: right;">0.2582</td>
-<td style="text-align: right;">-0.0347</td>
-<td style="text-align: right;">0.5103</td>
-<td style="text-align: right;">0.0831</td>
-<td style="text-align: left;">FALSE</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p>Day-to-day variability is a separate quantity. Its OLS time coefficient was 0.00131°C/year (95% CI [−0.01279, 0.01541], p = 0.852), with no clear trend.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/Fig1_temperature_mean_time.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Annual mean temperature in the 26 March–7 May window. The line and band show the linear trend and its 95% confidence interval.</figcaption>
+<p><img src="figures/Fig2_temperature_location_scale_time.png" class="img-fluid figure-img" width="2400"></p>
+<figcaption>Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. C: daily temperature SD within each annual window and its separate OLS trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="figure_code.html#thermal-window-figures">Show the plotting code in Figure code</a>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/Fig1_temperature_sd_time.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Annual standard deviation of daily mean temperatures, measuring day-to-day thermal variability within the 26 March–7 May pre-laying window.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p><a href="figure_code.html#thermal-window-figures">Show the plotting code in Figure code</a>.</p>
+<p><a href="R/25_environment_temperature_location_scale.R">Plotting workflow</a> · <a href="tables/environment_temperature_location_scale_coefficients.csv">Location–scale coefficients</a> · <a href="tables/environment_temperature_time_predictions.csv">Mean predictions</a> · <a href="tables/environment_temperature_scale_predictions.csv">Interannual scale predictions</a> · <a href="tables/environment_daily_SD_trend.csv">Daily-SD trend</a></p>
+<p>The earlier OLS mean-temperature slope was 0.0470°C/year. It belongs to the constant-residual-variance mean model and is retained only as an alternative fit; it must not be substituted for the primary location–scale estimate above. <a href="tables/main_window_temperature_trends.csv">Archived OLS estimates</a>.</p>
 </section>
 <section id="sensitivity-of-reproductive-associations-to-the-calendar-interval" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="sensitivity-of-reproductive-associations-to-the-calendar-interval"><span class="header-section-number">4</span> Sensitivity of reproductive associations to the calendar interval</h2>
@@ -1807,16 +1752,16 @@ Show complete temporal-model summaries
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -2166,298 +2111,258 @@ Show complete temporal-model summaries
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Thermal window and temperature data"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">Sys.setlocale</span>(<span class="st">"LC_TIME"</span>, <span class="st">"C"</span>))</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>annual_temperature <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data_derived/annual_main_window_temperature.csv"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature data</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>Daily mean air temperature was obtained from the SMHI Open Data API, parameter 2 (daily mean), for Hoburg (station 68550) and Hoburg A (station 68560). Coincident daily observations are averaged; otherwise the available station supplies the combined value. The combined calendar spans 1980-01-01 to 2025-12-31 and contains 16,802 days.</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| filename: "R/02_prepare_temperature_data.R"</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>read_smhi <span class="ot">&lt;-</span> <span class="cf">function</span>(path, station) {</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(path, <span class="at">sep =</span> <span class="st">";"</span>, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8-BOM"</span>,</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                  <span class="at">check.names =</span> <span class="cn">FALSE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">as.Date</span>(x[[<span class="dv">3</span>]]),</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, x[[<span class="dv">4</span>]])),</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">quality =</span> x[[<span class="dv">5</span>]], <span class="at">station =</span> station</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date), <span class="sc">!</span><span class="fu">is.na</span>(temperature))</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">read_smhi</span>(<span class="st">"data_raw/smhi/hoburg_68550_daily_mean_temperature.csv"</span>,</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Hoburg 68550"</span>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">read_smhi</span>(<span class="st">"data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv"</span>,</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Hoburg A 68560"</span>)</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">full_join</span>(</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  old <span class="sc">|&gt;</span> <span class="fu">select</span>(date, <span class="at">temp_old =</span> temperature, <span class="at">q_old =</span> quality),</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  new <span class="sc">|&gt;</span> <span class="fu">select</span>(date, <span class="at">temp_new =</span> temperature, <span class="at">q_new =</span> quality),</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"date"</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature =</span> <span class="fu">rowMeans</span>(<span class="fu">cbind</span>(temp_old, temp_new), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="fu">case_when</span>(</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(temp_old) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(temp_new) <span class="sc">~</span> <span class="st">"mean of both stations"</span>,</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(temp_old) <span class="sc">~</span> <span class="st">"Hoburg 68550"</span>,</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Hoburg A 68560"</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date)</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>calendar <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"1980-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2025-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>)</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(daily, <span class="at">by =</span> <span class="st">"date"</span>)</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(calendar, <span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>, <span class="at">na =</span> <span class="st">""</span>)</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>overlap_summary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tables/smhi_hoburg_station_overlap_summary.csv"</span>,</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(overlap_summary, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Agreement between Hoburg and Hoburg A during their overlap"</span>)</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download the combined daily temperature series</span><span class="co">](data_derived/smhi_hoburg_daily_temperature.csv)</span>{.btn .btn-primary download="smhi_hoburg_daily_temperature.csv"}</span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sliding-window selection</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>The unit of analysis is the breeding season. The response is annual raw median laying date, expressed relative to 1 May. The prespecified absolute reference day is 7 May.</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>settings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_settings.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(settings, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Setting"</span>, <span class="st">"Prespecified value"</span>),</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Prespecified sliding-window settings"</span>)</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| filename: "R/04_climwin_laying_date.R"</span></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(climwin)</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260808</span>)</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>,</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bdate =</span> <span class="fu">as.Date</span>(bdate))</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>,</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date), <span class="at">temperature =</span> <span class="fu">as.numeric</span>(temperature))</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyDuplicated</span>(temperature<span class="sc">$</span>date), <span class="fu">all</span>(<span class="fu">diff</span>(temperature<span class="sc">$</span>date) <span class="sc">==</span> <span class="dv">1</span>))</span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>refday <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>L, <span class="dv">5</span>L)</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> annual)</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>main_win <span class="ot">&lt;-</span> <span class="fu">slidingwin</span>(</span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdate =</span> temperature<span class="sc">$</span>date, <span class="at">bdate =</span> annual<span class="sc">$</span>bdate, <span class="at">baseline =</span> baseline,</span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"absolute"</span>, <span class="at">refday =</span> refday, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">0</span>),</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">"mean"</span>, <span class="at">func =</span> <span class="st">"lin"</span>, <span class="at">cinterval =</span> <span class="st">"week"</span></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>main_rand <span class="ot">&lt;-</span> <span class="fu">randwin</span>(</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">repeats =</span> <span class="dv">500</span>, <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdate =</span> temperature<span class="sc">$</span>date, <span class="at">bdate =</span> annual<span class="sc">$</span>bdate, <span class="at">baseline =</span> baseline,</span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"absolute"</span>, <span class="at">refday =</span> refday, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">0</span>),</span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">"mean"</span>, <span class="at">func =</span> <span class="st">"lin"</span>, <span class="at">cinterval =</span> <span class="st">"week"</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>P_delta_AICc <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(main_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset, main_rand[[<span class="dv">1</span>]],</span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>                       <span class="at">metric =</span> <span class="st">"AIC"</span>, <span class="at">sample.size =</span> <span class="fu">nrow</span>(annual))</span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>P_c <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(main_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset, main_rand[[<span class="dv">1</span>]],</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric =</span> <span class="st">"C"</span>, <span class="at">sample.size =</span> <span class="fu">nrow</span>(annual))</span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(main_win,</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>        <span class="st">"models/climwin/slidingwin_main_calendar_index_ref07may_range17w.rds"</span>)</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(main_rand,</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>        <span class="st">"models/climwin/randwin_main_calendar_index_ref07may_range17w_500.rds"</span>)</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>main_win <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/climwin/slidingwin_main_calendar_index_ref07may_range17w.rds"</span>)</span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>main_rand <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/climwin/randwin_main_calendar_index_ref07may_range17w_500.rds"</span>)</span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>windows <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_windows.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(windows, <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Selected windows and their AICc improvement"</span>)</span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>The weekly search selected offsets 6–0 relative to the week containing 7 May. Because <span class="in">`climwin`</span> uses complete seven-day calendar bins, its actual temperature dates were 26 March–13 May in non-leap years and 25 March–12 May in leap years. The reproductive models operationalised these offsets as a fixed daily interval, 26 March–7 May (43 days). These are distinct aggregations; the fixed daily interval is retained as the primary reproductive predictor and compared with three prespecified alternative calendar windows below.</span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>med <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_medwin.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(med, <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Median boundaries from medwin() for the 95% best-window set"</span>)</span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>false_positive <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tables/climwin_false_positive_tests.csv"</span>,</span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">P_delta_AICc =</span> <span class="fu">col_character</span>())</span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(false_positive, <span class="at">digits =</span> <span class="dv">6</span>,</span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"randwin repeats"</span>, <span class="st">"P(Delta AICc)"</span>, <span class="st">"Pc"</span>),</span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"False-positive assessment from 500 randwin repetitions"</span>)</span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>oos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_out_of_sample.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(oos, <span class="at">digits =</span> <span class="dv">6</span>,</span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Out-of-sample evaluation in the remaining 22 seasons"</span>)</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>An audit identified an indexing error in <span class="in">`singlewin`</span>'s absolute weekly branch: the reference index used the month number plus 53 times the year offset, whereas climate records used the week number plus 52 times the year offset. Reproducing that error recovered the former positive coefficient exactly. Explicit extraction using the same weekly bins as the training <span class="in">`slidingwin`</span> gives a negative held-out association (beta = -1.566 days per degree C; 95% t interval -2.734 to -0.397; p = 0.011; R-squared = 0.281). Thus the previously reported reversal was computational, not evidence of a biological reversal.</span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>This coefficient is estimated in the test subset with the window held fixed; it is not itself a prediction score. Applying the training intercept and slope unchanged to the 22 test seasons gives RMSE 3.187 days, compared with 5.226 days for the training-mean baseline, and mean prediction bias +1.521 days. The association remains negative but is weaker than in training, so the result does not establish identical effect magnitude across periods.</span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature in the selected window</span></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>For every year, <span class="in">`temp_mean`</span> is the arithmetic mean and <span class="in">`temp_sd`</span> is the sample standard deviation of the 43 daily means from 26 March through 7 May, including both endpoints.</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>temp_trends <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/main_window_temperature_trends.csv"</span>,</span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(temp_trends, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Trends in mean temperature and day-to-day thermal variability within the selected window"</span>)</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"model-summary"</span><span class="dt">&gt;</span></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show complete temporal-model summaries<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| filename: "models/climwin/main_window_temperature_trends.rds"</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>temperature_models <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/climwin/main_window_temperature_trends.rds"</span>)</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temperature_models<span class="sc">$</span>mean_trend)</span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temperature_models<span class="sc">$</span>sd_trend)</span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>Mean temperature increased by <span class="in">`r formatC(temp_trends$beta_per_year[temp_trends$response == "temp_mean"], digits = 4, format = "f")`</span>°C per year. We found no evidence of a temporal trend in day-to-day thermal variability within the window, measured as the annual standard deviation of daily mean temperatures (<span class="in">`temp_sd`</span>). This single measure does not establish whether broader climate predictability changed.</span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>temp_cor <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/main_window_temperature_correlations.csv"</span>,</span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>                     <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>    (variable_x <span class="sc">==</span> <span class="st">"temp_mean"</span> <span class="sc">&amp;</span> variable_y <span class="sc">==</span> <span class="st">"year"</span>) <span class="sc">|</span></span>
-<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>    (variable_x <span class="sc">==</span> <span class="st">"temp_sd"</span> <span class="sc">&amp;</span> variable_y <span class="sc">==</span> <span class="st">"year"</span>) <span class="sc">|</span></span>
-<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>    (variable_x <span class="sc">==</span> <span class="st">"temp_mean"</span> <span class="sc">&amp;</span> variable_y <span class="sc">==</span> <span class="st">"temp_sd"</span>)</span>
-<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(temp_cor, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Correlations among year, temp_mean, and temp_sd"</span>)</span>
-<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Annual mean temperature in the 26 March–7 May window. The line and band show the linear trend and its 95% confidence interval."</span></span>
-<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/Fig1_temperature_mean_time.png"</span>)</span>
-<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Show the plotting code in Figure code</span><span class="co">](figure_code.html#thermal-window-figures)</span>.</span>
-<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Annual within-window temperature SD in the 26 March–7 May window."</span></span>
-<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/Fig1_temperature_sd_time.png"</span>)</span>
-<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Show the plotting code in Figure code</span><span class="co">](figure_code.html#thermal-window-figures)</span>.</span>
-<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity of reproductive associations to the calendar interval</span></span>
-<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>The primary daily interval (26 March–7 May; 43 days) was retained. Before inspecting the sensitivity results, three alternatives were fixed: all of April (30 days), 9 April–7 May (29 days), and 5 March–7 May (64 days). For each interval, annual mean daily temperature replaced the primary temperature predictor in both location and scale submodels. Within each response, observations, other covariates, random-effect structures and priors were unchanged. All intervals were retained in the comparison; none was chosen on the basis of its effect estimate or significance.</span>
-<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/window_sensitivity_comparison.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(sensitivity <span class="sc">|&gt;</span> <span class="fu">select</span>(window, component, estimate, lower95, upper95, interval_type),</span>
-<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Temperature coefficients per 1 degree C across predefined calendar intervals"</span>)</span>
-<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Calendar-window sensitivity. Points and intervals show temperature coefficients per 1 degree C and 95% intervals. Clutch models use posterior credible intervals; fledging models use Wald confidence intervals. The primary interval is highlighted."</span></span>
-<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/window_sensitivity_comparison.png"</span>)</span>
-<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>The mean fledging-success association was negative for all four intervals. Precision coefficients were positive throughout, but their intervals included zero for April and the shorter interval. This warrants more caution about the robustness of the precision association; crossing zero in some intervals does not itself demonstrate a difference between coefficients. The overlapping windows are correlated summaries of the same seasons, not independent replications. Positive precision coefficients refer to reduced extra-binomial heterogeneity at a given mean and clutch size, not necessarily reduced raw variance.</span>
-<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>We therefore retain 26 March–7 May as the primary reproductive window; the alternatives are sensitivity checks, not candidates for post hoc selection.</span>
-<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>The Bayesian clutch fits retain the original Gaussian model, including year-level random intercepts in both location and log residual SD. Female Gaussian random intercepts are integrated analytically with the exact marginal likelihood. The primary-window posterior is checked against the original <span class="in">`brms`</span> output. Full convergence checks, computational-equivalence checks and coefficients scaled by the between-year temperature SD are retained in the sensitivity tables and local audit report.</span>
-<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix</span></span>
-<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
-<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a><span class="fu">### March diagnostics</span></span>
-<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>These retained diagnostics assess warm March days, March–April temperature correspondence, direct month-by-era terms, and continuous change in the selected-window slope. They do not redefine the selected window.</span>
-<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_warm_days_trend.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Trends in counts of March days above fixed thresholds"</span>)</span>
-<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_temperature_correlations.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March–April temperature correlations"</span>)</span>
-<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_correlation_difference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Comparison of March–April correlations"</span>)</span>
-<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_model_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March- and April-by-era model coefficients"</span>)</span>
-<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional monthly temperature slopes"</span>)</span>
-<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_joint_interaction_test.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Joint test of temperature-by-era interactions"</span>)</span>
-<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_interaction_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Continuous selected-window temperature-by-time model"</span>)</span>
-<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_conditional_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional selected-window temperature slopes"</span>)</span>
-<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a><span class="fu">### Annual fifth-percentile check for the fixed daily reproductive predictor</span></span>
-<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_window_lay_overlap_by_year.csv"</span>,</span>
-<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a>                    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, n_broods, p05_lay_calendar,</span>
-<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a>         window_close_calendar, window_reaches_p05_lay)</span>
-<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(overlap, <span class="at">caption =</span> <span class="st">"Closing date of the fixed daily interval versus the annual fifth percentile"</span>)</span>
-<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a>The fixed daily reproductive interval closed before the annual fifth percentile of laying dates in all 45 seasons. This does not establish non-overlap with every brood: two of 14,297 breeding attempts began before 7 May (6 May 2006 and 28 April 2022). This check concerns the fixed daily interval, not the full weekly bins used by the phenology search.</span>
-<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cached model objects</span></span>
-<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a>Cached model objects are retained locally and are not distributed with the public website.</span>
-<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a>The thermal window search used annual median laying date rather than either reproductive response. This reduces direct selection on the reproductive outcomes, but the subsequent analyses use the same population and overlapping seasons and should not be described as independent validation.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Thermal window and temperature data"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">Sys.setlocale</span>(<span class="st">"LC_CTYPE"</span>, <span class="st">"English_United States.utf8"</span>))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="st">".Rlib"</span>, <span class="fu">.libPaths</span>()))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">Sys.setlocale</span>(<span class="st">"LC_TIME"</span>, <span class="st">"C"</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>annual_temperature <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data_derived/annual_main_window_temperature.csv"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature data</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>Daily mean air temperature was obtained from the SMHI Open Data API, parameter 2 (daily mean), for Hoburg (station 68550) and Hoburg A (station 68560). Coincident daily observations are averaged; otherwise the available station supplies the combined value. The combined calendar spans 1980-01-01 to 2025-12-31 and contains 16,802 days.</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| filename: "R/02_prepare_temperature_data.R"</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>read_smhi <span class="ot">&lt;-</span> <span class="cf">function</span>(path, station) {</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(path, <span class="at">sep =</span> <span class="st">";"</span>, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8-BOM"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                  <span class="at">check.names =</span> <span class="cn">FALSE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">as.Date</span>(x[[<span class="dv">3</span>]]),</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, x[[<span class="dv">4</span>]])),</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">quality =</span> x[[<span class="dv">5</span>]], <span class="at">station =</span> station</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date), <span class="sc">!</span><span class="fu">is.na</span>(temperature))</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">read_smhi</span>(<span class="st">"data_raw/smhi/hoburg_68550_daily_mean_temperature.csv"</span>,</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Hoburg 68550"</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">read_smhi</span>(<span class="st">"data_raw/smhi/hoburg_a_68560_daily_mean_temperature.csv"</span>,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Hoburg A 68560"</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">full_join</span>(</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  old <span class="sc">|&gt;</span> <span class="fu">select</span>(date, <span class="at">temp_old =</span> temperature, <span class="at">q_old =</span> quality),</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  new <span class="sc">|&gt;</span> <span class="fu">select</span>(date, <span class="at">temp_new =</span> temperature, <span class="at">q_new =</span> quality),</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"date"</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature =</span> <span class="fu">rowMeans</span>(<span class="fu">cbind</span>(temp_old, temp_new), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(temp_old) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(temp_new) <span class="sc">~</span> <span class="st">"mean of both stations"</span>,</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(temp_old) <span class="sc">~</span> <span class="st">"Hoburg 68550"</span>,</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Hoburg A 68560"</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>calendar <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"1980-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2025-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(daily, <span class="at">by =</span> <span class="st">"date"</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(calendar, <span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>, <span class="at">na =</span> <span class="st">""</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>overlap_summary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tables/smhi_hoburg_station_overlap_summary.csv"</span>,</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(overlap_summary, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Agreement between Hoburg and Hoburg A during their overlap"</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download the combined daily temperature series</span><span class="co">](data_derived/smhi_hoburg_daily_temperature.csv)</span>{.btn .btn-primary download="smhi_hoburg_daily_temperature.csv"}</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sliding-window selection</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>The unit of analysis is the breeding season. The response is annual raw median laying date, expressed relative to 1 May. The prespecified absolute reference day is 7 May.</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>settings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_settings.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(settings, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Setting"</span>, <span class="st">"Prespecified value"</span>),</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Prespecified sliding-window settings"</span>)</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| filename: "R/04_climwin_laying_date.R"</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(climwin)</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260808</span>)</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>,</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bdate =</span> <span class="fu">as.Date</span>(bdate))</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>,</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date), <span class="at">temperature =</span> <span class="fu">as.numeric</span>(temperature))</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyDuplicated</span>(temperature<span class="sc">$</span>date), <span class="fu">all</span>(<span class="fu">diff</span>(temperature<span class="sc">$</span>date) <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>refday <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>L, <span class="dv">5</span>L)</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> annual)</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>main_win <span class="ot">&lt;-</span> <span class="fu">slidingwin</span>(</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdate =</span> temperature<span class="sc">$</span>date, <span class="at">bdate =</span> annual<span class="sc">$</span>bdate, <span class="at">baseline =</span> baseline,</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"absolute"</span>, <span class="at">refday =</span> refday, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">0</span>),</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">"mean"</span>, <span class="at">func =</span> <span class="st">"lin"</span>, <span class="at">cinterval =</span> <span class="st">"week"</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>main_rand <span class="ot">&lt;-</span> <span class="fu">randwin</span>(</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  <span class="at">repeats =</span> <span class="dv">500</span>, <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdate =</span> temperature<span class="sc">$</span>date, <span class="at">bdate =</span> annual<span class="sc">$</span>bdate, <span class="at">baseline =</span> baseline,</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"absolute"</span>, <span class="at">refday =</span> refday, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">0</span>),</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">"mean"</span>, <span class="at">func =</span> <span class="st">"lin"</span>, <span class="at">cinterval =</span> <span class="st">"week"</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>P_delta_AICc <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(main_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset, main_rand[[<span class="dv">1</span>]],</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>                       <span class="at">metric =</span> <span class="st">"AIC"</span>, <span class="at">sample.size =</span> <span class="fu">nrow</span>(annual))</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>P_c <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(main_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset, main_rand[[<span class="dv">1</span>]],</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric =</span> <span class="st">"C"</span>, <span class="at">sample.size =</span> <span class="fu">nrow</span>(annual))</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(main_win,</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>        <span class="st">"models/climwin/slidingwin_main_calendar_index_ref07may_range17w.rds"</span>)</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(main_rand,</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>        <span class="st">"models/climwin/randwin_main_calendar_index_ref07may_range17w_500.rds"</span>)</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>main_win <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/climwin/slidingwin_main_calendar_index_ref07may_range17w.rds"</span>)</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>main_rand <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/climwin/randwin_main_calendar_index_ref07may_range17w_500.rds"</span>)</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>windows <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_windows.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(windows, <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Selected windows and their AICc improvement"</span>)</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>The weekly search selected offsets 6–0 relative to the week containing 7 May. Because <span class="in">`climwin`</span> uses complete seven-day calendar bins, its actual temperature dates were 26 March–13 May in non-leap years and 25 March–12 May in leap years. The reproductive models operationalised these offsets as a fixed daily interval, 26 March–7 May (43 days). These are distinct aggregations; the fixed daily interval is retained as the primary reproductive predictor and compared with three prespecified alternative calendar windows below.</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>med <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_medwin.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(med, <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Median boundaries from medwin() for the 95% best-window set"</span>)</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>None of 500 full randomised searches attained an AICc improvement as large as the observed 38.6016 units (0/500; plus-one empirical tail probability 1/501 = 0.001996). The minimum randomised ΔAICc was −16.9196. The separately calibrated C-metric diagnostic, Pc = 1.27 × 10⁻⁵, is model-based and is not an empirical exceedance fraction. The package's fixed output “&lt;0.001” when the empirical count is zero must not be interpreted as a frequency below one in a thousand.</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>oos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_out_of_sample.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(oos, <span class="at">digits =</span> <span class="dv">6</span>,</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Out-of-sample evaluation in the remaining 22 seasons"</span>)</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>An audit identified an indexing error in <span class="in">`singlewin`</span>'s absolute weekly branch: the reference index used the month number plus 53 times the year offset, whereas climate records used the week number plus 52 times the year offset. Reproducing that error recovered the former positive coefficient exactly. Explicit extraction using the same weekly bins as the training <span class="in">`slidingwin`</span> gives a negative held-out association (beta = -1.566 days per degree C; 95% t interval -2.734 to -0.397; p = 0.011; R-squared = 0.281). Thus the previously reported reversal was computational, not evidence of a biological reversal.</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>This coefficient is estimated in the test subset with the window held fixed; it is not itself a prediction score. Applying the training intercept and slope unchanged to the 22 test seasons gives RMSE 3.187 days, compared with 5.226 days for the training-mean baseline, and mean prediction bias +1.521 days. The association remains negative but is weaker than in training, so the result does not establish identical effect magnitude across periods.</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature in the selected window</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>Each year's <span class="in">`temp_mean`</span> is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. <span class="in">`temp_sd`</span> is their sample SD. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>Mean spring temperature increased through time ($\beta_{\mathrm{time}}=0.0439$ °C/year, 95% CI <span class="co">[</span><span class="ot">0.0248, 0.0630</span><span class="co">]</span>, p &lt; 0.001), approximately 0.44°C per decade. Residual interannual variability showed no clear temporal trend ($\gamma_{\mathrm{time}}=-0.0111$ on the $\log\sigma_t$ scale per year, 95% CI <span class="co">[</span><span class="ot">−0.0277, 0.0055</span><span class="co">]</span>, p = 0.190). Thus there was no clear evidence of change in environmental predictability; the interval does not establish constancy.</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/environment_temperature_location_scale_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(env <span class="sc">|&gt;</span> <span class="fu">select</span>(component, term, beta, CI_low, CI_high, p), <span class="at">digits =</span> <span class="dv">5</span>,</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Environmental Gaussian location–scale coefficients; Wald 95% CIs"</span>)</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>Day-to-day variability is a separate quantity. Its OLS time coefficient was 0.00131°C/year (95% CI <span class="co">[</span><span class="ot">−0.01279, 0.01541</span><span class="co">]</span>, p = 0.852), with no clear trend.</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. C: daily temperature SD within each annual window and its separate OLS trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points."</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/Fig2_temperature_location_scale_time.png"</span>)</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Plotting workflow</span><span class="co">](R/25_environment_temperature_location_scale.R)</span> · <span class="co">[</span><span class="ot">Location–scale coefficients</span><span class="co">](tables/environment_temperature_location_scale_coefficients.csv)</span> · <span class="co">[</span><span class="ot">Mean predictions</span><span class="co">](tables/environment_temperature_time_predictions.csv)</span> · <span class="co">[</span><span class="ot">Interannual scale predictions</span><span class="co">](tables/environment_temperature_scale_predictions.csv)</span> · <span class="co">[</span><span class="ot">Daily-SD trend</span><span class="co">](tables/environment_daily_SD_trend.csv)</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>The earlier OLS mean-temperature slope was 0.0470°C/year. It belongs to the constant-residual-variance mean model and is retained only as an alternative fit; it must not be substituted for the primary location–scale estimate above. <span class="co">[</span><span class="ot">Archived OLS estimates</span><span class="co">](tables/main_window_temperature_trends.csv)</span>.</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity of reproductive associations to the calendar interval</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>The primary daily interval (26 March–7 May; 43 days) was retained. Before inspecting the sensitivity results, three alternatives were fixed: all of April (30 days), 9 April–7 May (29 days), and 5 March–7 May (64 days). For each interval, annual mean daily temperature replaced the primary temperature predictor in both location and scale submodels. Within each response, observations, other covariates, random-effect structures and priors were unchanged. All intervals were retained in the comparison; none was chosen on the basis of its effect estimate or significance.</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/window_sensitivity_comparison.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(sensitivity <span class="sc">|&gt;</span> <span class="fu">select</span>(window, component, estimate, lower95, upper95, interval_type),</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Temperature coefficients per 1 degree C across predefined calendar intervals"</span>)</span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Calendar-window sensitivity. Points and intervals show temperature coefficients per 1 degree C and 95% intervals. Clutch models use posterior credible intervals; fledging models use Wald confidence intervals. The primary interval is highlighted."</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/window_sensitivity_comparison.png"</span>)</span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>The mean fledging-success association was negative for all four intervals. Precision coefficients were positive throughout, but their intervals included zero for April and the shorter interval. This warrants more caution about the robustness of the precision association; crossing zero in some intervals does not itself demonstrate a difference between coefficients. The overlapping windows are correlated summaries of the same seasons, not independent replications. Positive precision coefficients refer to reduced extra-binomial heterogeneity at a given mean and clutch size, not necessarily reduced raw variance.</span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>We therefore retain 26 March–7 May as the primary reproductive window; the alternatives are sensitivity checks, not candidates for post hoc selection.</span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>The Bayesian clutch fits retain the original Gaussian model, including year-level random intercepts in both location and log residual SD. Female Gaussian random intercepts are integrated analytically with the exact marginal likelihood. The primary-window posterior is checked against the original <span class="in">`brms`</span> output. Full convergence checks, computational-equivalence checks and coefficients scaled by the between-year temperature SD are retained in the sensitivity tables and local audit report.</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix</span></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="fu">### March diagnostics</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>These retained diagnostics assess warm March days, March–April temperature correspondence, direct month-by-era terms, and continuous change in the selected-window slope. They do not redefine the selected window.</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_warm_days_trend.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Trends in counts of March days above fixed thresholds"</span>)</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_temperature_correlations.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March–April temperature correlations"</span>)</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_correlation_difference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Comparison of March–April correlations"</span>)</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_model_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March- and April-by-era model coefficients"</span>)</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional monthly temperature slopes"</span>)</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_joint_interaction_test.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Joint test of temperature-by-era interactions"</span>)</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_interaction_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Continuous selected-window temperature-by-time model"</span>)</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_conditional_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional selected-window temperature slopes"</span>)</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="fu">### Annual fifth-percentile check for the fixed daily reproductive predictor</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_window_lay_overlap_by_year.csv"</span>,</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>                    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, n_broods, p05_lay_calendar,</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>         window_close_calendar, window_reaches_p05_lay)</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(overlap, <span class="at">caption =</span> <span class="st">"Closing date of the fixed daily interval versus the annual fifth percentile"</span>)</span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>The fixed daily reproductive interval closed before the annual fifth percentile of laying dates in all 45 seasons. This does not establish non-overlap with every brood: two of 14,297 breeding attempts began before 7 May (6 May 2006 and 28 April 2022). This check concerns the fixed daily interval, not the full weekly bins used by the phenology search.</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cached model objects</span></span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>Cached model objects are retained locally and are not distributed with the public website.</span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>The thermal window search used annual median laying date rather than either reproductive response. This reduces direct selection on the reproductive outcomes, but the subsequent analyses use the same population and overlapping seasons and should not be described as independent validation.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -17,11 +17,10 @@ $$
 $$
 
 $$
-\log(\sigma_t^2)=\beta_0^{(\sigma)}+
-\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_t.
+\log(\sigma_t)=\gamma_0+\gamma_{\mathrm{time}}\mathrm{Time}_t.
 $$
 
-The location component estimates the temporal trend in mean temperature. The scale component estimates whether day-to-day thermal variability within the pre-laying window changed over time, using the annual standard deviation of daily mean temperatures. This measure does not assess year-to-year variation or overall climate predictability. There is one annual estimate and no random effect.
+The Gaussian location–scale model uses 46 annual mean temperatures (1980–2025, including weather observations for 2020). Its location component estimates directional warming; its scale component estimates residual interannual SD around that trend. Higher environmental σ indicates lower interannual predictability in this operational sense. This is distinct from within-window daily temperature SD, whose time trend is assessed separately by OLS. Time is centred on 2002.5. glmmTMB 1.1.14 uses log SD directly for Gaussian dispersion.
 
 ## Clutch size
 
@@ -41,16 +40,16 @@ $$
 
 $$
 \begin{aligned}
-\log(\sigma_r^2)={}&\beta_0^{(\sigma)}+
+\log(\sigma_r)={}&\beta_0^{(\sigma)}+
 \beta_{\mathrm{LD}}^{(\sigma)}\mathrm{relLD}_r+
 \beta_T^{(\sigma)}\bar T_r+\beta_{\mathrm{time}}^{(\sigma)}\mathrm{Time}_r\\
 &+\beta_{\mathrm{age}}^{(\sigma)}\mathrm{Age}_r+w_{y[r]}.
 \end{aligned}
 $$
 
-Higher $\sigma$ indicates greater residual dispersion among females within a season and therefore lower consistency.
+Higher $\sigma$ indicates greater conditional residual dispersion among breeding attempts and therefore lower consistency.
 
-## Fledging success
+## Fledging success: reference specification
 
 Here, fledging success is egg-to-fledging success: the number of fledglings relative to the number of eggs laid.
 
@@ -82,3 +81,12 @@ Higher $\phi$ means lower conditional extra-binomial overdispersion. This is res
 ## Notation
 
 In the brood-level models, $u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)$ and $v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)$; $w_y$ is the year-level scale effect in the clutch-size model. The predictor $\bar T$ is mean temperature during 26 March–7 May, `relLD` is laying date centred within season, and `Age` is the binary class `YOUNG`/`OLD`.
+
+
+## Precision and zero-outcome sensitivity
+
+The equations above describe the reference beta-binomial model. A sensitivity fit adds an independent year random intercept to $\log\phi_r$. A second fit retains that year effect and adds a constant extra-zero probability $\pi$, so $P(K_r=0)=\pi+(1-\pi)P_{BB}(K_r=0)$ and $E(K_r/n_r)=(1-\pi)\mu_r$. Its $\phi$ describes the beta-binomial component, not consistency of the entire mixture. Neither alternative is automatically selected as the final model.
+
+## Reporting convention
+
+Higher reproductive $\sigma$ means greater inconsistency; higher $\phi$ means greater consistency at a given mean success probability and clutch size. These are effects among breeding attempts, not repeatability of the same female. Coefficients are labelled $\beta_j^{(\mu)}$, $\beta_j^{(\sigma)}$ and $\beta_j^{(\phi)}$. Clutch location is in eggs, fledging location on the logit scale, and scale effects on $\log\sigma$ or $\log\phi$. Temperature slopes are per °C, relative-date slopes per day and time slopes per year. Bayesian clutch estimates use 95% CrIs; frequentist temperature and fledging fits use 95% CIs. Simulation envelopes are neither CIs nor CrIs.

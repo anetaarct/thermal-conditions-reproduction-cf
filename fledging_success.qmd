@@ -11,6 +11,8 @@ execute:
 ```{r}
 #| label: setup
 #| include: false
+invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))
+.libPaths(c(".Rlib", .libPaths()))
 Sys.setlocale("LC_TIME", "C")
 library(dplyr)
 library(knitr)
@@ -163,9 +165,9 @@ kable(
 )
 ```
 
-The predictor-dependent precision model was clearly supported over the constant-precision model (likelihood-ratio $\chi^2_{`r bb_compare$LRT_df[2]`}$ = `r fmt(bb_compare$LR_chisq[2], 2)`, $p$ `r fmt_p(bb_compare$LRT_p[2])`; $\Delta$AIC = `r fmt(bb_compare$delta_AIC[1], 1)`, $\Delta$BIC = `r fmt(bb_compare$delta_BIC[1], 1)`). It is therefore retained as the main model. This support comes from the beta-binomial response itself, not from a Gaussian model of positive fledgling counts.
+The predictor-dependent precision model was clearly supported over the constant-precision model (likelihood-ratio $\chi^2_{`r bb_compare$LRT_df[2]`}$ = `r fmt(bb_compare$LR_chisq[2], 2)`, $p$ `r fmt_p(bb_compare$LRT_p[2])`; $\Delta$AIC = `r fmt(bb_compare$delta_AIC[1], 1)`, $\Delta$BIC = `r fmt(bb_compare$delta_BIC[1], 1)`). It is retained as the reference specification for sensitivity analyses. This support comes from the beta-binomial response itself, not from a Gaussian model of positive fledgling counts.
 
-## Main beta-binomial location-scale model
+## Reference beta-binomial location-scale model
 
 The location equation contains relative laying date, age class, their interaction, spring temperature, and time, with random intercepts for year and female. The precision equation contains relative laying date, spring temperature, time, and age class. Larger $\phi$ indicates lower conditional extra-binomial heterogeneity; smaller $\phi$ indicates higher conditional extra-binomial heterogeneity. This is conditional residual heterogeneity, not total phenotypic variance.
 
@@ -193,7 +195,7 @@ kable(
   digits = 4,
   col.names = c("Component", "Term", "Beta", "SE", "95% CI low", "95% CI high",
                 "z", "p", "Direction"),
-  caption = "Location and precision coefficients from the main beta-binomial model."
+  caption = "Location and precision coefficients from the reference beta-binomial model."
 )
 ```
 
@@ -229,19 +231,19 @@ The year random-intercept SD was `r fmt(variance_decomp$estimate[variance_decomp
 
 ```{r}
 #| echo: false
-#| fig-cap: "Population-level predictions against spring temperature from the beta-binomial model. Left: mean fledging success. Right: conditional consistency, expressed as phi. Random effects are excluded; ribbons are 95% confidence intervals and the x-axis covers the 5th-95th percentiles of observed temperature."
+#| fig-cap: "Population-level predictions against spring temperature from the reference beta-binomial model. Left: mean fledging success. Right: conditional consistency, expressed as phi. Random effects are excluded; ribbons are 95% confidence intervals and the x-axis covers the 5th-95th percentiles of observed temperature."
 knitr::include_graphics("figures/Fig5_1_success_phi_temperature.png")
 ```
 
 [Show the plotting code in Figure code](figure_code.html#mean-and-consistency-against-temperature).
 
-Warmer springs were associated with lower mean fledging success ($\beta$ = `r fmt(get_bb("location", "temp_mean_c")$beta, 3)`, 95% CI `r fmt(get_bb("location", "temp_mean_c")$CI_low, 3)` to `r fmt(get_bb("location", "temp_mean_c")$CI_high, 3)`, $p$ `r fmt_p(get_bb("location", "temp_mean_c")$p)`) and higher precision ($\beta_{\log\phi}$ = `r fmt(get_bb("precision_log_phi", "temp_mean_c")$beta, 3)`, $p$ `r fmt_p(get_bb("precision_log_phi", "temp_mean_c")$p)`). Thus, both the location and scale effects of temperature were supported: fledging success was lower but conditionally more consistent in warmer springs.
+Warmer springs were associated with lower mean egg-to-fledging success ($\beta_{\mathrm{temp}}^{(\mu)}=-0.250$ on the logit scale per °C, 95% CI [−0.378, −0.122], p < 0.001) and higher precision in the reference model ($\beta_{\mathrm{temp}}^{(\phi)}=0.051$ on the $\log\phi$ scale per °C, 95% CI [0.008, 0.094], p = 0.021). The precision association was not robust to annual heterogeneity or alternative zero-outcome modelling; see the sensitivity analyses below.
 
 ### Fledging success and relative laying date
 
 ```{r}
 #| echo: false
-#| fig-cap: "Population-level predictions against relative laying date for young and old females from the beta-binomial location-scale model. Left: mean fledging success. Right: conditional consistency, expressed as phi. The precision equation contains additive effects of relative laying date and age but no interaction, so its age-specific curves have a common slope on the log-phi scale. Random effects are excluded; ribbons are 95% confidence intervals."
+#| fig-cap: "Population-level predictions against relative laying date for young and old females from the reference beta-binomial location-scale model. Left: mean fledging success. Right: conditional consistency, expressed as phi. The precision equation contains additive effects of relative laying date and age but no interaction, so its age-specific curves have a common slope on the log-phi scale. Random effects are excluded; ribbons are 95% confidence intervals."
 knitr::include_graphics("figures/Fig5_2_success_rellD_age.png")
 ```
 
@@ -259,7 +261,7 @@ kable(
 )
 ```
 
-Log-$\phi$ decreased with relative laying date ($\beta$ = `r fmt(get_bb("precision_log_phi", "rel_LD")$beta, 3)`, 95% CI `r fmt(get_bb("precision_log_phi", "rel_LD")$CI_low, 3)` to `r fmt(get_bb("precision_log_phi", "rel_LD")$CI_high, 3)`, $p$ `r fmt_p(get_bb("precision_log_phi", "rel_LD")$p)`). Thus, each one-day delay multiplied $\phi$ by `r fmt(exp(get_bb("precision_log_phi", "rel_LD")$beta), 3)` (`r fmt(100 * (exp(get_bb("precision_log_phi", "rel_LD")$beta) - 1), 1)`%), indicating greater conditional extra-binomial heterogeneity at later relative laying dates.
+Log-$\phi$ decreased with relative laying date ($\beta_{\mathrm{date}}^{(\phi)}$ = `r fmt(get_bb("precision_log_phi", "rel_LD")$beta, 3)`, 95% CI `r fmt(get_bb("precision_log_phi", "rel_LD")$CI_low, 3)` to `r fmt(get_bb("precision_log_phi", "rel_LD")$CI_high, 3)`, $p$ `r fmt_p(get_bb("precision_log_phi", "rel_LD")$p)`). Thus, each one-day delay multiplied $\phi$ by `r fmt(exp(get_bb("precision_log_phi", "rel_LD")$beta), 3)` (`r fmt(100 * (exp(get_bb("precision_log_phi", "rel_LD")$beta) - 1), 1)`%), indicating greater conditional extra-binomial heterogeneity at later relative laying dates.
 
 <details>
 <summary><strong>Check of the <code>rel_LD × age_class</code> interaction in precision</strong></summary>
@@ -270,7 +272,7 @@ Adding a `rel_LD × age_class` interaction to the precision equation provided no
 
 ### Fledging success and female age
 
-Older females had higher mean fledging success at the reference relative laying date ($\beta$ = `r fmt(get_bb("location", "age_classOLD")$beta, 3)`, $p$ `r fmt_p(get_bb("location", "age_classOLD")$p)`) and higher precision ($\beta_{\log\phi}$ = `r fmt(get_bb("precision_log_phi", "age_classOLD")$beta, 3)`, $p$ `r fmt_p(get_bb("precision_log_phi", "age_classOLD")$p)`). Thus, both the location and scale age effects were supported; the location coefficient is conditional on `rel_LD = 0` because the location equation contains `rel_LD × age_class`.
+Older females had higher mean fledging success at the reference relative laying date ($\beta_{\mathrm{age}}^{(\mu)}$ = `r fmt(get_bb("location", "age_classOLD")$beta, 3)`, $p$ `r fmt_p(get_bb("location", "age_classOLD")$p)`) and higher precision ($\beta_{\mathrm{age}}^{(\phi)}$ = `r fmt(get_bb("precision_log_phi", "age_classOLD")$beta, 3)`, $p$ `r fmt_p(get_bb("precision_log_phi", "age_classOLD")$p)`). These age associations were supported in the reference model but depended on zero-outcome modelling; the location coefficient is conditional on `rel_LD = 0` because the location equation contains `rel_LD × age_class`.
 
 ```{r}
 #| echo: false
@@ -290,7 +292,7 @@ knitr::include_graphics("figures/Fig5_4_time_location_scale.png")
 
 [Show the plotting code in Figure code](figure_code.html#conditional-temporal-trajectories).
 
-After accounting for spring temperature, there was no clear evidence of temporal change in mean egg-to-fledging success ($\beta$ = `r fmt(get_bb("location", "year_c")$beta, 4)`, 95% CI `r fmt(get_bb("location", "year_c")$CI_low, 4)` to `r fmt(get_bb("location", "year_c")$CI_high, 4)`, $p$ `r fmt_p(get_bb("location", "year_c")$p)`). Reproductive consistency likewise showed no clear temporal trend ($\beta_{\log\phi}$ = `r fmt(get_bb("precision_log_phi", "year_c")$beta, 4)`, 95% CI `r fmt(get_bb("precision_log_phi", "year_c")$CI_low, 4)` to `r fmt(get_bb("precision_log_phi", "year_c")$CI_high, 4)`, $p$ `r fmt_p(get_bb("precision_log_phi", "year_c")$p)`).
+After accounting for spring temperature, there was no clear evidence of temporal change in mean egg-to-fledging success ($\beta_{\mathrm{time}}^{(\mu)}$ = `r fmt(get_bb("location", "year_c")$beta, 4)`, 95% CI `r fmt(get_bb("location", "year_c")$CI_low, 4)` to `r fmt(get_bb("location", "year_c")$CI_high, 4)`, $p$ `r fmt_p(get_bb("location", "year_c")$p)`). Reproductive consistency likewise showed no clear temporal trend ($\beta_{\mathrm{time}}^{(\phi)}$ = `r fmt(get_bb("precision_log_phi", "year_c")$beta, 4)`, 95% CI `r fmt(get_bb("precision_log_phi", "year_c")$CI_low, 4)` to `r fmt(get_bb("precision_log_phi", "year_c")$CI_high, 4)`, $p$ `r fmt_p(get_bb("precision_log_phi", "year_c")$p)`).
 
 <details>
 <summary><strong>Appendix: checks of the temperature effect on precision</strong></summary>
@@ -307,28 +309,43 @@ knitr::include_graphics("figures/FigA_phi_constant_simulation.png")
 
 [Show the plotting code in Figure code](figure_code.html#constant-phi-simulation-diagnostic).
 
-To determine whether higher $\phi$ in warmer springs was instead produced by the increased probability of complete brood failure, a correctly zero-truncated beta-binomial likelihood was fitted to the `r sum(dat$fledged > 0)` broods with at least one fledgling. The location and precision equations were jointly re-estimated, while the fitted year and female contributions were retained as offsets. The temperature coefficient in precision remained positive ($\beta_{\log\phi}$ = `r fmt(phi_survival_temp$beta, 4)`, 95% CI `r fmt(phi_survival_temp$CI_low, 4)` to `r fmt(phi_survival_temp$CI_high, 4)`, $p$ `r fmt_p(phi_survival_temp$p)`). The optimisation converged without a boundary estimate. Thus, the association is not attributable solely to warmer springs producing more complete failures and leaving a more homogeneous surviving subset. It may be discussed as higher conditional residual consistency among non-failed broods, but not as evidence of a causal temperature effect or a change in total phenotypic variance.
+To determine whether higher $\phi$ in warmer springs was instead produced by the increased probability of complete brood failure, a correctly zero-truncated beta-binomial likelihood was fitted to the `r sum(dat$fledged > 0)` broods with at least one fledgling. The location and precision equations were jointly re-estimated, while the fitted year and female contributions were retained as offsets. The temperature coefficient in precision remained positive ($\beta_{\log\phi}$ = `r fmt(phi_survival_temp$beta, 4)`, 95% CI `r fmt(phi_survival_temp$CI_low, 4)` to `r fmt(phi_survival_temp$CI_high, 4)`, $p$ `r fmt_p(phi_survival_temp$p)`). The optimisation converged without a boundary estimate. Thus, the association is not attributable solely to warmer springs producing more complete failures and leaving a more homogeneous surviving subset. This targeted check operates within the reference precision specification; it does not establish robustness to year-level heterogeneity or validate the full zero-outcome distribution.
 
 </details>
 
-<details>
-<summary><strong>Model adequacy for complete brood failures</strong></summary>
+## Model adequacy and sensitivity of precision inference
 
-#### Simulation-based zero-frequency check
+The reference model underestimated the observed complete-failure frequency (23.65%) in both plug-in checks. Conditional simulations gave 20.18% (95% simulation envelope [19.46, 20.97]); new-group simulations gave 19.74% [17.55, 22.33]. The observation exceeded both envelopes, indicating a substantive calibration concern. Parameters were fixed at their estimates, and conditional checks additionally fixed fitted group modes. These describe different targets and are not formal goodness-of-fit tests.
 
-Two simulation checks address different questions. First, 1,000 datasets were simulated with the fitted year and female random effects held fixed, directly assessing calibration for the observed groups. Second, `simulate.glmmTMB()` was used to generate new random-effect realisations from their estimated distributions, assessing unconditional calibration for hypothetical new groups. The current `glmmTMB` implementation cannot condition `simulate()` on the fitted random effects, so the conditional check was generated directly from the fitted beta-binomial means and precision values.
+The former 25.7% unconditional result counted zeros in both columns of the paired response, incorrectly including complete success. Complete failure is now counted exclusively from the fledgling column. The revised script and downloads below use that definition.
 
 ```{r}
 #| echo: false
-#| fig-cap: "Distribution of the proportion of complete brood failures in 1,000 datasets simulated conditionally on the fitted year and female random effects. The orange vertical line is the observed proportion."
-knitr::include_graphics("figures/Fig5_4_zero_frequency_diagnostic.png")
+zcheck <- read_csv("tables/fledging_zero_calibration_audited.csv", show_col_types = FALSE)
+kable(zcheck, digits = 5, caption = "Audited zero-frequency checks: fractions, with 95% simulation envelopes")
 ```
 
-[Show the plotting code in Figure code](figure_code.html#fledging-success-figures).
+### Residual annual heterogeneity in precision
 
-The observed frequency was `r fmt(100 * zero_conditional$observed, 1)`%. Conditional simulations had a median of `r fmt(100 * zero_conditional$simulated_median, 1)`% (95% simulation interval `r fmt(100 * zero_conditional$simulation_CI_low, 1)`–`r fmt(100 * zero_conditional$simulation_CI_high, 1)`%), whereas unconditional `simulate.glmmTMB()` simulations had a median of `r fmt(100 * zero_summary$simulated_median, 1)`% (95% simulation interval `r fmt(100 * zero_summary$simulation_CI_low, 1)`–`r fmt(100 * zero_summary$simulation_CI_high, 1)`%). Thus, the conditional check underpredicted zeros while the unconditional check overpredicted them. The fitted model does not reproduce the observed zero frequency exactly, but the direction of the discrepancy depends on whether inference is conditional on the observed groups or averaged over new random-effect realisations. This is a model-adequacy diagnostic, not a separate biological hypothesis test, and does not by itself justify an additional zero-inflation component.
+Adding a year random intercept to log precision reduced AIC by 103.3 but weakened its temperature association: $\beta_{\mathrm{temp}}^{(\phi)}=0.0088$ on the $\log\phi$ scale per °C, 95% CI [−0.0973, 0.1148], p = 0.871. The precision-year SD was 0.271. The mean association remained negative ($\beta_{\mathrm{temp}}^{(\mu)}=-0.2514$ on the logit scale per °C, 95% CI [−0.3829, −0.1199]).
 
-</details>
+### Additional zero mass
+
+A zero-augmented beta-binomial fit with year variation in precision reduced AIC by a further 740.78. Its beta-binomial log-precision temperature coefficient was −0.0854 (95% CI [−0.2614, 0.0905], p = 0.341); its conditional logit mean coefficient remained negative (−0.2755, 95% CI [−0.4184, −0.1325]). The extra-zero probability was 0.1695, a mixture parameter rather than an identified biological fraction of failures. The age mean and precision associations were also uncertain in this alternative.
+
+### Parameter-estimation uncertainty
+
+With approximate joint parameter uncertainty and newly drawn group effects, the reference zero-frequency envelope widened to [16.71, 23.63]%, placing the observation near its upper limit. The zero-augmented envelope was [19.90, 23.72]%, containing the observation. These approximations are not Bayesian CrIs or calibrated refit-bootstrap tests and do not integrate conditional group-mode uncertainty. Global failure-frequency coverage does not validate the full distribution or its precision effect. Distributional calibration remains a material limitation; a positive temperature–consistency association is not a robust central result.
+
+```{r}
+#| echo: false
+unc <- read_csv("tables/fledging_zero_parameter_uncertainty_audited.csv", show_col_types = FALSE)
+kable(unc, digits = 5, caption = "Approximate parameter-uncertainty simulations: fractions, not parameter CIs")
+```
+
+[Audited plug-in checks](tables/fledging_zero_calibration_audited.csv) · [Parameter-uncertainty checks](tables/fledging_zero_parameter_uncertainty_audited.csv) · [Year-precision temperature coefficients](tables/fledging_year_precision_temperature_coefficients.csv) · [Zero-augmented coefficients](tables/fledging_zero_augmented_coefficients.csv) · [Audit simulation code](R/64_audited_zero_frequency.R) · [Uncertainty code](R/65_audited_zero_parameter_uncertainty.R) · [Optimizer verification](R/66_audited_zero_refinement.R)
+
+
 
 <!-- The realised fledgling production analysis is now maintained in
 realised_fledgling_production.qmd. The archived source below is excluded
