@@ -20,7 +20,7 @@ toc: false
   <p>We asked how spring temperature was associated with reproductive performance in the collared flycatcher, and whether these responses were expressed through changes in average performance, reproductive consistency, or both.</p>
   <p>Specifically, we examined:</p>
   <ul>
-    <li>whether mean spring temperature, residual interannual variability and within-window day-to-day variability changed through time;</li>
+    <li>whether mean spring temperature and residual interannual variability changed through time;</li>
     <li>clutch size and its conditional consistency among breeding attempts were associated with spring temperature, relative laying date, female age, and long-term time;</li>
     <li>fledging success and its conditional consistency among breeding attempts were associated with spring temperature, relative laying date, female age, and long-term time.</li>
   </ul>

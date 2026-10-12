@@ -20,7 +20,7 @@ $$
 \log(\sigma_t)=\gamma_0+\gamma_{\mathrm{time}}\mathrm{Time}_t.
 $$
 
-The Gaussian location–scale model uses 46 annual mean temperatures (1980–2025, including weather observations for 2020). Its location component estimates directional warming; its scale component estimates residual interannual SD around that trend. Higher environmental σ indicates lower interannual predictability in this operational sense. This is distinct from within-window daily temperature SD, whose time trend is assessed separately by OLS. Time is centred on 2002.5. glmmTMB 1.1.14 uses log SD directly for Gaussian dispersion.
+The Gaussian location–scale model uses 46 annual mean temperatures (1980–2025, including weather observations for 2020). Its location component estimates directional warming; its scale component estimates residual interannual SD around that trend. Higher environmental σ indicates lower interannual predictability in this operational sense. Time is centred on 2002.5. glmmTMB 1.1.14 uses log SD directly for Gaussian dispersion.
 
 ## Clutch size
 

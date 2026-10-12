@@ -158,7 +158,7 @@ This coefficient is estimated in the test subset with the window held fixed; it 
 
 ## Temperature in the selected window
 
-Each year's `temp_mean` is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. `temp_sd` is their sample SD. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.
+Each year's `temp_mean` is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.
 
 Mean spring temperature increased through time ($\beta_{\mathrm{time}}=0.0439$ °C/year, 95% CI [0.0248, 0.0630], p < 0.001), approximately 0.44°C per decade. Residual interannual variability showed no clear temporal trend ($\gamma_{\mathrm{time}}=-0.0111$ on the $\log\sigma_t$ scale per year, 95% CI [−0.0277, 0.0055], p = 0.190). Thus there was no clear evidence of change in environmental predictability; the interval does not establish constancy.
 
@@ -169,17 +169,13 @@ kable(env |> select(component, term, beta, CI_low, CI_high, p), digits = 5,
       caption = "Environmental Gaussian location–scale coefficients; Wald 95% CIs")
 ```
 
-Day-to-day variability is a separate quantity. Its OLS time coefficient was 0.00131°C/year (95% CI [−0.01279, 0.01541], p = 0.852), with no clear trend.
-
 ```{r}
 #| echo: false
-#| fig-cap: "Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. C: daily temperature SD within each annual window and its separate OLS trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points."
+#| fig-cap: "Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points."
 knitr::include_graphics("figures/Fig2_temperature_location_scale_time.png")
 ```
 
-[Plotting workflow](R/25_environment_temperature_location_scale.R) · [Location–scale coefficients](tables/environment_temperature_location_scale_coefficients.csv) · [Mean predictions](tables/environment_temperature_time_predictions.csv) · [Interannual scale predictions](tables/environment_temperature_scale_predictions.csv) · [Daily-SD trend](tables/environment_daily_SD_trend.csv)
-
-The earlier OLS mean-temperature slope was 0.0470°C/year. It belongs to the constant-residual-variance mean model and is retained only as an alternative fit; it must not be substituted for the primary location–scale estimate above. [Archived OLS estimates](tables/main_window_temperature_trends.csv).
+[Plotting workflow](R/25_environment_temperature_location_scale.R) · [Location–scale coefficients](tables/environment_temperature_location_scale_coefficients.csv) · [Mean predictions](tables/environment_temperature_time_predictions.csv) · [Interannual scale predictions](tables/environment_temperature_scale_predictions.csv)
 
 ## Sensitivity of reproductive associations to the calendar interval
 

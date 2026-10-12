@@ -16,6 +16,9 @@ project:
     - tables/*.csv
     - figures/*
     - R/*.R
+    - "!tables/environment_daily_SD_trend.csv"
+    - "!tables/main_window_temperature_trends.csv"
+    - "!figures/Fig1_temperature_sd_time.png"
 
 website:
   title: "Warmer springs and reproductive performance in the collared flycatcher"

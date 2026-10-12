@@ -616,7 +616,7 @@ window.Quarto = {
 </section>
 <section id="temperature-in-the-selected-window" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="temperature-in-the-selected-window"><span class="header-section-number">3</span> Temperature in the selected window</h2>
-<p>Each year’s <code>temp_mean</code> is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. <code>temp_sd</code> is their sample SD. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.</p>
+<p>Each year’s <code>temp_mean</code> is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.</p>
 <p>Mean spring temperature increased through time (<span class="math inline">\(\beta_{\mathrm{time}}=0.0439\)</span> °C/year, 95% CI [0.0248, 0.0630], p &lt; 0.001), approximately 0.44°C per decade. Residual interannual variability showed no clear temporal trend (<span class="math inline">\(\gamma_{\mathrm{time}}=-0.0111\)</span> on the <span class="math inline">\(\log\sigma_t\)</span> scale per year, 95% CI [−0.0277, 0.0055], p = 0.190). Thus there was no clear evidence of change in environmental predictability; the interval does not establish constancy.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -669,19 +669,17 @@ window.Quarto = {
 </table>
 </div>
 </div>
-<p>Day-to-day variability is a separate quantity. Its OLS time coefficient was 0.00131°C/year (95% CI [−0.01279, 0.01541], p = 0.852), with no clear trend.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/Fig2_temperature_location_scale_time.png" class="img-fluid figure-img" width="2400"></p>
-<figcaption>Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. C: daily temperature SD within each annual window and its separate OLS trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points.</figcaption>
+<p><img src="figures/Fig2_temperature_location_scale_time.png" class="img-fluid figure-img" width="1680"></p>
+<figcaption>Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="R/25_environment_temperature_location_scale.R">Plotting workflow</a> · <a href="tables/environment_temperature_location_scale_coefficients.csv">Location–scale coefficients</a> · <a href="tables/environment_temperature_time_predictions.csv">Mean predictions</a> · <a href="tables/environment_temperature_scale_predictions.csv">Interannual scale predictions</a> · <a href="tables/environment_daily_SD_trend.csv">Daily-SD trend</a></p>
-<p>The earlier OLS mean-temperature slope was 0.0470°C/year. It belongs to the constant-residual-variance mean model and is retained only as an alternative fit; it must not be substituted for the primary location–scale estimate above. <a href="tables/main_window_temperature_trends.csv">Archived OLS estimates</a>.</p>
+<p><a href="R/25_environment_temperature_location_scale.R">Plotting workflow</a> · <a href="tables/environment_temperature_location_scale_coefficients.csv">Location–scale coefficients</a> · <a href="tables/environment_temperature_time_predictions.csv">Mean predictions</a> · <a href="tables/environment_temperature_scale_predictions.csv">Interannual scale predictions</a></p>
 </section>
 <section id="sensitivity-of-reproductive-associations-to-the-calendar-interval" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="sensitivity-of-reproductive-associations-to-the-calendar-interval"><span class="header-section-number">4</span> Sensitivity of reproductive associations to the calendar interval</h2>
@@ -2271,7 +2269,7 @@ window.Quarto = {
 <span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature in the selected window</span></span>
 <span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>Each year's <span class="in">`temp_mean`</span> is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. <span class="in">`temp_sd`</span> is their sample SD. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>Each year's <span class="in">`temp_mean`</span> is the arithmetic mean of the 43 daily temperatures from 26 March through 7 May. The environmental location–scale model uses all 46 years (1980–2025), including 2020 weather despite the absence of bird field data.</span>
 <span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>Mean spring temperature increased through time ($\beta_{\mathrm{time}}=0.0439$ °C/year, 95% CI <span class="co">[</span><span class="ot">0.0248, 0.0630</span><span class="co">]</span>, p &lt; 0.001), approximately 0.44°C per decade. Residual interannual variability showed no clear temporal trend ($\gamma_{\mathrm{time}}=-0.0111$ on the $\log\sigma_t$ scale per year, 95% CI <span class="co">[</span><span class="ot">−0.0277, 0.0055</span><span class="co">]</span>, p = 0.190). Thus there was no clear evidence of change in environmental predictability; the interval does not establish constancy.</span>
 <span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
@@ -2282,87 +2280,83 @@ window.Quarto = {
 <span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Environmental Gaussian location–scale coefficients; Wald 95% CIs"</span>)</span>
 <span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>Day-to-day variability is a separate quantity. Its OLS time coefficient was 0.00131°C/year (95% CI <span class="co">[</span><span class="ot">−0.01279, 0.01541</span><span class="co">]</span>, p = 0.852), with no clear trend.</span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. C: daily temperature SD within each annual window and its separate OLS trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points."</span></span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/Fig2_temperature_location_scale_time.png"</span>)</span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Environmental change in 1980–2025 (46 years). A: annual mean temperature and fitted Gaussian location trend. B: residual interannual SD; higher σ means lower interannual predictability around the trend. Bands are 95% CIs. B shows a model parameter rather than observed annual points."</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/Fig2_temperature_location_scale_time.png"</span>)</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Plotting workflow</span><span class="co">](R/25_environment_temperature_location_scale.R)</span> · <span class="co">[</span><span class="ot">Location–scale coefficients</span><span class="co">](tables/environment_temperature_location_scale_coefficients.csv)</span> · <span class="co">[</span><span class="ot">Mean predictions</span><span class="co">](tables/environment_temperature_time_predictions.csv)</span> · <span class="co">[</span><span class="ot">Interannual scale predictions</span><span class="co">](tables/environment_temperature_scale_predictions.csv)</span></span>
 <span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Plotting workflow</span><span class="co">](R/25_environment_temperature_location_scale.R)</span> · <span class="co">[</span><span class="ot">Location–scale coefficients</span><span class="co">](tables/environment_temperature_location_scale_coefficients.csv)</span> · <span class="co">[</span><span class="ot">Mean predictions</span><span class="co">](tables/environment_temperature_time_predictions.csv)</span> · <span class="co">[</span><span class="ot">Interannual scale predictions</span><span class="co">](tables/environment_temperature_scale_predictions.csv)</span> · <span class="co">[</span><span class="ot">Daily-SD trend</span><span class="co">](tables/environment_daily_SD_trend.csv)</span></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity of reproductive associations to the calendar interval</span></span>
 <span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>The earlier OLS mean-temperature slope was 0.0470°C/year. It belongs to the constant-residual-variance mean model and is retained only as an alternative fit; it must not be substituted for the primary location–scale estimate above. <span class="co">[</span><span class="ot">Archived OLS estimates</span><span class="co">](tables/main_window_temperature_trends.csv)</span>.</span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>The primary daily interval (26 March–7 May; 43 days) was retained. Before inspecting the sensitivity results, three alternatives were fixed: all of April (30 days), 9 April–7 May (29 days), and 5 March–7 May (64 days). For each interval, annual mean daily temperature replaced the primary temperature predictor in both location and scale submodels. Within each response, observations, other covariates, random-effect structures and priors were unchanged. All intervals were retained in the comparison; none was chosen on the basis of its effect estimate or significance.</span>
 <span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity of reproductive associations to the calendar interval</span></span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>The primary daily interval (26 March–7 May; 43 days) was retained. Before inspecting the sensitivity results, three alternatives were fixed: all of April (30 days), 9 April–7 May (29 days), and 5 March–7 May (64 days). For each interval, annual mean daily temperature replaced the primary temperature predictor in both location and scale submodels. Within each response, observations, other covariates, random-effect structures and priors were unchanged. All intervals were retained in the comparison; none was chosen on the basis of its effect estimate or significance.</span>
-<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/window_sensitivity_comparison.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(sensitivity <span class="sc">|&gt;</span> <span class="fu">select</span>(window, component, estimate, lower95, upper95, interval_type),</span>
-<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Temperature coefficients per 1 degree C across predefined calendar intervals"</span>)</span>
-<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Calendar-window sensitivity. Points and intervals show temperature coefficients per 1 degree C and 95% intervals. Clutch models use posterior credible intervals; fledging models use Wald confidence intervals. The primary interval is highlighted."</span></span>
-<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/window_sensitivity_comparison.png"</span>)</span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/window_sensitivity_comparison.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(sensitivity <span class="sc">|&gt;</span> <span class="fu">select</span>(window, component, estimate, lower95, upper95, interval_type),</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Temperature coefficients per 1 degree C across predefined calendar intervals"</span>)</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Calendar-window sensitivity. Points and intervals show temperature coefficients per 1 degree C and 95% intervals. Clutch models use posterior credible intervals; fledging models use Wald confidence intervals. The primary interval is highlighted."</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/window_sensitivity_comparison.png"</span>)</span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>The mean fledging-success association was negative for all four intervals. Precision coefficients were positive throughout, but their intervals included zero for April and the shorter interval. This warrants more caution about the robustness of the precision association; crossing zero in some intervals does not itself demonstrate a difference between coefficients. The overlapping windows are correlated summaries of the same seasons, not independent replications. Positive precision coefficients refer to reduced extra-binomial heterogeneity at a given mean and clutch size, not necessarily reduced raw variance.</span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>We therefore retain 26 March–7 May as the primary reproductive window; the alternatives are sensitivity checks, not candidates for post hoc selection.</span>
 <span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>The mean fledging-success association was negative for all four intervals. Precision coefficients were positive throughout, but their intervals included zero for April and the shorter interval. This warrants more caution about the robustness of the precision association; crossing zero in some intervals does not itself demonstrate a difference between coefficients. The overlapping windows are correlated summaries of the same seasons, not independent replications. Positive precision coefficients refer to reduced extra-binomial heterogeneity at a given mean and clutch size, not necessarily reduced raw variance.</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>The Bayesian clutch fits retain the original Gaussian model, including year-level random intercepts in both location and log residual SD. Female Gaussian random intercepts are integrated analytically with the exact marginal likelihood. The primary-window posterior is checked against the original <span class="in">`brms`</span> output. Full convergence checks, computational-equivalence checks and coefficients scaled by the between-year temperature SD are retained in the sensitivity tables and local audit report.</span>
 <span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>We therefore retain 26 March–7 May as the primary reproductive window; the alternatives are sensitivity checks, not candidates for post hoc selection.</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix</span></span>
 <span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>The Bayesian clutch fits retain the original Gaussian model, including year-level random intercepts in both location and log residual SD. Female Gaussian random intercepts are integrated analytically with the exact marginal likelihood. The primary-window posterior is checked against the original <span class="in">`brms`</span> output. Full convergence checks, computational-equivalence checks and coefficients scaled by the between-year temperature SD are retained in the sensitivity tables and local audit report.</span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix</span></span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="fu">### March diagnostics</span></span>
-<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>These retained diagnostics assess warm March days, March–April temperature correspondence, direct month-by-era terms, and continuous change in the selected-window slope. They do not redefine the selected window.</span>
-<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_warm_days_trend.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Trends in counts of March days above fixed thresholds"</span>)</span>
-<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_temperature_correlations.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March–April temperature correlations"</span>)</span>
-<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_correlation_difference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Comparison of March–April correlations"</span>)</span>
-<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_model_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March- and April-by-era model coefficients"</span>)</span>
-<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional monthly temperature slopes"</span>)</span>
-<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_joint_interaction_test.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Joint test of temperature-by-era interactions"</span>)</span>
-<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_interaction_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Continuous selected-window temperature-by-time model"</span>)</span>
-<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_conditional_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional selected-window temperature slopes"</span>)</span>
-<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="fu">### Annual fifth-percentile check for the fixed daily reproductive predictor</span></span>
-<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_window_lay_overlap_by_year.csv"</span>,</span>
-<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>                    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, n_broods, p05_lay_calendar,</span>
-<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>         window_close_calendar, window_reaches_p05_lay)</span>
-<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(overlap, <span class="at">caption =</span> <span class="st">"Closing date of the fixed daily interval versus the annual fifth percentile"</span>)</span>
-<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="fu">### March diagnostics</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>These retained diagnostics assess warm March days, March–April temperature correspondence, direct month-by-era terms, and continuous change in the selected-window slope. They do not redefine the selected window.</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_warm_days_trend.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Trends in counts of March days above fixed thresholds"</span>)</span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_temperature_correlations.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March–April temperature correlations"</span>)</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_correlation_difference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Comparison of March–April correlations"</span>)</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_model_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"March- and April-by-era model coefficients"</span>)</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional monthly temperature slopes"</span>)</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/march_april_era_joint_interaction_test.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Joint test of temperature-by-era interactions"</span>)</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_interaction_coefficients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Continuous selected-window temperature-by-time model"</span>)</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">read_csv</span>(<span class="st">"tables/main_window_time_conditional_slopes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">caption =</span> <span class="st">"Conditional selected-window temperature slopes"</span>)</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a><span class="fu">### Annual fifth-percentile check for the fixed daily reproductive predictor</span></span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tables/climwin_window_lay_overlap_by_year.csv"</span>,</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>                    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, n_broods, p05_lay_calendar,</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>         window_close_calendar, window_reaches_p05_lay)</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(overlap, <span class="at">caption =</span> <span class="st">"Closing date of the fixed daily interval versus the annual fifth percentile"</span>)</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>The fixed daily reproductive interval closed before the annual fifth percentile of laying dates in all 45 seasons. This does not establish non-overlap with every brood: two of 14,297 breeding attempts began before 7 May (6 May 2006 and 28 April 2022). This check concerns the fixed daily interval, not the full weekly bins used by the phenology search.</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cached model objects</span></span>
 <span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>The fixed daily reproductive interval closed before the annual fifth percentile of laying dates in all 45 seasons. This does not establish non-overlap with every brood: two of 14,297 breeding attempts began before 7 May (6 May 2006 and 28 April 2022). This check concerns the fixed daily interval, not the full weekly bins used by the phenology search.</span>
-<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cached model objects</span></span>
-<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>Cached model objects are retained locally and are not distributed with the public website.</span>
-<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>The thermal window search used annual median laying date rather than either reproductive response. This reduces direct selection on the reproductive outcomes, but the subsequent analyses use the same population and overlapping seasons and should not be described as independent validation.</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>Cached model objects are retained locally and are not distributed with the public website.</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>The thermal window search used annual median laying date rather than either reproductive response. This reduces direct selection on the reproductive outcomes, but the subsequent analyses use the same population and overlapping seasons and should not be described as independent validation.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

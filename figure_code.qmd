@@ -20,9 +20,9 @@ Fledging curves on this page are from the reference model; their precision-tempe
 
 ## Thermal-window figures
 
-The manuscript's three-panel environmental figure uses the Gaussian location–scale fit to annual mean temperature; its third panel shows the separate within-window daily-SD OLS fit. Run [R/25_environment_temperature_location_scale.R](R/25_environment_temperature_location_scale.R) with glmmTMB 1.1.14. Gaussian dispersion is log SD, not log variance. The earlier two OLS plots are archived alternatives rather than the main environmental analysis.
+The manuscript's two-panel environmental figure shows the fitted annual mean temperature and residual interannual SD from the Gaussian location–scale model. Run [R/25_environment_temperature_location_scale.R](R/25_environment_temperature_location_scale.R) with glmmTMB 1.1.14. Gaussian dispersion is log SD, not log variance.
 
-[Mean predictions](tables/environment_temperature_time_predictions.csv) · [Interannual scale predictions](tables/environment_temperature_scale_predictions.csv) · [Daily-SD trend](tables/environment_daily_SD_trend.csv)
+[Mean predictions](tables/environment_temperature_time_predictions.csv) · [Interannual scale predictions](tables/environment_temperature_scale_predictions.csv)
 
 ## Clutch-size figures
 
