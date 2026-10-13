@@ -73,6 +73,11 @@ kable(co |> select(component, term, beta, SE, CI_low, CI_high, p), digits = 5, c
 
 ## Complete-failure calibration and distributional sensitivity
 
+We assessed reproduction of the complete-brood-failure frequency using simulation-based predictive checks (Supplementary Methods S1.10). We assessed sensitivity to excess zeros using a zero-augmented beta-binomial model with the same fixed and random effects (S1.12).
+
+<details>
+<summary>Numerical results of the two checks</summary>
+
 The reference underestimated the observed 23.65% complete-failure fraction: fitted-mode simulations gave 20.07% (95% envelope [19.26, 20.84]); new-group simulations gave 19.21% [16.67, 22.15]. With approximate joint parameter uncertainty, the envelope widened to [15.89, 23.35]%, still below the observation at its upper limit. These checks omit conditional group-mode uncertainty and are not formal goodness-of-fit tests.
 
 A zero-augmented sensitivity fit retained year effects in both components and reduced AIC by 740.78. Its precision-temperature coefficient was uncertain (−0.0854, CI [−0.2614, 0.0905]), while its conditional location coefficient remained negative (−0.2755, CI [−0.4184, −0.1325]). Approximate parameter uncertainty gave a zero-frequency envelope [19.92, 23.85]%. The mixing probability 0.1695 is not an identified biological fraction of failures; global coverage does not validate the full distribution.
@@ -81,6 +86,8 @@ A zero-augmented sensitivity fit retained year effects in both components and re
 #| echo: false
 kable(read_csv("tables/fledging_zero_calibration_audited.csv", show_col_types = FALSE), digits = 5, caption = "Audited zero-frequency simulation fractions for the reference and zero-augmented models")
 ```
+
+</details>
 
 ## Workflow and downloads
 
