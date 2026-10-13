@@ -194,7 +194,7 @@ kable(sensitivity |> select(window, component, estimate, lower95, upper95, inter
 knitr::include_graphics("figures/window_sensitivity_comparison.png")
 ```
 
-The mean fledging-success association was negative for all four intervals. Precision coefficients were positive throughout, but their intervals included zero for April and the shorter interval. This warrants more caution about the robustness of the precision association; crossing zero in some intervals does not itself demonstrate a difference between coefficients. The overlapping windows are correlated summaries of the same seasons, not independent replications. Positive precision coefficients refer to reduced extra-binomial heterogeneity at a given mean and clutch size, not necessarily reduced raw variance.
+The mean fledging-success association was negative for all four intervals. All precision intervals included zero under the new reference with year effects in both components. There was no clear temperature association with precision in any of the five tested intervals. The overlapping windows are correlated summaries of the same seasons, not independent replications. Precision describes extra-binomial heterogeneity at a given mean and clutch size, rather than raw outcome variance.
 
 We therefore retain 26 March–7 May as the primary reproductive window; the alternatives are sensitivity checks, not candidates for post hoc selection.
 

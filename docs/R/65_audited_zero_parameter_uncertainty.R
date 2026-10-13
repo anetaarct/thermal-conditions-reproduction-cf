@@ -1,8 +1,9 @@
 Sys.setlocale('LC_CTYPE','English_United States.utf8')
 .libPaths(c('.Rlib',.libPaths()))
 suppressPackageStartupMessages(library(glmmTMB))
-out<-'manuscript_audit_2026-10-08/zero_frequency_audit'
-mods<-list(primary=readRDS('models/review_1981/fledging_bb_main_1981_2019.rds'),year_precision=readRDS('manuscript_audit_2026-10-08/precision_year_sensitivity/nlminb_refined.rds'),zero_augmented=readRDS(file.path(out,'year_precision_zero_inflated_intercept.rds')))
+out<-'manuscript_audit_2026-10-13/zero_frequency_audit'
+dir.create(out,recursive=TRUE,showWarnings=FALSE)
+mods<-list(reference_year_precision=readRDS('models/glmmTMB/fledging_bb_reference_year_precision.rds'),zero_augmented=readRDS('manuscript_audit_2026-10-08/zero_frequency_audit/year_precision_zero_inflated_intercept.rds'))
 rows<-list()
 set.seed(20261014)
 for(label in names(mods)){

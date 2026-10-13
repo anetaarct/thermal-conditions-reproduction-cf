@@ -73,7 +73,7 @@ $$
 \beta_{\mathrm{LD}}^{(\phi)}\mathrm{relLD}_r+
 \beta_T^{(\phi)}\bar T_r+
 \beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+
-\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r.
+\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r+w_{y[r]}^{(\phi)}.
 $$
 
 Higher $\phi$ means lower conditional extra-binomial overdispersion. This is residual heterogeneity conditional on the fitted predictors and random effects, not general phenotypic variance.
@@ -83,9 +83,9 @@ Higher $\phi$ means lower conditional extra-binomial overdispersion. This is res
 In the brood-level models, $u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)$ and $v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)$; $w_y$ is the year-level scale effect in the clutch-size model. The predictor $\bar T$ is mean temperature during 26 March–7 May, `relLD` is laying date centred within season, and `Age` is the binary class `YOUNG`/`OLD`.
 
 
-## Precision and zero-outcome sensitivity
+## Annual precision heterogeneity and zero-outcome sensitivity
 
-The equations above describe the reference beta-binomial model. A sensitivity fit adds an independent year random intercept to $\log\phi_r$. A second fit retains that year effect and adds a constant extra-zero probability $\pi$, so $P(K_r=0)=\pi+(1-\pi)P_{BB}(K_r=0)$ and $E(K_r/n_r)=(1-\pi)\mu_r$. Its $\phi$ describes the beta-binomial component, not consistency of the entire mixture. Neither alternative is automatically selected as the final model.
+The reference includes independent year random intercepts in both location and log precision, and a female intercept in location. Temperature is common to broods within a year, so both components allow unexplained annual heterogeneity, paralleling the clutch-size model. For the fixed-precision LRT, the null retains the same random structure but uses only an intercept in the fixed precision component. A zero-augmented sensitivity fit adds a constant extra-zero probability, retaining those year effects. Its phi describes the beta-binomial component rather than the full mixture.
 
 ## Reporting convention
 

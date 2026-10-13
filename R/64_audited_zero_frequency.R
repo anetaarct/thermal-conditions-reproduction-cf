@@ -1,9 +1,9 @@
 Sys.setlocale('LC_CTYPE','English_United States.utf8')
 .libPaths(c('.Rlib',.libPaths()))
 suppressPackageStartupMessages(library(glmmTMB))
-out<-'manuscript_audit_2026-10-08/zero_frequency_audit'
+out<-'manuscript_audit_2026-10-13/zero_frequency_audit'
 dir.create(out,recursive=TRUE,showWarnings=FALSE)
-models<-list(primary=readRDS('models/review_1981/fledging_bb_main_1981_2019.rds'),year_precision=readRDS('manuscript_audit_2026-10-08/precision_year_sensitivity/nlminb_refined.rds'))
+models<-list(reference_year_precision=readRDS('models/glmmTMB/fledging_bb_reference_year_precision.rds'))
 summaries<-list()
 summ<-function(z,obs,model,kind,expected=NA_real_){data.frame(model,simulation=kind,n_sim=length(z),observed=obs,expected=expected,median=median(z),lower=quantile(z,.025),upper=quantile(z,.975),n_ge_observed=sum(z>=obs),upper_tail_plus_one=(sum(z>=obs)+1)/(length(z)+1))}
 for(label in names(models)){
@@ -19,7 +19,7 @@ for(label in names(models)){
  Z<-model.matrix(~rel_LD+temp_mean_c+year_c+age_class,d);g<-fixef(m)$disp;eta_phi<-drop(Z[,names(g),drop=FALSE]%*%g)
  iy<-as.integer(d$year_f);iff<-as.integer(d$female_id);vc<-VarCorr(m)
  sy<-attr(vc$cond$year_f,'stddev')[[1]];sf<-attr(vc$cond$female_id,'stddev')[[1]]
- sp<-if(label=='year_precision')attr(vc$disp$year_f,'stddev')[[1]]else 0
+ sp<-attr(vc$disp$year_f,'stddev')[[1]]
  set.seed(20261010)
  z<-replicate(1000,{u<-rnorm(nlevels(d$year_f),0,sy);v<-rnorm(nlevels(d$female_id),0,sf);a<-rnorm(nlevels(d$year_f),0,sp);mup<-plogis(eta+u[iy]+v[iff]);pp<-exp(eta_phi+a[iy]);p<-rbeta(length(n),mup*pp,(1-mup)*pp);mean(rbinom(length(n),n,p)==0)})
  summaries[[paste0(label,'_unconditional')]]<-summ(z,obs,label,'new_group_random_effects')

@@ -1,6 +1,3 @@
 model,pdHess,convergence_code
-beta_binomial_constant,TRUE,0
-beta_binomial_scale,TRUE,0
-fledged_poisson,TRUE,0
-fledged_nbinom2,TRUE,0
-fledged_hurdle_poisson,TRUE,0
+reference_year_precision,TRUE,0
+no_fixed_precision_predictors_year_RE,TRUE,0

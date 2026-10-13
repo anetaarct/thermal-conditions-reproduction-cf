@@ -11,7 +11,7 @@ toc: false
   <div class="overview-hero-shade"></div>
   <div class="overview-hero-copy">
   <p class="overview-kicker">Arct et al. 2026</p>
-  <h1>Lower but more consistent breeding success in warmer springs in a migratory passerine</h1>
+  <h1>Warmer springs are associated with larger clutches but lower egg-to-fledging success in a migratory passerine</h1>
   </div>
 </div>
 
@@ -24,7 +24,7 @@ toc: false
     <li>clutch size and its conditional consistency among breeding attempts were associated with spring temperature, relative laying date, female age, and long-term time;</li>
     <li>fledging success and its conditional consistency among breeding attempts were associated with spring temperature, relative laying date, female age, and long-term time.</li>
   </ul>
-<p><strong>Current manuscript results.</strong> Mean temperature increased by 0.0439°C per year (95% CI [0.0248, 0.0630]). Warmer springs were associated with larger clutches and lower egg-to-fledging success. The reference model suggested higher fledging consistency, but that association was not robust to annual precision heterogeneity or zero-outcome modelling. No clear temperature association with clutch-size inconsistency was detected. Scale effects describe heterogeneity among breeding attempts, not within-female repeatability.</p>
+<p><strong>Current manuscript results.</strong> Mean temperature increased by 0.0439°C per year (95% CI [0.0248, 0.0630]). Warmer springs were associated with larger clutches and lower egg-to-fledging success. The reference model includes year random effects in both components and provides no clear evidence of a temperature association with fledging consistency. No clear temperature association with clutch-size inconsistency was detected. Scale effects describe heterogeneity among breeding attempts, not within-female repeatability.</p>
 </section>
 
 <nav class="overview-tiles" aria-label="Project sections">

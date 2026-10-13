@@ -16,7 +16,7 @@ orange <- "#D55E00"
 theme_pub <- theme_classic(base_size = 11)
 ```
 
-Fledging curves on this page are from the reference model; their precision-temperature pattern is not robust to the sensitivity specifications reported in the fledging chapter. This page contains plotting code only. Every block is disabled during rendering and reads the archived plotting data.
+Fledging curves on this page are from the reference model; the reference has year random intercepts in both model components and no clear temperature association with precision. This page contains plotting code only. Every block is disabled during rendering and reads the archived plotting data.
 
 ## Thermal-window figures
 
@@ -232,29 +232,6 @@ ggsave("figures/Fig5_4_time_location_scale.png", p1 + p2,
 ```
 
 [Download mean-success data](tables/fig5_4a_success_year.csv){download="fig5_4a_success_year.csv"} and [consistency data](tables/fig5_4b_phi_year.csv){download="fig5_4b_phi_year.csv"}.
-
-### Constant-phi simulation diagnostic
-
-```{r}
-#| eval: false
-#| code-fold: show
-#| filename: "R/49_refresh_phi_constant_simulation.R"
-d <- read_csv("tables/figA_phi_constant_simulation.csv", show_col_types = FALSE)
-s <- read_csv(
-  "tables/fledging_phi_temperature_constant_simulation_summary.csv",
-  show_col_types = FALSE
-)
-p <- ggplot(d, aes(temp_mean_c)) +
-  geom_histogram(bins = 30, fill = blue, alpha = 0.7, colour = "white") +
-  geom_vline(xintercept = s$observed_auxiliary_beta,
-             colour = orange, linewidth = 1.1) +
-  labs(x = "Temperature coefficient in log-phi under constant phi",
-       y = "Simulated datasets") + theme_pub
-ggsave("figures/FigA_phi_constant_simulation.png", p,
-       width = 6.4, height = 4.8, dpi = 400, bg = "white")
-```
-
-[Download simulation data](tables/figA_phi_constant_simulation.csv){download="figA_phi_constant_simulation.csv"}.
 
 ```{r}
 #| eval: false

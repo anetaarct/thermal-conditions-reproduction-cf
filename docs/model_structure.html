@@ -207,7 +207,7 @@ window.Quarto = {
   <li><a href="#clutch-size" id="toc-clutch-size" class="nav-link" data-scroll-target="#clutch-size"><span class="header-section-number">2</span> Clutch size</a></li>
   <li><a href="#fledging-success-reference-specification" id="toc-fledging-success-reference-specification" class="nav-link" data-scroll-target="#fledging-success-reference-specification"><span class="header-section-number">3</span> Fledging success: reference specification</a></li>
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="header-section-number">4</span> Notation</a></li>
-  <li><a href="#precision-and-zero-outcome-sensitivity" id="toc-precision-and-zero-outcome-sensitivity" class="nav-link" data-scroll-target="#precision-and-zero-outcome-sensitivity"><span class="header-section-number">5</span> Precision and zero-outcome sensitivity</a></li>
+  <li><a href="#annual-precision-heterogeneity-and-zero-outcome-sensitivity" id="toc-annual-precision-heterogeneity-and-zero-outcome-sensitivity" class="nav-link" data-scroll-target="#annual-precision-heterogeneity-and-zero-outcome-sensitivity"><span class="header-section-number">5</span> Annual precision heterogeneity and zero-outcome sensitivity</a></li>
   <li><a href="#reporting-convention" id="toc-reporting-convention" class="nav-link" data-scroll-target="#reporting-convention"><span class="header-section-number">6</span> Reporting convention</a></li>
   </ul>
 </nav>
@@ -293,7 +293,7 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
 \beta_{\mathrm{LD}}^{(\phi)}\mathrm{relLD}_r+
 \beta_T^{(\phi)}\bar T_r+
 \beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+
-\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r.
+\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r+w_{y[r]}^{(\phi)}.
 \]</span></p>
 <p>Higher <span class="math inline">\(\phi\)</span> means lower conditional extra-binomial overdispersion. This is residual heterogeneity conditional on the fitted predictors and random effects, not general phenotypic variance.</p>
 </section>
@@ -301,9 +301,9 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
 <h2 data-number="4" class="anchored" data-anchor-id="notation"><span class="header-section-number">4</span> Notation</h2>
 <p>In the brood-level models, <span class="math inline">\(u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)\)</span> and <span class="math inline">\(v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)\)</span>; <span class="math inline">\(w_y\)</span> is the year-level scale effect in the clutch-size model. The predictor <span class="math inline">\(\bar T\)</span> is mean temperature during 26 March–7 May, <code>relLD</code> is laying date centred within season, and <code>Age</code> is the binary class <code>YOUNG</code>/<code>OLD</code>.</p>
 </section>
-<section id="precision-and-zero-outcome-sensitivity" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="precision-and-zero-outcome-sensitivity"><span class="header-section-number">5</span> Precision and zero-outcome sensitivity</h2>
-<p>The equations above describe the reference beta-binomial model. A sensitivity fit adds an independent year random intercept to <span class="math inline">\(\log\phi_r\)</span>. A second fit retains that year effect and adds a constant extra-zero probability <span class="math inline">\(\pi\)</span>, so <span class="math inline">\(P(K_r=0)=\pi+(1-\pi)P_{BB}(K_r=0)\)</span> and <span class="math inline">\(E(K_r/n_r)=(1-\pi)\mu_r\)</span>. Its <span class="math inline">\(\phi\)</span> describes the beta-binomial component, not consistency of the entire mixture. Neither alternative is automatically selected as the final model.</p>
+<section id="annual-precision-heterogeneity-and-zero-outcome-sensitivity" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="annual-precision-heterogeneity-and-zero-outcome-sensitivity"><span class="header-section-number">5</span> Annual precision heterogeneity and zero-outcome sensitivity</h2>
+<p>The reference includes independent year random intercepts in both location and log precision, and a female intercept in location. Temperature is common to broods within a year, so both components allow unexplained annual heterogeneity, paralleling the clutch-size model. For the fixed-precision LRT, the null retains the same random structure but uses only an intercept in the fixed precision component. A zero-augmented sensitivity fit adds a constant extra-zero probability, retaining those year effects. Its phi describes the beta-binomial component rather than the full mixture.</p>
 </section>
 <section id="reporting-convention" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="reporting-convention"><span class="header-section-number">6</span> Reporting convention</h2>
@@ -841,7 +841,7 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{LD}}^{(\phi)}\mathrm{relLD}_r+</span>
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>\beta_T^{(\phi)}\bar T_r+</span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r.</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r+w_{y<span class="co">[</span><span class="ot">r</span><span class="co">]</span>}^{(\phi)}.</span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>Higher $\phi$ means lower conditional extra-binomial overdispersion. This is residual heterogeneity conditional on the fitted predictors and random effects, not general phenotypic variance.</span>
@@ -851,9 +851,9 @@ K_r \sim \operatorname{BetaBinomial}(n_r,\mu_r,\phi_r),
 <span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>In the brood-level models, $u_y\sim\mathcal{N}(0,\tau_{\mathrm{year}}^2)$ and $v_f\sim\mathcal{N}(0,\tau_{\mathrm{female}}^2)$; $w_y$ is the year-level scale effect in the clutch-size model. The predictor $\bar T$ is mean temperature during 26 March–7 May, <span class="in">`relLD`</span> is laying date centred within season, and <span class="in">`Age`</span> is the binary class <span class="in">`YOUNG`</span>/<span class="in">`OLD`</span>.</span>
 <span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Precision and zero-outcome sensitivity</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Annual precision heterogeneity and zero-outcome sensitivity</span></span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>The equations above describe the reference beta-binomial model. A sensitivity fit adds an independent year random intercept to $\log\phi_r$. A second fit retains that year effect and adds a constant extra-zero probability $\pi$, so $P(K_r=0)=\pi+(1-\pi)P_{BB}(K_r=0)$ and $E(K_r/n_r)=(1-\pi)\mu_r$. Its $\phi$ describes the beta-binomial component, not consistency of the entire mixture. Neither alternative is automatically selected as the final model.</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>The reference includes independent year random intercepts in both location and log precision, and a female intercept in location. Temperature is common to broods within a year, so both components allow unexplained annual heterogeneity, paralleling the clutch-size model. For the fixed-precision LRT, the null retains the same random structure but uses only an intercept in the fixed precision component. A zero-augmented sensitivity fit adds a constant extra-zero probability, retaining those year effects. Its phi describes the beta-binomial component rather than the full mixture.</span>
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reporting convention</span></span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>

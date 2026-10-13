@@ -1,8 +1,4 @@
 component,quantity,estimate,unit
-Location,Year random-intercept SD,0.3528812256698919,logit scale
-Location,Female random-intercept SD,0.2412069197165254,logit scale
-Location,Share of modelled random-intercept variance: year,68.1560550798207,%
-Location,Share of modelled random-intercept variance: female,31.843944920179293,%
-Location,Reduction in year random-intercept variance: temperature and year,36.23914741590336,%
-Location,Reduction in year random-intercept variance: temperature alone,36.239720834646384,%
-Precision,Random effects,NA,none specified
+Location,Year random-intercept SD,0.362697253828948,logit scale
+Location,Female random-intercept SD,0.23736427635382,logit scale
+Precision,Year random-intercept SD,0.270659123433575,log-phi scale

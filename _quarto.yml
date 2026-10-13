@@ -16,6 +16,13 @@ project:
     - tables/*.csv
     - figures/*
     - R/*.R
+    - "!tables/fledging_phi_constant_simulations.csv"
+    - "!tables/fledging_phi_temperature_constant_simulation_summary.csv"
+    - "!tables/fledging_phi_temperature_conditional_survival.csv"
+    - "!tables/figA_phi_constant_simulation.csv"
+    - "!figures/FigA_phi_constant_simulation.png"
+    - "!R/49_refresh_phi_constant_simulation.R"
+    - "!R/62_fledging_zero_failure.R"
     - "!tables/environment_daily_SD_trend.csv"
     - "!tables/main_window_temperature_trends.csv"
     - "!figures/Fig1_temperature_sd_time.png"

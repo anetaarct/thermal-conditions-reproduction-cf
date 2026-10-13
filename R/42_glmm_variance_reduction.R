@@ -1,4 +1,6 @@
 #!/usr/bin/env Rscript
+# Historical no-year-in-precision specification; not used for current inference.
+# Current reference SDs are exported by R/68_export_fledging_year_precision_reference.R.
 .libPaths(c(".Rlib", "../CF phenology/gotland-flycatcher-phenology/Rlib", .libPaths()))
 suppressPackageStartupMessages({library(dplyr); library(glmmTMB); library(readr); library(tibble)})
 args <- commandArgs(trailingOnly = TRUE)
