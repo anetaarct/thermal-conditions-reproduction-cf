@@ -28,7 +28,7 @@ kable(comparison, digits = 5, caption = "Matched-year-random-structure precision
 
 ## Temperature
 
-Warmer springs were associated with lower mean success: beta_temp^(mu) = −0.2514 on the logit scale per °C, 95% CI [−0.3829, −0.1199], p < 0.001. There was no clear temperature association with consistency: beta_temp^(phi) = 0.0088 on the log-phi scale per °C, 95% CI [−0.0973, 0.1148], p = 0.871.
+Warmer springs were associated with lower mean egg-to-fledging success (beta_temp^(mu) = −0.2514 on the logit scale per °C, 95% CI [−0.3829, −0.1199]), whereas there was no clear temperature association with precision (beta_temp^(phi) = 0.0088 on the log-phi scale per °C, 95% CI [−0.0973, 0.1148]). The model underpredicted complete brood failure; adding a zero component yielded the same temperature-related conclusions (Supplementary Methods S1.10, S1.12).
 
 ```{r}
 #| echo: false
@@ -73,7 +73,7 @@ kable(co |> select(component, term, beta, SE, CI_low, CI_high, p), digits = 5, c
 
 ## Complete-failure calibration and distributional sensitivity
 
-We assessed reproduction of the complete-brood-failure frequency using simulation-based predictive checks (Supplementary Methods S1.10). We assessed sensitivity to excess zeros using a zero-augmented beta-binomial model with the same fixed and random effects (S1.12).
+Because spring temperature varies only among seasons, the reference included year random intercepts in both mean and precision, matching the clutch-size model. We checked complete-brood-failure frequency by simulation (S1.10) and added a zero component as one sensitivity analysis (S1.12).
 
 <details>
 <summary>Numerical results of the two checks</summary>

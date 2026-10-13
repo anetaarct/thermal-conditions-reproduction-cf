@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="temperature" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="temperature"><span class="header-section-number">3</span> Temperature</h2>
-<p>Warmer springs were associated with lower mean success: beta_temp^(mu) = −0.2514 on the logit scale per °C, 95% CI [−0.3829, −0.1199], p &lt; 0.001. There was no clear temperature association with consistency: beta_temp^(phi) = 0.0088 on the log-phi scale per °C, 95% CI [−0.0973, 0.1148], p = 0.871.</p>
+<p>Warmer springs were associated with lower mean egg-to-fledging success (beta_temp^(mu) = −0.2514 on the logit scale per °C, 95% CI [−0.3829, −0.1199]), whereas there was no clear temperature association with precision (beta_temp^(phi) = 0.0088 on the log-phi scale per °C, 95% CI [−0.0973, 0.1148]). The model underpredicted complete brood failure; adding a zero component yielded the same temperature-related conclusions (Supplementary Methods S1.10, S1.12).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -465,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="complete-failure-calibration-and-distributional-sensitivity" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="complete-failure-calibration-and-distributional-sensitivity"><span class="header-section-number">7</span> Complete-failure calibration and distributional sensitivity</h2>
-<p>We assessed reproduction of the complete-brood-failure frequency using simulation-based predictive checks (Supplementary Methods S1.10). We assessed sensitivity to excess zeros using a zero-augmented beta-binomial model with the same fixed and random effects (S1.12).</p>
+<p>Because spring temperature varies only among seasons, the reference included year random intercepts in both mean and precision, matching the clutch-size model. We checked complete-brood-failure frequency by simulation (S1.10) and added a zero component as one sensitivity analysis (S1.12).</p>
 <details>
 <summary>
 Numerical results of the two checks
@@ -1039,7 +1039,7 @@ Numerical results of the two checks
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Warmer springs were associated with lower mean success: beta_temp^(mu) = −0.2514 on the logit scale per °C, 95% CI <span class="co">[</span><span class="ot">−0.3829, −0.1199</span><span class="co">]</span>, p &lt; 0.001. There was no clear temperature association with consistency: beta_temp^(phi) = 0.0088 on the log-phi scale per °C, 95% CI <span class="co">[</span><span class="ot">−0.0973, 0.1148</span><span class="co">]</span>, p = 0.871.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Warmer springs were associated with lower mean egg-to-fledging success (beta_temp^(mu) = −0.2514 on the logit scale per °C, 95% CI <span class="co">[</span><span class="ot">−0.3829, −0.1199</span><span class="co">]</span>), whereas there was no clear temperature association with precision (beta_temp^(phi) = 0.0088 on the log-phi scale per °C, 95% CI <span class="co">[</span><span class="ot">−0.0973, 0.1148</span><span class="co">]</span>). The model underpredicted complete brood failure; adding a zero component yielded the same temperature-related conclusions (Supplementary Methods S1.10, S1.12).</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1084,7 +1084,7 @@ Numerical results of the two checks
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complete-failure calibration and distributional sensitivity</span></span>
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>We assessed reproduction of the complete-brood-failure frequency using simulation-based predictive checks (Supplementary Methods S1.10). We assessed sensitivity to excess zeros using a zero-augmented beta-binomial model with the same fixed and random effects (S1.12).</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>Because spring temperature varies only among seasons, the reference included year random intercepts in both mean and precision, matching the clutch-size model. We checked complete-brood-failure frequency by simulation (S1.10) and added a zero component as one sensitivity analysis (S1.12).</span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Numerical results of the two checks<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
